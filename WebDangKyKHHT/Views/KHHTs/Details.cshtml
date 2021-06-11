@@ -1,0 +1,50 @@
+﻿@model WebDangKyKHHT.Models.KHHT
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>KHHT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayTao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayTao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NutTick)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NutTick)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HocKi.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HocKi.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MonHoc.MaMH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonHoc.MaMH)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

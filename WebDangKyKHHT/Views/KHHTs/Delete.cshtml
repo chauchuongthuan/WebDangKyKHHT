@@ -1,0 +1,56 @@
+﻿@model WebDangKyKHHT.Models.KHHT
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>KHHT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayTao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayTao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NutTick)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NutTick)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HocKi.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HocKi.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MonHoc.MaMH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonHoc.MaMH)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
