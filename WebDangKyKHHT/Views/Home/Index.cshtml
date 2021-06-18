@@ -32,7 +32,9 @@
                 </div>
                 <div class="col-12 col-lg-6 ml-auto d-flex">
                     <div class="ml-md-auto top-social d-none d-lg-inline-block">
-                       
+                        <a href="#" class="d-inline-block p-3"><span class="icon-facebook-square"></span></a>
+                        <a href="#" class="d-inline-block p-3"><span class="icon-mail_outline"></span></a>
+                        <a href="#" class="d-inline-block p-3"><span class="icon-instagram"></span></a>
                     </div>
                     <div class="header__top__right__auth">
                         @if (Request.IsAuthenticated)
@@ -43,9 +45,8 @@
                                 <ul class="nav navbar-nav navbar-right">
                                     <li>
                                         @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                                        &ensp;
-                                        <button type="submit" class="btn btn-secondary"><span>Logout</span></button>
                                     </li>
+                                    <li><button type="submit" class="btn btn-secondary"><span>Logout</span></button></li>
                                 </ul>
                                  }
                         }
