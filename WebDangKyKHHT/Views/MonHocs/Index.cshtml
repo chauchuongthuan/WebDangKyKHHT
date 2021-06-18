@@ -2,51 +2,66 @@
 
 @{
     ViewBag.Title = "Index";
+    int total = 0;
 }
 
-<h2>Index</h2>
+<h2>Chương trình đào tạo</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+<form action="@Url.Action("Search", "MonHocs")" method="get">
+    <input type="text" name="HK" placeholder="Nhập học kì">
+    <button type="submit" class="site-btn">SEARCH</button>
+</form>
+
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.MaMH)
+            Mã môn học
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TenMH)
+            Tên môn học
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SoTinChi)
+            Số tín chỉ
         </th>
         <th>
-            @*Html.DisplayNameFor(model => model.HocKi.ID)*@
             Học kì
         </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaMH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenMH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoTinChi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HocKi.ID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
     </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        
+        {
+            total += (int)item.SoTinChi;
+            <tr>
+                <td>
+                    @item.MaMH
+                </td>
+                <td>
+                    @item.TenMH
+                </td>
+                <td>
+                    @item.SoTinChi
+                </td>
+                <td>
+                    @item.HocKi.TenHK
+                </td>
+            </tr>
+        }
+    }
 </table>
+<tr>
+    <td>Tổng số tín chỉ: </td>
+    <td>@total</td>
+</tr>
+
+<script>
+    function selectedtext() {
+        var e = document.getElementById("TestSelect");
+        var getvalue = e.options[value.SelectedIndex].value;
+    }
+</script>
+
+

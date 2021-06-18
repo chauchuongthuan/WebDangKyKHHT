@@ -15,10 +15,13 @@ namespace WebDangKyKHHT.Controllers
         private SEP_TEAM15_DKKKHHTEntities db = new SEP_TEAM15_DKKKHHTEntities();
 
         // GET: MonHocs
+        [AllowAnonymous]
         public ActionResult Index()
         {
+            ViewBag.ID_HK = new SelectList(db.HocKis, "ID", "ID");
             var monHocs = db.MonHocs.Include(m => m.HocKi);
             return View(monHocs.ToList());
+            
         }
 
         // GET: MonHocs/Details/5
@@ -127,6 +130,16 @@ namespace WebDangKyKHHT.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        [AllowAnonymous]
+        public ActionResult Search(string HK)
+        {
+            var monhoc = db.MonHocs.ToList();           
+            int iHK = int.Parse(HK);
+            monhoc = monhoc.Where(m => m.HocKi.TenHK == iHK).ToList();
+            return View("Index", monhoc);
         }
     }
 }

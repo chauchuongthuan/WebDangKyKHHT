@@ -11,7 +11,7 @@ namespace WebDangKyKHHT.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class MonHoc
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +19,6 @@ namespace WebDangKyKHHT.Models
         {
             this.KHHTs = new HashSet<KHHT>();
         }
-    
         public int ID { get; set; }
         public string MaMH { get; set; }
         public string TenMH { get; set; }
