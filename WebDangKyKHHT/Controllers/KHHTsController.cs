@@ -12,7 +12,7 @@ namespace WebDangKyKHHT.Controllers
 {
     public class KHHTsController : Controller
     {
-        private SEP_TEAM15_WEBKHHTEntities db = new SEP_TEAM15_WEBKHHTEntities();
+        private SEP_TEAM15_DKKKHHTEntities db = new SEP_TEAM15_DKKKHHTEntities();
 
         // GET: KHHTs
         public ActionResult Index()

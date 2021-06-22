@@ -14,15 +14,21 @@ namespace WebDangKyKHHT.Models
     
     public partial class KHHT
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public KHHT()
+        {
+            this.ThongKes = new HashSet<ThongKe>();
+        }
+    
         public int ID { get; set; }
         public Nullable<int> ID_MH { get; set; }
         public Nullable<int> ID_HK { get; set; }
-        public Nullable<int> ID_SV { get; set; }
         public Nullable<System.DateTime> NgayTao { get; set; }
         public Nullable<bool> NutTick { get; set; }
     
         public virtual HocKi HocKi { get; set; }
         public virtual MonHoc MonHoc { get; set; }
-        public virtual SinhVien SinhVien { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ThongKe> ThongKes { get; set; }
     }
 }

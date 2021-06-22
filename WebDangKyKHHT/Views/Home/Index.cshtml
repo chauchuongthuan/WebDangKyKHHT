@@ -14,6 +14,9 @@
         </div>
         <div class="site-mobile-menu-body"></div>
     </div>
+
+
+
     <div class="header-top">
         <div class="container">
             <div class="row align-items-center">
@@ -45,7 +48,7 @@
                                     </li>
                                     <li><button type="submit" class="btn btn-secondary"><span>Logout</span></button></li>
                                 </ul>
-                            }
+                                 }
                         }
                         else
                         {
@@ -60,7 +63,7 @@
                         }
 
                     </div>
-
+                    
                 </div>
             </div>
             <div class="col-6 d-block d-lg-none text-right">
@@ -83,15 +86,14 @@
                                 <a href="@Url.Content("~/Home/Index")" class="nav-link text-left" style="color: #ff3333">Trang chủ</a>
                             </li>
                             <li>
-                                <a href="@Url.Content("~/KHHTs/Create")" class="nav-link text-left">Đăng ký kế hoạch học tập</a>
+                                <a href="#" class="nav-link text-left">Đăng ký kế hoạch học tập</a>
                             </li>
                             <li>
                                 <a href="@Url.Content("~/MonHocs/Index")" class="nav-link text-left">Xem kế hoạch đào tạo</a>
                             </li>
                             <li>
-                                <a href="@Url.Content("~/KHHTs/Index")" class="nav-link text-left">Lịch sử đăng ký KHHT</a>
+                                <a href="#" class="nav-link text-left">Lịch sử đăng ký KHHT</a>
                             </li>
-                            
                         </ul>
                     </nav>
                 </div>
@@ -101,13 +103,17 @@
 </div>
 
 
+
+
+
+
 <div class="site-section">
     <div class="container">
         <h1 align="center">Website đăng ký kế hoạch học tập</h1>
         <img src="@Url.Content("~/images/VLU2021.jpg")">
     </div>
-    
 </div>
+
 
 
 <div class="footer">
@@ -127,7 +133,7 @@
 </div>
 
 
-
+  </div>
 <!-- .site-wrap -->
 <div class="footer">
     <div class="container">
@@ -145,6 +151,3 @@
         </div>
     </div>
 </div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

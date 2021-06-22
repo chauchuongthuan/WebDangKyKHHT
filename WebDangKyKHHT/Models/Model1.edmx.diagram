@@ -4,16 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c25a1dbecae243c2bfb62a9f1e5db6a5" Name="Diagram1">
-        <EntityTypeShape EntityType="SEP_TEAM15_WEBKHHTModel.BCNKhoa" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP_TEAM15_WEBKHHTModel.HocKi" Width="1.5" PointX="0.5" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP_TEAM15_WEBKHHTModel.KHHT" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP_TEAM15_WEBKHHTModel.MonHoc" Width="1.5" PointX="2.875" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP_TEAM15_WEBKHHTModel.SinhVien" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
-        <AssociationConnector Association="SEP_TEAM15_WEBKHHTModel.FK_KHHT_HocKi" ManuallyRouted="false" />
-        <AssociationConnector Association="SEP_TEAM15_WEBKHHTModel.FK_MonHoc_HocKi" ManuallyRouted="false" />
-        <AssociationConnector Association="SEP_TEAM15_WEBKHHTModel.FK_KHHT_MonHoc" ManuallyRouted="false" />
-        <AssociationConnector Association="SEP_TEAM15_WEBKHHTModel.FK_KHHT_SinhVien" ManuallyRouted="false" />
+      <Diagram DiagramId="be538a0ff9424c619dfdfa41de084099" Name="Diagram1">
+        <EntityTypeShape EntityType="SEP_TEAM15_DKKKHHTModel.BCNKhoa" Width="1.5" PointX="7.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_TEAM15_DKKKHHTModel.HocKi" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_TEAM15_DKKKHHTModel.KHHT" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_TEAM15_DKKKHHTModel.MonHoc" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_TEAM15_DKKKHHTModel.SinhVien" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_TEAM15_DKKKHHTModel.sysdiagram" Width="1.5" PointX="7.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP_TEAM15_DKKKHHTModel.ThongKe" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="SEP_TEAM15_DKKKHHTModel.FK_KHHT_HocKi" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP_TEAM15_DKKKHHTModel.FK_MonHoc_HocKi" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP_TEAM15_DKKKHHTModel.FK_KHHT_MonHoc" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP_TEAM15_DKKKHHTModel.FK_ThongKe_KHHT" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP_TEAM15_DKKKHHTModel.FK_ThongKe_SinhVien" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,7 +12,7 @@ namespace WebDangKyKHHT.Controllers
 {
     public class MonHocsController : Controller
     {
-        private SEP_TEAM15_WEBKHHTEntities db = new SEP_TEAM15_WEBKHHTEntities();
+        private SEP_TEAM15_DKKKHHTEntities db = new SEP_TEAM15_DKKKHHTEntities();
 
         // GET: MonHocs
         [AllowAnonymous]
@@ -22,14 +22,6 @@ namespace WebDangKyKHHT.Controllers
             var monHocs = db.MonHocs.Include(m => m.HocKi);
             return View(monHocs.ToList());
             
-        }
-        [HttpPost]
-        public ActionResult Index(int ID_HK)
-        {
-            ViewBag.ID_HK = new SelectList(db.HocKis, "ID", "ID");
-            var monHocs = db.MonHocs.Include(m => m.HocKi).Where(a=>a.ID_HK == ID_HK) ;
-            return View(monHocs.ToList());
-
         }
 
         // GET: MonHocs/Details/5
@@ -141,13 +133,13 @@ namespace WebDangKyKHHT.Controllers
         }
 
 
-        //[AllowAnonymous]
-        //public ActionResult Search(string HK)
-        //{
-        //    var monhoc = db.MonHocs.ToList();           
-        //    int iHK = int.Parse(HK);
-        //    monhoc = monhoc.Where(m => m.HocKi.TenHK == iHK).ToList();
-        //    return View("Index", monhoc);
-        //}
+        [AllowAnonymous]
+        public ActionResult Search(string HK)
+        {
+            var monhoc = db.MonHocs.ToList();           
+            int iHK = int.Parse(HK);
+            monhoc = monhoc.Where(m => m.HocKi.TenHK == iHK).ToList();
+            return View("Index", monhoc);
+        }
     }
 }
