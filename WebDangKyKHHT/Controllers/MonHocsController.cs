@@ -23,6 +23,14 @@ namespace WebDangKyKHHT.Controllers
             return View(monHocs.ToList());
             
         }
+        [HttpPost]
+        public ActionResult Index(int ID_HK)
+        {
+            ViewBag.ID_HK = new SelectList(db.HocKis, "ID", "ID");
+            var monHocs = db.MonHocs.Include(m => m.HocKi).Where(a => a.ID_HK == ID_HK);
+            return View(monHocs.ToList());
+
+        }
 
         // GET: MonHocs/Details/5
         public ActionResult Details(int? id)
