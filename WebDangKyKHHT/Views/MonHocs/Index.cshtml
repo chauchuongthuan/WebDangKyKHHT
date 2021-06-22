@@ -1,62 +1,213 @@
 ﻿@model IEnumerable<WebDangKyKHHT.Models.MonHoc>
+@using Microsoft.AspNet.Identity
+
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/DKKHHT.cshtml";
     int total = 0;
+    
 }
 
-<h2>Chương trình đào tạo</h2>
+<head>
+    <style>
+       .scrollable{
+           height:300px;
+           overflow :scroll;
+
+       }
+       .scrollable table thead th {
+           position:sticky;
+           top:0;
+           background-color:white;
+       }
+       
+       .table-fixed tr {
+           display :block;
+       }
+    </style>
+</head>
+<div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icon-close2 js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <div class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6 d-flex">
+                    <a href="@Url.Content("~/Home/Index")" class="site-logo">
+                        Van Lang University
+                    </a>
+
+                    <a href="#" class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black">
+                        <span class="icon-menu h3"></span>
+                    </a>
+
+                </div>
+                <div class="col-12 col-lg-6 ml-auto d-flex">
+                    <div class="ml-md-auto top-social d-none d-lg-inline-block">
+                        <a href="#" class="d-inline-block p-3"><span class="icon-facebook-square"></span></a>
+                        <a href="#" class="d-inline-block p-3"><span class="icon-mail_outline"></span></a>
+                        <a href="#" class="d-inline-block p-3"><span class="icon-instagram"></span></a>
+                    </div>
+                    <div class="header__top__right__auth">
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li>
+                                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                    </li>
+                                    <li><button type="submit" class="btn btn-secondary"><span>Logout</span></button></li>
+                                </ul>
+                            }
+                        }
+                        else
+                        {
+                            <form action="@Url.Content("~/Account/Login")" class="search-form d-inline-block">
+
+                                <div class="d-flex">
+                                    &ensp;
+                                    &ensp;
+                                    <button type="submit" class="btn btn-secondary"><span>Login</span></button>
+                                </div>
+                            </form>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-6 d-block d-lg-none text-right">
+            </div>
+        </div>
+    </div>
 
 
-<form action="@Url.Action("Search", "MonHocs")" method="get">
-    <input type="text" name="HK" placeholder="Nhập học kì">
-    <button type="submit" class="site-btn">SEARCH</button>
-</form>
 
 
-<table class="table">
-    <tr>
-        <th>
-            Mã môn học
-        </th>
-        <th>
-            Tên môn học
-        </th>
-        <th>
-            Số tín chỉ
-        </th>
-        <th>
-            Học kì
-        </th>
+    <div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
 
-    </tr>
-    @foreach (var item in Model)
-    {
-        
-        {
-            total += (int)item.SoTinChi;
-            <tr>
-                <td>
-                    @item.MaMH
-                </td>
-                <td>
-                    @item.TenMH
-                </td>
-                <td>
-                    @item.SoTinChi
-                </td>
-                <td>
-                    @item.HocKi.TenHK
-                </td>
-            </tr>
-        }
-    }
-</table>
-<tr>
-    <td>Tổng số tín chỉ: </td>
-    <td>@total</td>
-</tr>
+        <div class="container">
+            <div class="d-flex align-items-center">
+
+                <div class="mr-auto">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
+                            <li class="active">
+                                <a href="@Url.Content("~/Home/Index")" class="nav-link text-left">Trang chủ</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Content("~/KHHTs/Index")" class="nav-link text-left">Đăng ký kế hoạch học tập</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Content("~/MonHocs/Index")" class="nav-link text-left" style="color: #ff3333">Xem kế hoạch đào tạo</a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link text-left">Lịch sử đăng ký KHHT</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
+<div class="site-section">
+    <div class="container">
+        <h2 align="center">Xem Kế hoạch học tập</h2>
+        </div>
+</div>
+
+    <div class="container">
+        <div class="d-flex align-items-center">
+            @using (Html.BeginForm())
+            {
+                <table>
+                    <tr>
+                        <th>
+                            Chọn Học Kì
+                        </th>
+                        <th>
+                            @Html.DropDownList("ID_HK", null, htmlAttributes: new { @class = "form-control" })
+                        </th>
+                        <th>
+                            <input type="submit" value="Tìm kiếm " />
+                        </th>
+                    </tr>
+                </table>
+            }
+        </div>
+    </div>
+
+    
+
+    <body>
+        <div class="container">
+            <div class="scrollable">
+                <table class="table table-bordered text-center ">
+                    <thead >
+                        <tr>
+                            <th>
+                                Mã môn học
+                            </th>
+                            <th>
+                                Tên môn học
+                            </th>
+                            <th>
+                                Số tín chỉ
+                            </th>
+                            <th>
+                                Học kì
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody >
+                        @foreach (var item in Model)
+                        {
+
+                            {
+                                total += (int)item.SoTinChi;
+                                <tr>
+                                    <td>
+                                        @item.MaMH
+                                    </td>
+                                    <td>
+                                        @item.TenMH
+                                    </td>
+                                    <td>
+                                        @item.SoTinChi
+                                    </td>
+                                    <td>
+                                        @item.HocKi.TenHK
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+            <table>
+                <tr>
+                    <td><h5>Tổng số tín chỉ:</h5> </td>
+                    <td></td>
+                    <td><h5>@total</h5></td>
+                </tr>
+            </table>
+            
+
+</body>
 
 

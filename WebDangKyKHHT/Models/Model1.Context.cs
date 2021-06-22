@@ -13,10 +13,10 @@ namespace WebDangKyKHHT.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SEP_TEAM15_DKKKHHTEntities : DbContext
+    public partial class SEP_TEAM15_WEBKHHTEntities : DbContext
     {
-        public SEP_TEAM15_DKKKHHTEntities()
-            : base("name=SEP_TEAM15_DKKKHHTEntities")
+        public SEP_TEAM15_WEBKHHTEntities()
+            : base("name=SEP_TEAM15_WEBKHHTEntities")
         {
         }
     
@@ -30,7 +30,5 @@ namespace WebDangKyKHHT.Models
         public virtual DbSet<KHHT> KHHTs { get; set; }
         public virtual DbSet<MonHoc> MonHocs { get; set; }
         public virtual DbSet<SinhVien> SinhViens { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<ThongKe> ThongKes { get; set; }
     }
 }
