@@ -12,17 +12,13 @@ namespace WebDangKyKHHT.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class KHHT
+    public partial class AspNetUserClaim
     {
-        public int ID { get; set; }
-        public Nullable<int> ID_MH { get; set; }
-        public Nullable<int> ID_HK { get; set; }
-        public string ID_SV { get; set; }
-        public Nullable<System.DateTime> NgayTao { get; set; }
-        public Nullable<bool> NutTick { get; set; }
+        public int Id { get; set; }
+        public string UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
-        public virtual HocKi HocKi { get; set; }
-        public virtual MonHoc MonHoc { get; set; }
     }
 }

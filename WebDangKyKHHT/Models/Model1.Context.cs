@@ -25,11 +25,15 @@ namespace WebDangKyKHHT.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<BCNKhoa> BCNKhoas { get; set; }
         public virtual DbSet<HocKi> HocKis { get; set; }
         public virtual DbSet<KHHT> KHHTs { get; set; }
         public virtual DbSet<MonHoc> MonHocs { get; set; }
-        public virtual DbSet<SinhVien> SinhViens { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

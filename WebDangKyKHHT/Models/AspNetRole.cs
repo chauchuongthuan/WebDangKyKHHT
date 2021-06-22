@@ -12,21 +12,18 @@ namespace WebDangKyKHHT.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SinhVien
+    public partial class AspNetRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SinhVien()
+        public AspNetRole()
         {
-            this.KHHTs = new HashSet<KHHT>();
+            this.AspNetUsers = new HashSet<AspNetUser>();
         }
     
-        public int ID { get; set; }
-        public string TenTK { get; set; }
-        public string MatKhau { get; set; }
-        public string TenSV { get; set; }
-        public string MaSV { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KHHT> KHHTs { get; set; }
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }
