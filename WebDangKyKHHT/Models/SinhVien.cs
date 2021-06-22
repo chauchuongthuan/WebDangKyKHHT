@@ -17,7 +17,7 @@ namespace WebDangKyKHHT.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SinhVien()
         {
-            this.ThongKes = new HashSet<ThongKe>();
+            this.KHHTs = new HashSet<KHHT>();
         }
     
         public int ID { get; set; }
@@ -27,6 +27,6 @@ namespace WebDangKyKHHT.Models
         public string MaSV { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ThongKe> ThongKes { get; set; }
+        public virtual ICollection<KHHT> KHHTs { get; set; }
     }
 }
