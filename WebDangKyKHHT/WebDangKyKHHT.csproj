@@ -273,6 +273,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\icon.png" />
+    <Content Include="images\logo-vlu.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\person_profile.jpg" />
     <Content Include="images\VLU2021.jpg" />
     <Content Include="js\aos.js" />
     <Content Include="js\bootstrap-datepicker.min.js" />

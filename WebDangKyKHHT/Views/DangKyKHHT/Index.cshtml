@@ -1,8 +1,9 @@
 ﻿@model WebDangKyKHHT.ViewModels.KHHTsViewModel
+
 @{
     ViewBag.Title = "Index";
 }
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#btnSave").click(function () {
@@ -24,7 +25,7 @@
         var listOfIDMH = [];
 
         $.each($("#tableMH input[type=checkbox]:checked"), function (index, data) {
-            listOfIDMH.push($(this).val());            
+            listOfIDMH.push($(this).val());
         });
 
         $.ajax({
@@ -33,72 +34,236 @@
             dataType: 'JSON',
             contentType: 'application/json; charset=utf-8',
             url: '/DangKyKHHT/Index',
-            data: JSON.stringify( { ID_SVTEST: $("#ddSV").val(), listOfIDMH: listOfIDMH }),
+            data: JSON.stringify({ ID_SVTEST: $("#ddSV").val(), listOfIDMH: listOfIDMH }),
             success: function (data) {
                 if (data.success === true) {
                     alert(data.message);
                 }
             },
             error: function () {
-                alert('There are some problem');               
+                alert('There are some problem');
             }
-        });              
+        });
     }
-    
-</script>
-<h2>Dang ky</h2>
 
-@using (Html.BeginForm("Index", "DangKyKHHT", FormMethod.Post, new { }))
-            {
-                <div class="container">
-                    <div class="row">
-                        <div class="form-group">
-                            Sinh vien
-                            @Html.DropDownListFor(model => model.ID_SV, Model.ListofSV, new {@class = "form-control", @id = "ddSV"})
+</script>
+
+<!-- Nav -->
+<aside class="sidebar">
+    <div class="toggle">
+        <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+            <span></span>
+        </a>
+    </div>
+    <div class="side-inner">
+
+        <div class="profile">
+            <img src="@Url.Content("~/images/person_profile.jpg")" alt="Image" class="img-fluid">
+            <h3 class="name">Phương</h3>
+            <span class="country">187PM20547</span>
+        </div>
+
+
+        <div class="nav-menu">
+            <ul>
+                <li class="accordion">
+                    <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsible">
+                        <span class="icon-home mr-3"></span>Feed
+                    </a>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne">
+                        <div>
+                            <ul>
+                                <li><a href="#">News</a></li>
+                                <li><a href="#">Sport</a></li>
+                                <li><a href="#">Health</a></li>
+                            </ul>
                         </div>
                     </div>
-                    
-                    <div class="row">
-                        <h2>Danh sach mon hoc </h2>
-                        <br />
-                        <table class="table custom-table">
-                            <tr>
-                                <th>
-                                    <input type="checkbox" id="btnSelectAll" />
-                                </th>
-                                <th scope="col">Tên môn</th>
-                                <th scope="col">Mã môn</th>
-                                <th scope="col">Số tín chỉ</th>
-                                <th scope="col">Học kỳ</th>
-                            </tr>
+                </li>
+                <li class="accordion">
+                    <a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsible">
+                        <span class="icon-search2 mr-3"></span>Explore
+                    </a>
 
-                            @foreach (var item in Model.ListofMH)
-                            {
-                        <tr id="tableMH" >
-                            <td>
-                                <input type="checkbox" name="@item.TenMH" value="@item.IDMH" checked="@item.IsSelected" />
-                            </td>
-                            <td>
-                                @item.TenMH
-                            </td>
-                            <td>
-                                @item.MaMH
-                            </td>
-                            <td>
-                                @item.SoTinChi
-                            </td>
-                            <td>
-                                @item.ID_HK
-                            </td>
-                        </tr>
-                            }
-
-                        </table>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingOne">
+                        <div>
+                            <ul>
+                                <li><a href="#">Interior</a></li>
+                                <li><a href="#">Food</a></li>
+                                <li><a href="#">Travel</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div>
-                        <input type="button" value="Save" name="Save" id="btnSave" class="btn btn-primary" />
-                        
+
+                </li>
+                <li><a href="#"><span class="icon-notifications mr-3"></span>Notifications</a></li>
+                <li><a href="#"><span class="icon-location-arrow mr-3"></span>Direct</a></li>
+                <li><a href="#"><span class="icon-pie-chart mr-3"></span>Stats</a></li>
+                <li><a href="#"><span class="icon-sign-out mr-3"></span>Sign out</a></li>
+            </ul>
+        </div>
+    </div>
+</aside>
+
+
+<div class="header-top">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6 d-flex">
+                <a href="@Url.Content("~/Home/Index")" class="site-logo">
+                    Van Lang University
+                </a>
+
+                <a href="#" class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black">
+                    <span class="icon-menu h3"></span>
+                </a>
+
+            </div>
+            <div class="col-12 col-lg-6 ml-auto d-flex">
+                <div class="ml-md-auto top-social d-none d-lg-inline-block">
+
+                </div>
+                <div class="header__top__right__auth">
+                    @using Microsoft.AspNet.Identity
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                    &ensp;
+                                </li>
+                                <li><button type="submit" class="btn btn-secondary" ><span>Logout</span></button></li>
+                            </ul>
+                        }
+                    }
+                    else
+                    {
+                        <form action="@Url.Content("~/Account/Login")" class="search-form d-inline-block">
+
+                            <div class="d-flex">
+                                &ensp;
+                                &ensp;
+                                <button type="submit" class="btn btn-secondary"><span>Login</span></button>
+                            </div>
+                        </form>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-6 d-block d-lg-none text-right">
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
+
+    <div class="container">
+        <div class="d-flex align-items-center">
+
+            <div class="mr-auto">
+                <nav class="site-navigation position-relative text-right" role="navigation">
+                    <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
+                        <li class="active">
+                            <a href="@Url.Content("~/Home/Index")" class="nav-link text-left">Trang chủ</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/DangKyKHHT/Index")" class="nav-link text-left"  style="color: #ff3333">Đăng ký kế hoạch học tập</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/MonHocs/Index")" class="nav-link text-left">Xem kế hoạch đào tạo</a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-left">Lịch sử đăng ký KHHT</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/AspNetRoles/Index")" class="nav-link text-left">Role</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Title body -->
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h2>BẢNG ĐĂNG KÝ KẾ HOẠCH HỌC TẬP</h2>
+                        </div>
                     </div>
                 </div>
-            }
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Index", "DangKyKHHT", FormMethod.Post, new { }))
+    {
+        <div class="container">
+            <div class="row">
+                <div class="form-group">
+                    Sinh vien
+                    @Html.DropDownListFor(model => model.ID_SV, Model.ListofSV, new { @class = "form-control", @id = "ddSV" })
+                </div>
+            </div>
+
+
+            <div class="row">
+                <h2>Danh sach mon hoc </h2>
+                <br />
+                <table class="table custom-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                <label class="control control--checkbox">
+                                    <input type="checkbox" class="js-check-all" />
+                                    <div class="control__indicator"></div>
+                                </label>
+                            </th>
+                            <th scope="col">Số thứ tự</th>
+                            <th scope="col">Tên môn</th>
+                            <th scope="col">Mã môn</th>
+                            <th scope="col">Số tín chỉ</th>
+                            <th scope="col">Học kỳ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ListofMH)
+                        {
+                            <tr scope="row" id="tableMH" >
+                                <th scope="row">
+                                    <label class="control control--checkbox">
+                                        <input type="checkbox" name="@item.TenMH" value="@item.IDMH" checked="@item.IsSelected" />
+                                        <div class="control__indicator"></div>
+                                    </label>
+                                </th>
+                                <td>@item.IDMH</td>
+                                <td><p>@item.TenMH</p></td>
+                                <td>
+                                    @item.MaMH
+                                </td>
+                                <td>@item.SoTinChi</td>
+                                <td>@item.ID_HK</td>
+                            </tr>
+                            <tr class="spacer"><td colspan="100"></td></tr>
+                         }
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <button type="button" value="Save" name="Save" id="btnSave" class="btn btn-secondary">Lưu</button>
+            </div>
+        </div>
+    }
 
