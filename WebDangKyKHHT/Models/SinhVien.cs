@@ -12,21 +12,17 @@ namespace WebDangKyKHHT.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MonHoc
+    public partial class SinhVien
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MonHoc()
+        public SinhVien()
         {
             this.KHHTs = new HashSet<KHHT>();
         }
     
         public int ID { get; set; }
-        public string MaMH { get; set; }
-        public string TenMH { get; set; }
-        public Nullable<int> SoTinChi { get; set; }
-        public Nullable<int> ID_HK { get; set; }
+        public string Name { get; set; }
     
-        public virtual HocKi HocKi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KHHT> KHHTs { get; set; }
     }

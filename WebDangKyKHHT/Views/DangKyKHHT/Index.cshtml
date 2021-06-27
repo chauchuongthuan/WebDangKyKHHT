@@ -1,0 +1,104 @@
+﻿@model WebDangKyKHHT.ViewModels.KHHTsViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            AddKHHT();
+        });
+
+        $("#btnSelectAll").click(function () {
+            SelectAllMH()
+        });
+    });
+
+    function SelectAllMH() {
+        $.each($("#tableMH input[type=checkbox]"), function (index, data) {
+            $(this).prop('checked', true);
+        });
+    }
+
+    function AddKHHT() {
+        var listOfIDMH = [];
+
+        $.each($("#tableMH input[type=checkbox]:checked"), function (index, data) {
+            listOfIDMH.push($(this).val());            
+        });
+
+        $.ajax({
+            async: true,
+            type: 'POST',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8',
+            url: '/DangKyKHHT/Index',
+            data: JSON.stringify( { ID_SVTEST: $("#ddSV").val(), listOfIDMH: listOfIDMH }),
+            success: function (data) {
+                if (data.success === true) {
+                    alert(data.message);
+                }
+            },
+            error: function () {
+                alert('There are some problem');               
+            }
+        });              
+    }
+    
+</script>
+<h2>Dang ky</h2>
+
+@using (Html.BeginForm("Index", "DangKyKHHT", FormMethod.Post, new { }))
+            {
+                <div class="container">
+                    <div class="row">
+                        <div class="form-group">
+                            Sinh vien
+                            @Html.DropDownListFor(model => model.ID_SV, Model.ListofSV, new {@class = "form-control", @id = "ddSV"})
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <h2>Danh sach mon hoc </h2>
+                        <br />
+                        <table class="table custom-table">
+                            <tr>
+                                <th>
+                                    <input type="checkbox" id="btnSelectAll" />
+                                </th>
+                                <th scope="col">Tên môn</th>
+                                <th scope="col">Mã môn</th>
+                                <th scope="col">Số tín chỉ</th>
+                                <th scope="col">Học kỳ</th>
+                            </tr>
+
+                            @foreach (var item in Model.ListofMH)
+                            {
+                        <tr id="tableMH" >
+                            <td>
+                                <input type="checkbox" name="@item.TenMH" value="@item.IDMH" checked="@item.IsSelected" />
+                            </td>
+                            <td>
+                                @item.TenMH
+                            </td>
+                            <td>
+                                @item.MaMH
+                            </td>
+                            <td>
+                                @item.SoTinChi
+                            </td>
+                            <td>
+                                @item.ID_HK
+                            </td>
+                        </tr>
+                            }
+
+                        </table>
+                    </div>
+                    <div>
+                        <input type="button" value="Save" name="Save" id="btnSave" class="btn btn-primary" />
+                        
+                    </div>
+                </div>
+            }
+

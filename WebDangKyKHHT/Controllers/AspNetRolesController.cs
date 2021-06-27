@@ -10,116 +10,108 @@ using WebDangKyKHHT.Models;
 
 namespace WebDangKyKHHT.Controllers
 {
-    public class KHHTsController : Controller
+    [Authorize(Roles ="BCNKhoa")]
+    public class AspNetRolesController : Controller
     {
         private SEP_TEAM15_WEBKHHTEntities db = new SEP_TEAM15_WEBKHHTEntities();
 
-        // GET: KHHTs
+        // GET: AspNetRoles
         public ActionResult Index()
         {
-            var kHHTs = db.KHHTs.Include(k => k.MonHoc);
-            return View(kHHTs.ToList());
+            return View(db.AspNetRoles.ToList());
         }
 
-        // GET: KHHTs/Details/5
-        public ActionResult Details(int? id)
+        // GET: AspNetRoles/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHHT kHHT = db.KHHTs.Find(id);
-            if (kHHT == null)
+            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
+            if (aspNetRole == null)
             {
                 return HttpNotFound();
             }
-            return View(kHHT);
+            return View(aspNetRole);
         }
 
-        // GET: KHHTs/Create
+        // GET: AspNetRoles/Create
         public ActionResult Create()
         {
-            ViewBag.ID_HK = new SelectList(db.HocKis, "ID", "ID");
-            ViewBag.ID_MH = new SelectList(db.MonHocs, "ID", "MaMH");
             return View();
         }
 
-        // POST: KHHTs/Create
+        // POST: AspNetRoles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ID_MH,ID_HK,NgayTao,NutTick")] KHHT kHHT)
+        public ActionResult Create([Bind(Include = "Id,Name")] AspNetRole aspNetRole)
         {
             if (ModelState.IsValid)
             {
-                db.KHHTs.Add(kHHT);
+                db.AspNetRoles.Add(aspNetRole);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            
-            ViewBag.ID_MH = new SelectList(db.MonHocs, "ID", "MaMH", kHHT.ID_MH);
-            return View(kHHT);
+            return View(aspNetRole);
         }
 
-        // GET: KHHTs/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: AspNetRoles/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHHT kHHT = db.KHHTs.Find(id);
-            if (kHHT == null)
+            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
+            if (aspNetRole == null)
             {
                 return HttpNotFound();
             }
-           
-            ViewBag.ID_MH = new SelectList(db.MonHocs, "ID", "MaMH", kHHT.ID_MH);
-            return View(kHHT);
+            return View(aspNetRole);
         }
 
-        // POST: KHHTs/Edit/5
+        // POST: AspNetRoles/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ID_MH,ID_HK,NgayTao,NutTick")] KHHT kHHT)
+        public ActionResult Edit([Bind(Include = "Id,Name")] AspNetRole aspNetRole)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(kHHT).State = EntityState.Modified;
+                db.Entry(aspNetRole).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-           
-            ViewBag.ID_MH = new SelectList(db.MonHocs, "ID", "MaMH", kHHT.ID_MH);
-            return View(kHHT);
+            return View(aspNetRole);
         }
 
-        // GET: KHHTs/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: AspNetRoles/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHHT kHHT = db.KHHTs.Find(id);
-            if (kHHT == null)
+            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
+            if (aspNetRole == null)
             {
                 return HttpNotFound();
             }
-            return View(kHHT);
+            return View(aspNetRole);
         }
 
-        // POST: KHHTs/Delete/5
+        // POST: AspNetRoles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            KHHT kHHT = db.KHHTs.Find(id);
-            db.KHHTs.Remove(kHHT);
+            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
+            db.AspNetRoles.Remove(aspNetRole);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SEP_TEAM15_WEBKHHTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SEP24Team15Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -85,12 +85,14 @@
         <EntityType Name="KHHT">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_MH" />
+            <PropertyRef Name="ID_SVTEST" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_MH" Type="int" />
-          <Property Name="ID_HK" Type="int" />
+          <Property Name="ID_MH" Type="int" Nullable="false" />
+          <Property Name="ID_SVTEST" Type="int" Nullable="false" />
           <Property Name="ID_SV" Type="nvarchar" MaxLength="128" />
-          <Property Name="NgayTao" Type="date" />
+          <Property Name="NgayTao" Type="datetime" />
           <Property Name="NutTick" Type="bit" />
         </EntityType>
         <EntityType Name="MonHoc">
@@ -102,7 +104,13 @@
           <Property Name="TenMH" Type="nvarchar" MaxLength="50" />
           <Property Name="SoTinChi" Type="int" />
           <Property Name="ID_HK" Type="int" />
-          <Property Name="NutCheck" Type="bit" />
+        </EntityType>
+        <EntityType Name="SinhVien">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -182,20 +190,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_KHHT_HocKi">
-          <End Role="HocKi" Type="Self.HocKi" Multiplicity="0..1" />
-          <End Role="KHHT" Type="Self.KHHT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HocKi">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="KHHT">
-              <PropertyRef Name="ID_HK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_KHHT_MonHoc">
-          <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="0..1" />
+          <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="1" />
           <End Role="KHHT" Type="Self.KHHT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MonHoc">
@@ -203,6 +199,18 @@
             </Principal>
             <Dependent Role="KHHT">
               <PropertyRef Name="ID_MH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KHHT_SinhVien">
+          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="1" />
+          <End Role="KHHT" Type="Self.KHHT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SinhVien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="KHHT">
+              <PropertyRef Name="ID_SVTEST" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -218,7 +226,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SEP_TEAM15_WEBKHHTModelStoreContainer">
+        <EntityContainer Name="SEP24Team15ModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -229,6 +237,7 @@
           <EntitySet Name="HocKi" EntityType="Self.HocKi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHHT" EntityType="Self.KHHT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MonHoc" EntityType="Self.MonHoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SinhVien" EntityType="Self.SinhVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -250,12 +259,12 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="KHHT" EntitySet="KHHT" />
           </AssociationSet>
-          <AssociationSet Name="FK_KHHT_HocKi" Association="Self.FK_KHHT_HocKi">
-            <End Role="HocKi" EntitySet="HocKi" />
-            <End Role="KHHT" EntitySet="KHHT" />
-          </AssociationSet>
           <AssociationSet Name="FK_KHHT_MonHoc" Association="Self.FK_KHHT_MonHoc">
             <End Role="MonHoc" EntitySet="MonHoc" />
+            <End Role="KHHT" EntitySet="KHHT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KHHT_SinhVien" Association="Self.FK_KHHT_SinhVien">
+            <End Role="SinhVien" EntitySet="SinhVien" />
             <End Role="KHHT" EntitySet="KHHT" />
           </AssociationSet>
           <AssociationSet Name="FK_MonHoc_HocKi" Association="Self.FK_MonHoc_HocKi">
@@ -267,7 +276,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SEP_TEAM15_WEBKHHTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="SEP24Team15Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -343,22 +352,23 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenHK" Type="Int32" />
-          <NavigationProperty Name="KHHTs" Relationship="Self.FK_KHHT_HocKi" FromRole="HocKi" ToRole="KHHT" />
           <NavigationProperty Name="MonHocs" Relationship="Self.FK_MonHoc_HocKi" FromRole="HocKi" ToRole="MonHoc" />
         </EntityType>
         <EntityType Name="KHHT">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_MH" />
+            <PropertyRef Name="ID_SVTEST" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_MH" Type="Int32" />
-          <Property Name="ID_HK" Type="Int32" />
+          <Property Name="ID_MH" Type="Int32" Nullable="false" />
+          <Property Name="ID_SVTEST" Type="Int32" Nullable="false" />
           <Property Name="ID_SV" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="NgayTao" Type="DateTime" Precision="0" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
           <Property Name="NutTick" Type="Boolean" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK_KHHT_AspNetUsers" FromRole="KHHT" ToRole="AspNetUsers" />
-          <NavigationProperty Name="HocKi" Relationship="Self.FK_KHHT_HocKi" FromRole="KHHT" ToRole="HocKi" />
           <NavigationProperty Name="MonHoc" Relationship="Self.FK_KHHT_MonHoc" FromRole="KHHT" ToRole="MonHoc" />
+          <NavigationProperty Name="SinhVien" Relationship="Self.FK_KHHT_SinhVien" FromRole="KHHT" ToRole="SinhVien" />
         </EntityType>
         <EntityType Name="MonHoc">
           <Key>
@@ -369,9 +379,16 @@
           <Property Name="TenMH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SoTinChi" Type="Int32" />
           <Property Name="ID_HK" Type="Int32" />
-          <Property Name="NutCheck" Type="Boolean" />
           <NavigationProperty Name="HocKi" Relationship="Self.FK_MonHoc_HocKi" FromRole="MonHoc" ToRole="HocKi" />
           <NavigationProperty Name="KHHTs" Relationship="Self.FK_KHHT_MonHoc" FromRole="MonHoc" ToRole="KHHT" />
+        </EntityType>
+        <EntityType Name="SinhVien">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="KHHTs" Relationship="Self.FK_KHHT_SinhVien" FromRole="SinhVien" ToRole="KHHT" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -423,18 +440,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_KHHT_HocKi">
-          <End Role="HocKi" Type="Self.HocKi" Multiplicity="0..1" />
-          <End Role="KHHT" Type="Self.KHHT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HocKi">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="KHHT">
-              <PropertyRef Name="ID_HK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MonHoc_HocKi">
           <End Role="HocKi" Type="Self.HocKi" Multiplicity="0..1" />
           <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="*" />
@@ -448,7 +453,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_KHHT_MonHoc">
-          <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="0..1" />
+          <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="1" />
           <End Role="KHHT" Type="Self.KHHT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MonHoc">
@@ -456,6 +461,18 @@
             </Principal>
             <Dependent Role="KHHT">
               <PropertyRef Name="ID_MH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KHHT_SinhVien">
+          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="1" />
+          <End Role="KHHT" Type="Self.KHHT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SinhVien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="KHHT">
+              <PropertyRef Name="ID_SVTEST" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -473,6 +490,7 @@
           <EntitySet Name="HocKis" EntityType="Self.HocKi" />
           <EntitySet Name="KHHTs" EntityType="Self.KHHT" />
           <EntitySet Name="MonHocs" EntityType="Self.MonHoc" />
+          <EntitySet Name="SinhViens" EntityType="Self.SinhVien" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -486,16 +504,16 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="KHHT" EntitySet="KHHTs" />
           </AssociationSet>
-          <AssociationSet Name="FK_KHHT_HocKi" Association="Self.FK_KHHT_HocKi">
-            <End Role="HocKi" EntitySet="HocKis" />
-            <End Role="KHHT" EntitySet="KHHTs" />
-          </AssociationSet>
           <AssociationSet Name="FK_MonHoc_HocKi" Association="Self.FK_MonHoc_HocKi">
             <End Role="HocKi" EntitySet="HocKis" />
             <End Role="MonHoc" EntitySet="MonHocs" />
           </AssociationSet>
           <AssociationSet Name="FK_KHHT_MonHoc" Association="Self.FK_KHHT_MonHoc">
             <End Role="MonHoc" EntitySet="MonHocs" />
+            <End Role="KHHT" EntitySet="KHHTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KHHT_SinhVien" Association="Self.FK_KHHT_SinhVien">
+            <End Role="SinhVien" EntitySet="SinhViens" />
             <End Role="KHHT" EntitySet="KHHTs" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
@@ -508,9 +526,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SEP_TEAM15_WEBKHHTModelStoreContainer" CdmEntityContainer="SEP_TEAM15_WEBKHHTEntities">
+        <EntityContainerMapping StorageEntityContainer="SEP24Team15ModelStoreContainer" CdmEntityContainer="SEP_TEAM15_WEBKHHTEntities">
           <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.C__MigrationHistory">
+            <EntityTypeMapping TypeName="SEP24Team15Model.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
                 <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
@@ -520,7 +538,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.AspNetRole">
+            <EntityTypeMapping TypeName="SEP24Team15Model.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -528,7 +546,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.AspNetUserClaim">
+            <EntityTypeMapping TypeName="SEP24Team15Model.AspNetUserClaim">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -538,7 +556,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.AspNetUserLogin">
+            <EntityTypeMapping TypeName="SEP24Team15Model.AspNetUserLogin">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -547,7 +565,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.AspNetUser">
+            <EntityTypeMapping TypeName="SEP24Team15Model.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -565,7 +583,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BCNKhoas">
-            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.BCNKhoa">
+            <EntityTypeMapping TypeName="SEP24Team15Model.BCNKhoa">
               <MappingFragment StoreEntitySet="BCNKhoa">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TenTK" ColumnName="TenTK" />
@@ -575,7 +593,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HocKis">
-            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.HocKi">
+            <EntityTypeMapping TypeName="SEP24Team15Model.HocKi">
               <MappingFragment StoreEntitySet="HocKi">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TenHK" ColumnName="TenHK" />
@@ -583,11 +601,11 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KHHTs">
-            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.KHHT">
+            <EntityTypeMapping TypeName="SEP24Team15Model.KHHT">
               <MappingFragment StoreEntitySet="KHHT">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ID_MH" ColumnName="ID_MH" />
-                <ScalarProperty Name="ID_HK" ColumnName="ID_HK" />
+                <ScalarProperty Name="ID_SVTEST" ColumnName="ID_SVTEST" />
                 <ScalarProperty Name="ID_SV" ColumnName="ID_SV" />
                 <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="NutTick" ColumnName="NutTick" />
@@ -595,19 +613,26 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MonHocs">
-            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.MonHoc">
+            <EntityTypeMapping TypeName="SEP24Team15Model.MonHoc">
               <MappingFragment StoreEntitySet="MonHoc">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MaMH" ColumnName="MaMH" />
                 <ScalarProperty Name="TenMH" ColumnName="TenMH" />
                 <ScalarProperty Name="SoTinChi" ColumnName="SoTinChi" />
                 <ScalarProperty Name="ID_HK" ColumnName="ID_HK" />
-                <ScalarProperty Name="NutCheck" ColumnName="NutCheck" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SinhViens">
+            <EntityTypeMapping TypeName="SEP24Team15Model.SinhVien">
+              <MappingFragment StoreEntitySet="SinhVien">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.sysdiagram">
+            <EntityTypeMapping TypeName="SEP24Team15Model.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -617,7 +642,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SEP_TEAM15_WEBKHHTModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SEP24Team15Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
