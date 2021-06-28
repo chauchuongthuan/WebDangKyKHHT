@@ -88,12 +88,12 @@
           <Key>
             <PropertyRef Name="ID" />
             <PropertyRef Name="ID_MH" />
-            <PropertyRef Name="ID_SVTEST" />
+            <PropertyRef Name="ID_SV" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_MH" Type="int" Nullable="false" />
-          <Property Name="ID_SVTEST" Type="int" Nullable="false" />
-          <Property Name="ID_SV" Type="nvarchar" MaxLength="128" />
+          <Property Name="ID_SV" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ID_SVTEST" Type="int" />
           <Property Name="NgayTao" Type="datetime" />
           <Property Name="NutTick" Type="bit" />
         </EntityType>
@@ -182,7 +182,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_KHHT_AspNetUsers">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="KHHT" Type="Self.KHHT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
@@ -202,18 +202,6 @@
             </Principal>
             <Dependent Role="KHHT">
               <PropertyRef Name="ID_MH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_KHHT_SinhVien">
-          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="1" />
-          <End Role="KHHT" Type="Self.KHHT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SinhVien">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="KHHT">
-              <PropertyRef Name="ID_SVTEST" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -264,10 +252,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_KHHT_MonHoc" Association="Self.FK_KHHT_MonHoc">
             <End Role="MonHoc" EntitySet="MonHoc" />
-            <End Role="KHHT" EntitySet="KHHT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_KHHT_SinhVien" Association="Self.FK_KHHT_SinhVien">
-            <End Role="SinhVien" EntitySet="SinhVien" />
             <End Role="KHHT" EntitySet="KHHT" />
           </AssociationSet>
           <AssociationSet Name="FK_MonHoc_HocKi" Association="Self.FK_MonHoc_HocKi">
@@ -363,17 +347,16 @@
           <Key>
             <PropertyRef Name="ID" />
             <PropertyRef Name="ID_MH" />
-            <PropertyRef Name="ID_SVTEST" />
+            <PropertyRef Name="ID_SV" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_MH" Type="Int32" Nullable="false" />
-          <Property Name="ID_SVTEST" Type="Int32" Nullable="false" />
-          <Property Name="ID_SV" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ID_SV" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_SVTEST" Type="Int32" />
           <Property Name="NgayTao" Type="DateTime" Precision="3" />
           <Property Name="NutTick" Type="Boolean" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK_KHHT_AspNetUsers" FromRole="KHHT" ToRole="AspNetUsers" />
           <NavigationProperty Name="MonHoc" Relationship="Self.FK_KHHT_MonHoc" FromRole="KHHT" ToRole="MonHoc" />
-          <NavigationProperty Name="SinhVien" Relationship="Self.FK_KHHT_SinhVien" FromRole="KHHT" ToRole="SinhVien" />
         </EntityType>
         <EntityType Name="MonHoc">
           <Key>
@@ -394,7 +377,6 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="KHHTs" Relationship="Self.FK_KHHT_SinhVien" FromRole="SinhVien" ToRole="KHHT" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -435,7 +417,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_KHHT_AspNetUsers">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
           <End Role="KHHT" Type="Self.KHHT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
@@ -467,18 +449,6 @@
             </Principal>
             <Dependent Role="KHHT">
               <PropertyRef Name="ID_MH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_KHHT_SinhVien">
-          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="1" />
-          <End Role="KHHT" Type="Self.KHHT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SinhVien">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="KHHT">
-              <PropertyRef Name="ID_SVTEST" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -516,10 +486,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_KHHT_MonHoc" Association="Self.FK_KHHT_MonHoc">
             <End Role="MonHoc" EntitySet="MonHocs" />
-            <End Role="KHHT" EntitySet="KHHTs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_KHHT_SinhVien" Association="Self.FK_KHHT_SinhVien">
-            <End Role="SinhVien" EntitySet="SinhViens" />
             <End Role="KHHT" EntitySet="KHHTs" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
@@ -613,8 +579,8 @@
               <MappingFragment StoreEntitySet="KHHT">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ID_MH" ColumnName="ID_MH" />
-                <ScalarProperty Name="ID_SVTEST" ColumnName="ID_SVTEST" />
                 <ScalarProperty Name="ID_SV" ColumnName="ID_SV" />
+                <ScalarProperty Name="ID_SVTEST" ColumnName="ID_SVTEST" />
                 <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="NutTick" ColumnName="NutTick" />
               </MappingFragment>

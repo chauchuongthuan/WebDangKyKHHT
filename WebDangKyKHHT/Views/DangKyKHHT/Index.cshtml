@@ -34,7 +34,7 @@
             dataType: 'JSON',
             contentType: 'application/json; charset=utf-8',
             url: '/DangKyKHHT/Index',
-            data: JSON.stringify({ ID_SVTEST: $("#ddSV").val(), listOfIDMH: listOfIDMH }),
+            data: JSON.stringify({ ID_SV: $("#ddSV").val(), listOfIDMH: listOfIDMH }),
             success: function (data) {
                 if (data.success === true) {
                     alert(data.message);
