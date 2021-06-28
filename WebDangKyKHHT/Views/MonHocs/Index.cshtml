@@ -9,25 +9,65 @@
 
 }
 
-<head>
-    <style>
-        .scrollable {
-            height: 300px;
-            overflow: scroll;
-        }
 
-            .scrollable table thead th {
-                position: sticky;
-                top: 0;
-                background-color: white;
-            }
+<!-- Nav -->
+<aside class="sidebar">
+    <div class="toggle">
+        <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+            <span></span>
+        </a>
+    </div>
+    <div class="side-inner">
 
-        .table-fixed tr {
-            display: block;
-        }
-    </style>
-</head>
-<div class="site-wrap">
+        <div class="profile">
+            <img src="@Url.Content("~/images/person_profile.jpg")" alt="Image" class="img-fluid">
+            <h3 class="name">Phương</h3>
+            <span class="country">187PM20547</span>
+        </div>
+
+
+        <div class="nav-menu">
+            <ul>
+                <li class="accordion">
+                    <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsible">
+                        <span class="icon-home mr-3"></span>Feed
+                    </a>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne">
+                        <div>
+                            <ul>
+                                <li><a href="#">News</a></li>
+                                <li><a href="#">Sport</a></li>
+                                <li><a href="#">Health</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="accordion">
+                    <a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsible">
+                        <span class="icon-search2 mr-3"></span>Explore
+                    </a>
+
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingOne">
+                        <div>
+                            <ul>
+                                <li><a href="#">Interior</a></li>
+                                <li><a href="#">Food</a></li>
+                                <li><a href="#">Travel</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </li>
+                <li><a href="#"><span class="icon-notifications mr-3"></span>Notifications</a></li>
+                <li><a href="#"><span class="icon-location-arrow mr-3"></span>Direct</a></li>
+                <li><a href="#"><span class="icon-pie-chart mr-3"></span>Stats</a></li>
+                <li><a href="#"><span class="icon-sign-out mr-3"></span>Sign out</a></li>
+            </ul>
+        </div>
+    </div>
+</aside>
+
+    <!--<div class="site-wrap">
 
     <div class="site-mobile-menu site-navbar-target">
         <div class="site-mobile-menu-header">
@@ -36,179 +76,189 @@
             </div>
         </div>
         <div class="site-mobile-menu-body"></div>
-    </div>
-    <div class="header-top">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-6 d-flex">
-                    <a href="@Url.Content("~/Home/Index")" class="site-logo">
-                        Van Lang University
-                    </a>
+    </div>-->
+<div class="header-top">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6 d-flex">
+                <a href="@Url.Content("~/Home/Index")" class="site-logo">
+                    Van Lang University
+                </a>
 
-                    <a href="#" class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black">
-                        <span class="icon-menu h3"></span>
-                    </a>
+                <a href="#" class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black">
+                    <span class="icon-menu h3"></span>
+                </a>
+
+            </div>
+            <div class="col-12 col-lg-6 ml-auto d-flex">
+                <div class="ml-md-auto top-social d-none d-lg-inline-block">
 
                 </div>
-                <div class="col-12 col-lg-6 ml-auto d-flex">
-                    <div class="ml-md-auto top-social d-none d-lg-inline-block">
-                        <a href="#" class="d-inline-block p-3"><span class="icon-facebook-square"></span></a>
-                        <a href="#" class="d-inline-block p-3"><span class="icon-mail_outline"></span></a>
-                        <a href="#" class="d-inline-block p-3"><span class="icon-instagram"></span></a>
-                    </div>
-                    <div class="header__top__right__auth">
-                        @if (Request.IsAuthenticated)
+                <div class="header__top__right__auth">
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                         {
-                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                            {
-                                @Html.AntiForgeryToken()
+                            @Html.AntiForgeryToken()
+                            <div class="d-flex">
                                 <ul class="nav navbar-nav navbar-right">
                                     <li>
                                         @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                        &ensp;
                                     </li>
-                                    <li><button type="submit" class="btn btn-secondary"><span>Logout</span></button></li>
                                 </ul>
-                            }
+                                <button type="submit" class="btn btn-secondary"><span>Logout</span></button>
+                            </div>
                         }
-                        else
-                        {
-                            <form action="@Url.Content("~/Account/Login")" class="search-form d-inline-block">
+                    }
+                    else
+                    {
+                        <form action="@Url.Content("~/Account/Login")" class="search-form d-inline-block">
 
-                                <div class="d-flex">
-                                    &ensp;
-                                    &ensp;
-                                    <button type="submit" class="btn btn-secondary"><span>Login</span></button>
-                                </div>
-                            </form>
-                        }
-
-                    </div>
+                            <div class="d-flex">
+                                &ensp;
+                                &ensp;
+                                <button type="submit" class="btn btn-secondary"><span>Login</span></button>
+                            </div>
+                        </form>
+                    }
 
                 </div>
+
             </div>
-            <div class="col-6 d-block d-lg-none text-right">
+        </div>
+        <div class="col-6 d-block d-lg-none text-right">
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
+
+    <div class="container">
+        <div class="d-flex align-items-center">
+
+            <div class="mr-auto">
+                <nav class="site-navigation position-relative text-right" role="navigation">
+                    <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
+                        <li class="active">
+                            <a href="@Url.Content("~/Home/Index")" class="nav-link text-left">Trang chủ</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/KHHTs/Index")" class="nav-link text-left">Đăng ký kế hoạch học tập</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/MonHocs/Index")" class="nav-link text-left" style="color: #ff3333">Xem kế hoạch đào tạo</a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-left">Lịch sử đăng ký KHHT</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/AspNetRoles/Index")" class="nav-link text-left">Role</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Title body -->
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h2>BẢNG ĐĂNG KÝ KẾ HOẠCH HỌC TẬP</h2>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-
-
-
-    <div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
-
+    <div class="content">
         <div class="container">
             <div class="d-flex align-items-center">
 
-                <div class="mr-auto">
-                    <nav class="site-navigation position-relative text-right" role="navigation">
-                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
-                            <li class="active">
-                                <a href="@Url.Content("~/Home/Index")" class="nav-link text-left">Trang chủ</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Content("~/KHHTs/Index")" class="nav-link text-left">Đăng ký kế hoạch học tập</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Content("~/MonHocs/Index")" class="nav-link text-left">Xem kế hoạch đào tạo</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link text-left">Lịch sử đăng ký KHHT</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                @using (Html.BeginForm())
+                {
+                    <table>
+                        <tr>
+                            <th>
+                                Chọn Học Kì
+                            </th>
+                            <th>
+                                @Html.DropDownList("ID_HK", null, htmlAttributes: new { @class = "form-control" })
+                            </th>
+                            <th>
+                                &ensp;
+                                <button class="btn btn-secondary" type="submit" value="Tìm kiếm" /><span>Tìm kiếm</span>
+                            </th>
+                        </tr>
+                    </table>
+                }
             </div>
         </div>
-    </div>
-</div>
-
-
-<div class="site-section">
-    <div class="container">
-        <h2 align="center">Xem Kế hoạch đào tạo</h2>
-    </div>
-</div>
-
-<div class="container">
-    <div class="d-flex align-items-center">
-        @using (Html.BeginForm())
-        {
-            <table>
-                <tr>
-                    <th>
-                        Chọn Học Kì
-                    </th>
-                    <th>
-                        @Html.DropDownList("ID_HK", null, htmlAttributes: new { @class = "form-control" })
-                    </th>
-                    <th>
-                        <input type="submit" value="Tìm kiếm " />
-                    </th>
-                </tr>
-            </table>
-        }
-    </div>
-</div>
 
 
 
-<body>
-    <div class="container">
-        <div class="scrollable">
-            <table class="table table-bordered text-center ">
-                <thead>
-                    <tr>
-                        <th>
-                            Mã môn học
-                        </th>
-                        <th>
-                            Tên môn học
-                        </th>
-                        <th>
-                            Số tín chỉ
-                        </th>
-                        <th>
-                            Học kì
-                        </th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-
+        <div class="content">
+            <div class="container">
+                <table class="table table-striped custom-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Số thứ tự</th>
+                            <th scope="col">Tên môn</th>
+                            <th scope="col">Mã môn</th>
+                            <th scope="col">Học kỳ</th>
+                            <th scope="col">Số tín chỉ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
                         {
-                            total += (int)item.SoTinChi;
-                            <tr>
-                                <td>
-                                    @item.MaMH
-                                </td>
-                                <td>
-                                    @item.TenMH
-                                </td>
-                                <td>
-                                    @item.SoTinChi
-                                </td>
-                                <td>
-                                    @item.HocKi.TenHK
-                                </td>
-                            </tr>
+                            {
+                                total += (int)item.SoTinChi;
+                                <tr scope="row">
+                                    <td>@item.ID</td>
+                                    <td><p>@item.TenMH</p></td>
+                                    <td>
+                                        @item.MaMH
+                                    </td>
+                                    <td>@item.HocKi.TenHK</td>
+                                    <td>@item.SoTinChi</td>
+                                </tr>
+                            }
                         }
-                    }
-                </tbody>
+                    </tbody>
 
-            </table>
+                </table>
+            </div>
         </div>
-    </div>
-        <table>
-            <tr>
-                <td><h5>Tổng số tín chỉ:</h5> </td>
-                <td></td>
-                <td><h5>@total</h5></td>
-            </tr>
+        <table class="table table-striped table-borderless">
+            <thead align="center">
+                <tr>
+                    <th scope="col">Tổng số tín chỉ</th>
+                </tr>
+            </thead>
+            <tbody align="center">
+                <tr>
+                    <td>
+                        @total
+                    </td>
+                </tr>
+            </tbody>
         </table>
+    </div>
+</div>
 
-
-</body>
 
 
