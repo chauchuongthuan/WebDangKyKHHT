@@ -10,7 +10,7 @@ namespace WebDangKyKHHT.ViewModels
     public class KHHTsViewModel
     {
         [Display(Name = "SinhVien")]
-        public string ID_SV { get; set; }
+        public int ID_SV { get; set; }
 
         [Display(Name = "MonHoc")]
         public int IDMH { get; set; } 
