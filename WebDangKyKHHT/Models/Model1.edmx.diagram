@@ -4,25 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9650316bfa574f39bef0d0dae13e9456" Name="Diagram1">
-        <EntityTypeShape EntityType="SEP_TEAM15_WEBKHHTModel.C__MigrationHistory" Width="1.5" PointX="8.75" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP_TEAM15_WEBKHHTModel.AspNetRole" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP_TEAM15_WEBKHHTModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP_TEAM15_WEBKHHTModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP_TEAM15_WEBKHHTModel.AspNetUser" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP_TEAM15_WEBKHHTModel.BCNKhoa" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP_TEAM15_WEBKHHTModel.HocKi" Width="1.5" PointX="3.75" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP_TEAM15_WEBKHHTModel.KHHT" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP_TEAM15_WEBKHHTModel.MonHoc" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP_TEAM15_WEBKHHTModel.SinhVien" Width="1.5" PointX="6" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEP_TEAM15_WEBKHHTModel.sysdiagram" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
-        <AssociationConnector Association="SEP_TEAM15_WEBKHHTModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="SEP_TEAM15_WEBKHHTModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="SEP_TEAM15_WEBKHHTModel.FK_KHHT_AspNetUsers" ManuallyRouted="false" />
-        <AssociationConnector Association="SEP_TEAM15_WEBKHHTModel.FK_MonHoc_HocKi" ManuallyRouted="false" />
-        <AssociationConnector Association="SEP_TEAM15_WEBKHHTModel.FK_KHHT_MonHoc" ManuallyRouted="false" />
-        <AssociationConnector Association="SEP_TEAM15_WEBKHHTModel.FK_KHHT_SinhVien" ManuallyRouted="false" />
-        <AssociationConnector Association="SEP_TEAM15_WEBKHHTModel.AspNetUserRoles" ManuallyRouted="false" />
+      <Diagram DiagramId="99f2081f310c434d8cc2da1b3a6721a1" Name="Diagram1">
+        <EntityTypeShape EntityType="SEP24Team15Model.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP24Team15Model.AspNetRole" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP24Team15Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP24Team15Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP24Team15Model.AspNetUser" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP24Team15Model.BCNKhoa" Width="1.5" PointX="8.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP24Team15Model.HocKi" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP24Team15Model.KHHT" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP24Team15Model.MonHoc" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP24Team15Model.SinhVien" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEP24Team15Model.sysdiagram" Width="1.5" PointX="2.75" PointY="10.625" IsExpanded="true" />
+        <AssociationConnector Association="SEP24Team15Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP24Team15Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP24Team15Model.FK_KHHT_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP24Team15Model.FK_MonHoc_HocKi" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP24Team15Model.FK_KHHT_MonHoc" ManuallyRouted="false" />
+        <AssociationConnector Association="SEP24Team15Model.AspNetUserRoles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

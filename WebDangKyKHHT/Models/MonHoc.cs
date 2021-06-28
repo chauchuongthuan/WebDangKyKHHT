@@ -25,7 +25,6 @@ namespace WebDangKyKHHT.Models
         public string TenMH { get; set; }
         public Nullable<int> SoTinChi { get; set; }
         public Nullable<int> ID_HK { get; set; }
-        public Nullable<bool> NutCheck { get; set; }
     
         public virtual HocKi HocKi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
