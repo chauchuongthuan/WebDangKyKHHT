@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SEP24Team15Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SEP_TEAM15_WEBKHHTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -65,6 +65,8 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgaySinh" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="BCNKhoa">
           <Key>
@@ -104,6 +106,7 @@
           <Property Name="TenMH" Type="nvarchar" MaxLength="50" />
           <Property Name="SoTinChi" Type="int" />
           <Property Name="ID_HK" Type="int" />
+          <Property Name="NutCheck" Type="bit" />
         </EntityType>
         <EntityType Name="SinhVien">
           <Key>
@@ -226,7 +229,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SEP24Team15ModelStoreContainer">
+        <EntityContainer Name="SEP_TEAM15_WEBKHHTModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -276,7 +279,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SEP24Team15Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="SEP_TEAM15_WEBKHHTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -332,6 +335,8 @@
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="KHHTs" Relationship="Self.FK_KHHT_AspNetUsers" FromRole="AspNetUsers" ToRole="KHHT" />
@@ -379,6 +384,7 @@
           <Property Name="TenMH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SoTinChi" Type="Int32" />
           <Property Name="ID_HK" Type="Int32" />
+          <Property Name="NutCheck" Type="Boolean" />
           <NavigationProperty Name="HocKi" Relationship="Self.FK_MonHoc_HocKi" FromRole="MonHoc" ToRole="HocKi" />
           <NavigationProperty Name="KHHTs" Relationship="Self.FK_KHHT_MonHoc" FromRole="MonHoc" ToRole="KHHT" />
         </EntityType>
@@ -526,9 +532,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SEP24Team15ModelStoreContainer" CdmEntityContainer="SEP_TEAM15_WEBKHHTEntities">
+        <EntityContainerMapping StorageEntityContainer="SEP_TEAM15_WEBKHHTModelStoreContainer" CdmEntityContainer="SEP_TEAM15_WEBKHHTEntities">
           <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="SEP24Team15Model.C__MigrationHistory">
+            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
                 <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
@@ -538,7 +544,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="SEP24Team15Model.AspNetRole">
+            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -546,7 +552,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="SEP24Team15Model.AspNetUserClaim">
+            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.AspNetUserClaim">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -556,7 +562,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="SEP24Team15Model.AspNetUserLogin">
+            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.AspNetUserLogin">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -565,7 +571,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="SEP24Team15Model.AspNetUser">
+            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -579,11 +585,13 @@
                 <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BCNKhoas">
-            <EntityTypeMapping TypeName="SEP24Team15Model.BCNKhoa">
+            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.BCNKhoa">
               <MappingFragment StoreEntitySet="BCNKhoa">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TenTK" ColumnName="TenTK" />
@@ -593,7 +601,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HocKis">
-            <EntityTypeMapping TypeName="SEP24Team15Model.HocKi">
+            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.HocKi">
               <MappingFragment StoreEntitySet="HocKi">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TenHK" ColumnName="TenHK" />
@@ -601,7 +609,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KHHTs">
-            <EntityTypeMapping TypeName="SEP24Team15Model.KHHT">
+            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.KHHT">
               <MappingFragment StoreEntitySet="KHHT">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ID_MH" ColumnName="ID_MH" />
@@ -613,18 +621,19 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MonHocs">
-            <EntityTypeMapping TypeName="SEP24Team15Model.MonHoc">
+            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.MonHoc">
               <MappingFragment StoreEntitySet="MonHoc">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MaMH" ColumnName="MaMH" />
                 <ScalarProperty Name="TenMH" ColumnName="TenMH" />
                 <ScalarProperty Name="SoTinChi" ColumnName="SoTinChi" />
                 <ScalarProperty Name="ID_HK" ColumnName="ID_HK" />
+                <ScalarProperty Name="NutCheck" ColumnName="NutCheck" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SinhViens">
-            <EntityTypeMapping TypeName="SEP24Team15Model.SinhVien">
+            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.SinhVien">
               <MappingFragment StoreEntitySet="SinhVien">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -632,7 +641,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="SEP24Team15Model.sysdiagram">
+            <EntityTypeMapping TypeName="SEP_TEAM15_WEBKHHTModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -642,7 +651,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SEP24Team15Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SEP_TEAM15_WEBKHHTModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
