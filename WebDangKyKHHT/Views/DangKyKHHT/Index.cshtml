@@ -212,61 +212,84 @@
 
     @using (Html.BeginForm("Index", "DangKyKHHT", FormMethod.Post, new { }))
     {
-        <div class="container">
-            <div class="row">
-                <div class="form-group">
-                    Sinh vien
-                    @Html.DropDownListFor(model => model.ID_SV, Model.ListofSV, new { @class = "form-control", @id = "ddSV" })
-                </div>
-            </div>
-
-
-            <div class="row">
-                <h2>Danh sach mon hoc </h2>
-                <br />
-                <table class="table custom-table">
-                    <thead>
-                        <tr>
-                            <th scope="col">
-                                <label class="control control--checkbox">
-                                    <input type="checkbox" class="js-check-all" />
-                                    <div class="control__indicator"></div>
-                                </label>
-                            </th>
-                            <th scope="col">Số thứ tự</th>
-                            <th scope="col">Tên môn</th>
-                            <th scope="col">Mã môn</th>
-                            <th scope="col">Số tín chỉ</th>
-                            <th scope="col">Học kỳ</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.ListofMH)
-                        {
-                            <tr scope="row" id="tableMH" >
-                                <th scope="row">
-                                    <label class="control control--checkbox">
-                                        <input type="checkbox" name="@item.TenMH" value="@item.IDMH" checked="@item.IsSelected" />
-                                        <div class="control__indicator"></div>
-                                    </label>
-                                </th>
-                                <td>@item.IDMH</td>
-                                <td><p>@item.TenMH</p></td>
-                                <td>
-                                    @item.MaMH
-                                </td>
-                                <td>@item.SoTinChi</td>
-                                <td>@item.ID_HK</td>
-                            </tr>
-                            <tr class="spacer"><td colspan="100"></td></tr>
-                         }
-                    </tbody>
-                </table>
-            </div>
-            <div>
-                <button type="button" value="Save" name="Save" id="btnSave" class="btn btn-secondary">Lưu</button>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="form-group">
+            Sinh viên
+            @Html.DropDownListFor(model => model.ID_SV, Model.ListofSV, new { @class = "form-control", @id = "ddSV" })
         </div>
+    </div>
+
+    @*<div class="container">
+        <div class="d-flex align-items-center">
+
+            @using (Html.BeginForm())
+            {
+                <table>
+                    <tr>
+                        <th>
+                            Chọn Học Kì
+                        </th>
+                        <th>
+                            @Html.DropDownList("ID_HK", null, htmlAttributes: new { @class = "form-control" })
+                        </th>
+                        <th>
+                            &ensp;
+                            <button class="btn btn-secondary" type="submit" value="Tìm kiếm" /><span>Tìm kiếm</span>
+                        </th>
+                    </tr>
+                </table>
+            }
+        </div>
+    </div>*@
+
+
+    <div class="row">
+        <h2>Danh sách môn học </h2>
+        <br />
+        <table class="table custom-table">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <label class="control control--checkbox">
+                            <input type="checkbox" class="js-check-all" />
+                            <div class="control__indicator"></div>
+                        </label>
+                    </th>
+                    <th scope="col">Số thứ tự</th>
+                    <th scope="col">Tên môn</th>
+                    <th scope="col">Mã môn</th>
+                    <th scope="col">Số tín chỉ</th>
+                    <th scope="col">Học kỳ</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ListofMH)
+                {
+                    <tr scope="row" id="tableMH">
+                        <th scope="row">
+                            <label class="control control--checkbox">
+                                <input type="checkbox" name="@item.TenMH" value="@item.IDMH" checked="@item.IsSelected" />
+                                <div class="control__indicator"></div>
+                            </label>
+                        </th>
+                        <td>@item.IDMH</td>
+                        <td><p>@item.TenMH</p></td>
+                        <td>
+                            @item.MaMH
+                        </td>
+                        <td>@item.SoTinChi</td>
+                        <td>@item.ID_HK</td>
+                    </tr>
+                    <tr class="spacer"><td colspan="100"></td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <button type="button" value="Save" name="Save" id="btnSave" class="btn btn-secondary">Lưu</button>
+    </div>
+</div>
     }
 
 </div>

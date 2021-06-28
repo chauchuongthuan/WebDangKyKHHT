@@ -22,11 +22,11 @@ namespace WebDangKyKHHT.Controllers
 
             KHHTsViewModel objKHHTsViewModel = new KHHTsViewModel()
             {
-                ListofSV = (from objSV in objSEP_TEAM15_WEBKHHTEntities.SinhViens
+                ListofSV = (from objSV in objSEP_TEAM15_WEBKHHTEntities.AspNetUsers
                             select new SelectListItem()
                             {
-                                Text = objSV.Name, 
-                                Value = objSV.ID.ToString()
+                                Text = objSV.UserName, 
+                                Value = objSV.Id
                             }).ToList(),
 
                 ListofMH = (from objMH in objSEP_TEAM15_WEBKHHTEntities.MonHocs
@@ -43,51 +43,31 @@ namespace WebDangKyKHHT.Controllers
             return View(objKHHTsViewModel);
         }
         [HttpPost]
-        public JsonResult Index(int ID_SVTEST, List<int> listOfIDMH)
+        public JsonResult Index(string ID_SV, List<int> listOfIDMH)
         {
-            if(objSEP_TEAM15_WEBKHHTEntities.KHHTs.Any(model=>model.ID_SVTEST == ID_SVTEST))
+            if (objSEP_TEAM15_WEBKHHTEntities.KHHTs.Any(model => model.ID_SV == ID_SV))
             {
-                objSEP_TEAM15_WEBKHHTEntities.KHHTs.RemoveRange(objSEP_TEAM15_WEBKHHTEntities.KHHTs.Where(model => model.ID_SVTEST == ID_SVTEST));
+                objSEP_TEAM15_WEBKHHTEntities.KHHTs.RemoveRange(objSEP_TEAM15_WEBKHHTEntities.KHHTs.Where(model => model.ID_SV == ID_SV));
                 objSEP_TEAM15_WEBKHHTEntities.SaveChanges();
             }
             foreach(var item in listOfIDMH)
             {
                 KHHT objKHHT = new KHHT();
-                objKHHT.ID_SVTEST = ID_SVTEST;
+                objKHHT.ID_SV = ID_SV;
                 objKHHT.ID_MH = item;
                 objKHHT.NgayTao = DateTime.Now;
                 objSEP_TEAM15_WEBKHHTEntities.KHHTs.Add(objKHHT);
                 objSEP_TEAM15_WEBKHHTEntities.SaveChanges();
             }
-            return Json(new { success = true, message = "Dang ky thanh cong"}, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, message = "Đăng ký thành công"}, JsonRequestBehavior.AllowGet);
         }
         //[AllowAnonymous]
         //public ActionResult Search(string HK)
         //{
-        //    //var monhoc = objSEP_TEAM15_WEBKHHTEntities.MonHocs.ToList();
+        //    var monhoc = objSEP_TEAM15_WEBKHHTEntities.MonHocs.ToList();
         //    int iHK = int.Parse(HK);
-        //    //monhoc = monhoc.Where(m => m.HocKi.TenHK == iHK).ToList();            
-        //    KHHTsViewModel objKHHTsViewModel = new KHHTsViewModel()
-        //    {
-        //        ListofSV = (from objSV in objSEP_TEAM15_WEBKHHTEntities.SinhViens
-        //                    select new SelectListItem()
-        //                    {
-        //                        Text = objSV.Name,
-        //                        Value = objSV.ID.ToString()
-        //                    }).ToList(),
-
-        //        ListofMH = (from objMH in objSEP_TEAM15_WEBKHHTEntities.MonHocs
-        //                    select new MonHocsViewModel()
-        //                    {
-        //                        IDMH = objMH.ID,
-        //                        TenMH = objMH.TenMH,
-        //                        MaMH = objMH.MaMH,
-        //                        SoTinChi = (int)objMH.SoTinChi,
-        //                        ID_HK = (int)objMH.ID_HK,
-        //                        IsSelected = false
-        //                    }).Where(m => m.ID_HK == iHK).ToList()
-        //    };
-        //    return View(objKHHTsViewModel);
+        //    monhoc = monhoc.Where(m => m.HocKi.TenHK == iHK).ToList();
+        //    return View("Index", monhoc);
         //}
     }
 
