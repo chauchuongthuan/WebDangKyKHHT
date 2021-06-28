@@ -14,7 +14,16 @@ namespace WebDangKyKHHT.Models
     
     public partial class SinhVien
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SinhVien()
+        {
+            this.KHHTs = new HashSet<KHHT>();
+        }
+    
         public int ID { get; set; }
         public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KHHT> KHHTs { get; set; }
     }
 }
