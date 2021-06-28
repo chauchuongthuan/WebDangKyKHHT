@@ -50,7 +50,7 @@ namespace WebDangKyKHHT.Controllers
                 objSEP_TEAM15_WEBKHHTEntities.KHHTs.RemoveRange(objSEP_TEAM15_WEBKHHTEntities.KHHTs.Where(model => model.ID_SV == ID_SV));
                 objSEP_TEAM15_WEBKHHTEntities.SaveChanges();
             }
-            foreach(var item in listOfIDMH)
+            foreach (var item in listOfIDMH)
             {
                 KHHT objKHHT = new KHHT();
                 objKHHT.ID_SV = ID_SV;
@@ -61,14 +61,7 @@ namespace WebDangKyKHHT.Controllers
             }
             return Json(new { success = true, message = "Đăng ký thành công"}, JsonRequestBehavior.AllowGet);
         }
-        //[AllowAnonymous]
-        //public ActionResult Search(string HK)
-        //{
-        //    var monhoc = objSEP_TEAM15_WEBKHHTEntities.MonHocs.ToList();
-        //    int iHK = int.Parse(HK);
-        //    monhoc = monhoc.Where(m => m.HocKi.TenHK == iHK).ToList();
-        //    return View("Index", monhoc);
-        //}
+        
     }
 
 }
