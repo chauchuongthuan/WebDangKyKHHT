@@ -255,14 +255,17 @@ alert('There are some problem');
     </div>
 
 
-
     @using (Html.BeginForm("Index", "DangKyKHHT", FormMethod.Post, new { }))
     {
         <div class="container">
             <div class="row">
                 <div class="form-group">
                     Sinh viên
-                    @Html.DropDownListFor(model => model.ID_SV, Model.ListofSV, new { @class = "form-control", @id = "ddSV" })
+                    @if (Request.IsAuthenticated)
+                    {                      
+                            @Html.DropDownListFor(model => model.ID_SV, Model.ListofSV, new { @class = "form-control", @id = "ddSV" })                        
+                    }
+
                 </div>
             </div>
 

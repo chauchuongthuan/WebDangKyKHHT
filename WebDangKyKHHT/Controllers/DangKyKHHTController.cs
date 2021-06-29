@@ -17,6 +17,7 @@ namespace WebDangKyKHHT.Controllers
         {
             objSEP_TEAM15_WEBKHHTEntities = new SEP_TEAM15_WEBKHHTEntities();
         }
+        [Authorize]
         // GET: DangKyKHHT
         public ActionResult Index()
         {
