@@ -10,7 +10,6 @@ using WebDangKyKHHT.Models;
 
 namespace WebDangKyKHHT.Controllers
 {
-    [Authorize]
     public class AspNetUsersController : Controller
     {
         private SEP_TEAM15_WEBKHHTEntities db = new SEP_TEAM15_WEBKHHTEntities();
@@ -70,10 +69,6 @@ namespace WebDangKyKHHT.Controllers
             if (aspNetUser == null)
             {
                 return HttpNotFound();
-            }
-            if (User.Identity.Name != aspNetUser.Email)
-            {
-                return new HttpUnauthorizedResult("Bạn không có quyền sử dụng chỉnh sửa");
             }
             return View(aspNetUser);
         }
