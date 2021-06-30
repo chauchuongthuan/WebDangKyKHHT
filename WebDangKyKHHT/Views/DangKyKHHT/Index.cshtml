@@ -261,42 +261,17 @@ alert('There are some problem');
             <div class="row">
                 <div class="form-group">
                     Sinh viên
+                    <br />
                     @if (Request.IsAuthenticated)
-                    {                      
-                            @Html.DropDownListFor(model => model.ID_SV, Model.ListofSV, new { @class = "form-control", @id = "ddSV" })                        
-                    }
+                    {                                                                   
+                            <input type="text" value="@User.Identity.GetUserId()" id="ddSV"/> @User.Identity.GetUserName()
+                        
+                    
+                @*@Html.DropDownListFor(model => model.ID_SV, Model.ListofSV, new { @class = "form-control", @id = "ddSV" })*@
+}
 
                 </div>
             </div>
-
-
-
-            @*<div class="container">
-                <div class="d-flex align-items-center">
-
-
-
-                @using (Html.BeginForm())
-                {
-                <table>
-                <tr>
-                <th>
-                Chọn Học Kì
-                </th>
-                <th>
-                @Html.DropDownList("ID_HK", null, htmlAttributes: new { @class = "form-control" })
-                </th>
-                <th>
-                &ensp;
-                <button class="btn btn-secondary" type="submit" value="Tìm kiếm" /><span>Tìm kiếm</span>
-                </th>
-                </tr>
-                </table>
-                }
-                </div>
-                </div>*@
-
-
 
 
             <div class="row">

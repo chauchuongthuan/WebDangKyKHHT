@@ -18,7 +18,7 @@ namespace WebDangKyKHHT.ViewModels
 
         [Display(Name = "MonHoc")]
         public int IDMH { get; set; }
-        public IEnumerable<SelectListItem> ListofSV { get; set; }
+        public string ListofSV { get; set; }
 
 
 

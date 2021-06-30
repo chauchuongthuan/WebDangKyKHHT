@@ -17,24 +17,18 @@ namespace WebDangKyKHHT.Controllers
         {
             objSEP_TEAM15_WEBKHHTEntities = new SEP_TEAM15_WEBKHHTEntities();
         }
+        
         [Authorize]
         // GET: DangKyKHHT
         public ActionResult Index()
         {
             ViewBag.ID_HK = new SelectList(objSEP_TEAM15_WEBKHHTEntities.HocKis, "ID", "ID");
 
-
-
+            
             KHHTsViewModel objKHHTsViewModel = new KHHTsViewModel()
             {
-                ListofSV = (from objSV in objSEP_TEAM15_WEBKHHTEntities.AspNetUsers
-                            select new SelectListItem()
-                            {
-                                Text = objSV.UserName,
-                                Value = objSV.Id
-                            }).ToList(),
-
-
+                
+                ListofSV = User.Identity.Name,
 
                 ListofMH = (from objMH in objSEP_TEAM15_WEBKHHTEntities.MonHocs
                             select new MonHocsViewModel()
