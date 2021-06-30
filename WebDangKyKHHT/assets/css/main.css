@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css?family=Barlow:200,300,400,500,600,700,800,900|Roboto:300,300i,400,500,700,900&display=swap");
+
+
+
+
+.slider-height {
+    min-height: 830px;
+    background-repeat: no-repeat;
+    background-position: center center
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .slider-height {
+        min-height: 600px
+    }
+}
+
+@media (max-width: 767px) {
+    .slider-height {
+        min-height: 550px
+    }
+}
+
+.slider-height2 {
+    min-height: 390px;
+    background-repeat: no-repeat;
+    background-position: center center
+}
+
+@media (max-width: 767px) {
+    .slider-height2 {
+        min-height: 300px
+    }
+}
+
+
+.slider-area {
+    margin-top: -1px
+}
+
+    .slider-area .hero__caption {
+        padding: 39px 70px 56px 68px;
+        margin-left: -25px;
+        margin-right: 25px;
+        position: relative;
+        overflow: hidden
+    }
+
+@media (max-width: 767px) {
+    .slider-area .hero__caption {
+        padding: 39px 24px 55px 44px
+    }
+}
+
+.slider-area .hero__caption::after {
+    position: absolute;
+    content: "";
+    background-image: url(../img/hero/hero_arrow.png);
+    left: 0;
+    right: 0;
+    bottom: -26px;
+    height: 57px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: slide1 1s ease-in-out infinite;
+    margin-left: 0px
+}
+
+@keyframes slide1 {
+    0%,100% {
+        transform: translate(0, 0)
+    }
+
+    50% {
+        transform: translate(5px, 0);
+        -webkit-transform: translate(5px, 0);
+        -moz-transform: translate(5px, 0);
+        -ms-transform: translate(5px, 0);
+        -o-transform: translate(5px, 0)
+    }
+}
+
+.slider-area .hero__caption h1 {
+    font-size: 70px;
+    font-weight: 900;
+    margin-bottom: 14px;
+    color: #ffffff;
+    font-family: 'Barlow', sans-serif;
+    line-height: 1.2;
+    text-transform: uppercase
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .slider-area .hero__caption h1 {
+        font-size: 60px;
+        line-height: 1.2
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .slider-area .hero__caption h1 {
+        font-size: 50px;
+        line-height: 1.2
+    }
+}
+
+@media (max-width: 767px) {
+    .slider-area .hero__caption h1 {
+        font-size: 35px;
+        line-height: 1.2
+    }
+}
+
+.slider-area .hero__caption p {
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 39px;
+    color: #ffffff;
+    margin-bottom: 25px;
+    padding-right: 49px
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .slider-area .hero__caption p {
+        padding-right: 0px
+    }
+}
+
+@media (max-width: 767px) {
+    .slider-area .hero__caption p {
+        padding-right: 0px
+    }
+}
+
+.hero-overly {
+    position: relative;
+    z-index: 1
+}
+
+    .hero-overly::before {
+        position: absolute;
+        content: "";
+        background-color: rgba(1,10,28,0.3);
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+        background-repeat: no-repeat
+    }
+
+.slider-area .hero-cap h2 {
+    color: #fff;
+    font-size: 50px;
+    font-weight: 900;
+    text-transform: uppercase
+}
+
