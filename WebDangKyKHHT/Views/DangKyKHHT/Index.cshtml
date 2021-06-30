@@ -1,52 +1,68 @@
 ﻿@model WebDangKyKHHT.ViewModels.KHHTsViewModel
 
+
+
 @{
     ViewBag.Title = "Index";
 }
 <script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $("#btnSave").click(function () {
-            AddKHHT();
-        });
+$(document).ready(function () {
+$("#btnSave").click(function () {
+AddKHHT();
+});
 
-        $("#btnSelectAll").click(function () {
-            SelectAllMH()
-        });
-    });
 
-    function SelectAllMH() {
-        $.each($("#tableMH input[type=checkbox]"), function (index, data) {
-            $(this).prop('checked', true);
-        });
-    }
 
-    function AddKHHT() {
-        var listOfIDMH = [];
+$("#btnSelectAll").click(function () {
+SelectAllMH()
+});
+});
 
-        $.each($("#tableMH input[type=checkbox]:checked"), function (index, data) {
-            listOfIDMH.push($(this).val());
-        });
 
-        $.ajax({
-            async: true,
-            type: 'POST',
-            dataType: 'JSON',
-            contentType: 'application/json; charset=utf-8',
-            url: '/DangKyKHHT/Index',
-            data: JSON.stringify({ ID_SV: $("#ddSV").val(), listOfIDMH: listOfIDMH }),
-            success: function (data) {
-                if (data.success === true) {
-                    alert(data.message);
-                }
-            },
-            error: function () {
-                alert('There are some problem');
-            }
-        });
-    }
+
+function SelectAllMH() {
+$.each($("#tableMH input[type=checkbox]"), function (index, data) {
+$(this).prop('checked', true);
+});
+}
+
+
+
+function AddKHHT() {
+var listOfIDMH = [];
+
+
+
+$.each($("#tableMH input[type=checkbox]:checked"), function (index, data) {
+listOfIDMH.push($(this).val());
+});
+
+
+
+$.ajax({
+async: true,
+type: 'POST',
+dataType: 'JSON',
+contentType: 'application/json; charset=utf-8',
+url: '/DangKyKHHT/Index',
+data: JSON.stringify({ ID_SV: $("#ddSV").val(), listOfIDMH: listOfIDMH }),
+success: function (data) {
+if (data.success === true) {
+alert(data.message);
+}
+},
+error: function () {
+alert('There are some problem');
+}
+});
+}
+
+
 
 </script>
+
+
 
 <!-- Nav -->
 <aside class="sidebar">
@@ -57,11 +73,15 @@
     </div>
     <div class="side-inner">
 
+
+
         <div class="profile">
             <img src="@Url.Content("~/images/person_profile.jpg")" alt="Image" class="img-fluid">
             <h3 class="name">Phương</h3>
             <span class="country">187PM20547</span>
         </div>
+
+
 
 
         <div class="nav-menu">
@@ -85,6 +105,8 @@
                         <span class="icon-search2 mr-3"></span>Explore
                     </a>
 
+
+
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingOne">
                         <div>
                             <ul>
@@ -94,6 +116,8 @@
                             </ul>
                         </div>
                     </div>
+
+
 
                 </li>
                 <li><a href="#"><span class="icon-notifications mr-3"></span>Notifications</a></li>
@@ -106,6 +130,8 @@
 </aside>
 
 
+
+
 <div class="header-top">
     <div class="container">
         <div class="row align-items-center">
@@ -114,13 +140,19 @@
                     Van Lang University
                 </a>
 
+
+
                 <a href="#" class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black">
                     <span class="icon-menu h3"></span>
                 </a>
 
+
+
             </div>
             <div class="col-12 col-lg-6 ml-auto d-flex">
                 <div class="ml-md-auto top-social d-none d-lg-inline-block">
+
+
 
                 </div>
                 <div class="header__top__right__auth">
@@ -145,6 +177,8 @@
                     {
                         <form action="@Url.Content("~/Account/Login")" class="search-form d-inline-block">
 
+
+
                             <div class="d-flex">
                                 &ensp;
                                 &ensp;
@@ -153,7 +187,11 @@
                         </form>
                     }
 
+
+
                 </div>
+
+
 
             </div>
         </div>
@@ -165,10 +203,16 @@
 
 
 
+
+
 <div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
+
+
 
     <div class="container">
         <div class="d-flex align-items-center">
+
+
 
             <div class="mr-auto">
                 <nav class="site-navigation position-relative text-right" role="navigation">
@@ -177,7 +221,7 @@
                             <a href="@Url.Content("~/Home/Index")" class="nav-link text-left">Trang chủ</a>
                         </li>
                         <li>
-                            <a href="@Url.Content("~/DangKyKHHT/Index")" class="nav-link text-left"  style="color: #ff3333">Đăng ký kế hoạch học tập</a>
+                            <a href="@Url.Content("~/DangKyKHHT/Index")" class="nav-link text-left" style="color: #ff3333">Đăng ký kế hoạch học tập</a>
                         </li>
                         <li>
                             <a href="@Url.Content("~/MonHocs/Index")" class="nav-link text-left">Xem kế hoạch đào tạo</a>
@@ -210,91 +254,74 @@
         </div>
     </div>
 
+
     @using (Html.BeginForm("Index", "DangKyKHHT", FormMethod.Post, new { }))
     {
-<div class="container">
-    <div class="row">
-        <div class="form-group">
-            Sinh viên
-            @if (Request.IsAuthenticated)
-            {
-                
-                @Html.DropDownListFor(model => model.ID_SV, Model.ListofSV, new { @class = "form-control", @id = "ddSV" })
-            }
+        <div class="container">
+            <div class="row">
+                <div class="form-group">
+                    Sinh viên
+                    <br />
+                    @if (Request.IsAuthenticated)
+                    {                                                                   
+                            <input type="text" value="@User.Identity.GetUserId()" id="ddSV"/> @User.Identity.GetUserName()
+                        
+                    
+                @*@Html.DropDownListFor(model => model.ID_SV, Model.ListofSV, new { @class = "form-control", @id = "ddSV" })*@
+}
 
-        </div>
-    </div>
+                </div>
+            </div>
 
-    @*<div class="container">
-        <div class="d-flex align-items-center">
 
-            @using (Html.BeginForm())
-            {
-                <table>
-                    <tr>
-                        <th>
-                            Chọn Học Kì
-                        </th>
-                        <th>
-                            @Html.DropDownList("ID_HK", null, htmlAttributes: new { @class = "form-control" })
-                        </th>
-                        <th>
-                            &ensp;
-                            <button class="btn btn-secondary" type="submit" value="Tìm kiếm" /><span>Tìm kiếm</span>
-                        </th>
-                    </tr>
+            <div class="row">
+                <h2>Danh sách môn học </h2>
+                <br />
+                <table class="table custom-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                <label class="control control--checkbox">
+                                    <input type="checkbox" class="js-check-all" />
+                                    <div class="control__indicator"></div>
+                                </label>
+                            </th>
+                            <th scope="col">Số thứ tự</th>
+                            <th scope="col">Tên môn</th>
+                            <th scope="col">Mã môn</th>
+                            <th scope="col">Số tín chỉ</th>
+                            <th scope="col">Học kỳ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ListofMH)
+                        {
+                            <tr scope="row" id="tableMH">
+                                <th scope="row">
+                                    <label class="control control--checkbox">
+                                        <input type="checkbox" name="@item.TenMH" value="@item.IDMH" checked="@item.IsSelected" />
+                                        <div class="control__indicator"></div>
+                                    </label>
+                                </th>
+                                <td>@item.IDMH</td>
+                                <td><p>@item.TenMH</p></td>
+                                <td>
+                                    @item.MaMH
+                                </td>
+                                <td>@item.SoTinChi</td>
+                                <td>@item.ID_HK</td>
+                            </tr>
+                            <tr class="spacer"><td colspan="100"></td></tr>
+                        }
+                    </tbody>
                 </table>
-            }
+            </div>
+            <div>
+                <button type="button" value="Save" name="Save" id="btnSave" class="btn btn-secondary">Lưu</button>
+            </div>
         </div>
-    </div>*@
-
-
-    <div class="row">
-        <h2>Danh sách môn học </h2>
-        <br />
-        <table class="table custom-table">
-            <thead>
-                <tr>
-                    <th scope="col">
-                        <label class="control control--checkbox">
-                            <input type="checkbox" class="js-check-all" />
-                            <div class="control__indicator"></div>
-                        </label>
-                    </th>
-                    <th scope="col">Số thứ tự</th>
-                    <th scope="col">Tên môn</th>
-                    <th scope="col">Mã môn</th>
-                    <th scope="col">Số tín chỉ</th>
-                    <th scope="col">Học kỳ</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.ListofMH)
-                {
-                    <tr scope="row" id="tableMH">
-                        <th scope="row">
-                            <label class="control control--checkbox">
-                                <input type="checkbox" name="@item.TenMH" value="@item.IDMH" checked="@item.IsSelected" />
-                                <div class="control__indicator"></div>
-                            </label>
-                        </th>
-                        <td>@item.IDMH</td>
-                        <td><p>@item.TenMH</p></td>
-                        <td>
-                            @item.MaMH
-                        </td>
-                        <td>@item.SoTinChi</td>
-                        <td>@item.ID_HK</td>
-                    </tr>
-                    <tr class="spacer"><td colspan="100"></td></tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <div>
-        <button type="button" value="Save" name="Save" id="btnSave" class="btn btn-secondary">Lưu</button>
-    </div>
-</div>
     }
+
+
 
 </div>

@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
 
+
+
 namespace WebDangKyKHHT.ViewModels
 {
     public class KHHTsViewModel
@@ -12,9 +14,13 @@ namespace WebDangKyKHHT.ViewModels
         [Display(Name = "SinhVien")]
         public string ID_SV { get; set; }
 
+
+
         [Display(Name = "MonHoc")]
-        public int IDMH { get; set; } 
-        public IEnumerable<SelectListItem> ListofSV { get; set; }
+        public int IDMH { get; set; }
+        public string ListofSV { get; set; }
+
+
 
         public IEnumerable<MonHocsViewModel> ListofMH { get; set; }
     }
