@@ -18,7 +18,7 @@ namespace WebDangKyKHHT.Controllers
         // GET: DangKyKHHT
         public ActionResult Index()
         {
-            ViewBag.ID_HK = new SelectList(objSEP_TEAM15_WEBKHHTEntities.HocKis, "ID", "ID");            
+            //ViewBag.ID_HK = new SelectList(objSEP_TEAM15_WEBKHHTEntities.HocKis, "ID", "ID");            
 
             KHHTsViewModel objKHHTsViewModel = new KHHTsViewModel()
             {

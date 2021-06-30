@@ -216,7 +216,12 @@
     <div class="row">
         <div class="form-group">
             Sinh viên
-            @Html.DropDownListFor(model => model.ID_SV, Model.ListofSV, new { @class = "form-control", @id = "ddSV" })
+            @if (Request.IsAuthenticated)
+            {
+                
+                @Html.DropDownListFor(model => model.ID_SV, Model.ListofSV, new { @class = "form-control", @id = "ddSV" })
+            }
+
         </div>
     </div>
 

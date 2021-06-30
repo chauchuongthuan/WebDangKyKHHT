@@ -331,7 +331,7 @@ namespace WebDangKyKHHT.Controllers
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
             switch (result)
-            {
+            {               
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
@@ -346,7 +346,7 @@ namespace WebDangKyKHHT.Controllers
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
             }
         }
-
+        
         //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
@@ -367,15 +367,17 @@ namespace WebDangKyKHHT.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
+                
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
-                {
+                {                   
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToLocal(returnUrl);
+                        Session["user-email"] = user.Email;
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);                            
+                        return RedirectToLocal(returnUrl);                                            
                     }
                 }
                 AddErrors(result);

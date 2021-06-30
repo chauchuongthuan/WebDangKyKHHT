@@ -79,9 +79,6 @@
             </div>
             <div class="col-12 col-lg-6 ml-auto d-flex">
                 <div class="ml-md-auto top-social d-none d-lg-inline-block">
-
-                </div>
-                <div class="header__top__right__auth">
                     @if (Request.IsAuthenticated)
                     {
                         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -90,7 +87,9 @@
                             <div class="d-flex">
                                 <ul class="nav navbar-nav navbar-right">
                                     <li>
-                                        @Html.ActionLink("" + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                        @*Html.ActionLink("" + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+                                        @User.Identity.GetUserName()
+                                        
                                         &ensp;
                                     </li>
                                 </ul>
@@ -109,8 +108,8 @@
                             </div>
                         </form>
                     }
-
                 </div>
+                
 
             </div>
         </div>
