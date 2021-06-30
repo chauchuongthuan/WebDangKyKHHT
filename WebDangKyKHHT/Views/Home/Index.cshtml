@@ -17,7 +17,11 @@
 
         <div class="profile">
             <img src="@Url.Content("~/images/person_profile.jpg")" alt="Image" class="img-fluid">
-            <h3 class="name">Phương</h3>
+            <h3 class="name">
+                Hello, <br />
+                @Html.ActionLink("" + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                &ensp;
+            </h3>
             <span class="country">187PM20547</span>
         </div>
 
@@ -25,18 +29,8 @@
         <div class="nav-menu">
             <ul>
                 <li class="accordion">
-                    <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsible">
-                        <span class="icon-home mr-3"></span>Feed
-                    </a>
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne">
-                        <div>
-                            <ul>
-                                <li><a href="#">News</a></li>
-                                <li><a href="#">Sport</a></li>
-                                <li><a href="#">Health</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <a href="@Url.Content("~/AspNetUsers/Index")"><span class="icon-home mr-3"></span>Thông tin sinh viên  </a>
+
                 </li>
                 <li class="accordion">
                     <a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsible">
@@ -57,7 +51,7 @@
                 <li><a href="#"><span class="icon-notifications mr-3"></span>Notifications</a></li>
                 <li><a href="#"><span class="icon-location-arrow mr-3"></span>Direct</a></li>
                 <li><a href="#"><span class="icon-pie-chart mr-3"></span>Stats</a></li>
-                <li><a href="#"><span class="icon-sign-out mr-3"></span>Sign out</a></li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()"><span class="icon-sign-out mr-3"></span>Sign out</a></li>
             </ul>
         </div>
     </div>
@@ -142,9 +136,12 @@
                         <li>
                             <a href="#" class="nav-link text-left">Lịch sử đăng ký KHHT</a>
                         </li>
-                        <li>
-                            <a href="@Url.Content("~/AspNetRoles/Index")" class="nav-link text-left">Role</a>
-                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li>
+                                <a href="@Url.Content("~/AspNetRoles/Index")" class="nav-link text-left">Role</a>
+                            </li>
+                        }
                     </ul>
                 </nav>
             </div>
@@ -165,7 +162,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="new_footer_area bg_color"  style="background-color: #fff">
+<footer class="new_footer_area bg_color" style="background-color: #fff">
     <div class="new_footer_top">
         <div class="container">
             <div class="row">

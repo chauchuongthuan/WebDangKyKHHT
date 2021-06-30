@@ -35,9 +35,10 @@ namespace WebDangKyKHHT.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
-        public string TenSV { get; set; }
+        public string Ten { get; set; }
         public string MSSV { get; set; }
         public string DiaChi { get; set; }
+        public string NgaySinh { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }

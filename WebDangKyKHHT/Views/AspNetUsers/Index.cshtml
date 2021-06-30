@@ -1,105 +1,406 @@
 ﻿@model IEnumerable<WebDangKyKHHT.Models.AspNetUser>
-
+@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/DKKHHT.cshtml";
 }
+<style>
+    .btn {
+        position: relative;
+        padding: 0.5rem 0.7rem;
+        padding-right: .1rem;
+        font-size: 1rem;
+        color: white;
+        letter-spacing: 0.4rem;
+        text-transform: uppercase;
+        transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);
+        cursor: pointer;
+        user-select: none;
+    }
 
-<h2>Index</h2>
+        .btn:before, .btn:after {
+            content: '';
+            position: absolute;
+            transition: inherit;
+            z-index: -1;
+        }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmailConfirmed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SecurityStamp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TwoFactorEnabled)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LockoutEnabled)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AccessFailedCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ten)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NgaySinh)
-        </th>
-        <th></th>
-    </tr>
+        .btn:hover {
+            color: aqua;
+            transition-delay: .5s;
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmailConfirmed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PasswordHash)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SecurityStamp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TwoFactorEnabled)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LockoutEndDateUtc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LockoutEnabled)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccessFailedCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ten)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgaySinh)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            .btn:hover:before {
+                transition-delay: 0s;
+            }
 
-</table>
+            .btn:hover:after {
+                background: var(--inv);
+                transition-delay: .35s;
+            }
+    /* From Left */
+    .from-left:before,
+    .from-left:after {
+        top: 0;
+        width: 0;
+        height: 100%;
+    }
+
+    .from-left:before {
+        right: 0;
+        border: 1px solid var(--inv);
+        border-left: 0;
+        border-right: 0;
+    }
+
+    .from-left:after {
+        left: 0;
+    }
+
+    .from-left:hover:before,
+    .from-left:hover:after {
+        width: 100%;
+    }
+</style>
+<style>
+
+    .tbstudentinfo th {
+        text-align: left;
+    }
+
+    .cus-boder {
+        border-top: 1px solid #dfdfdf;
+        padding-top: 10px;
+        height: 30px;
+    }
+
+    .cus-header {
+        font-weight: bold;
+        color: #AC1818;
+        font-size: 16px;
+    }
+
+    .cus-boder1 {
+        border-top: 1px solid #dfdfdf;
+        padding-top: 20px;
+        height: 30px;
+    }
+</style>
+
+<!-- Nav -->
+<aside class="sidebar">
+    <div class="toggle">
+        <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+            <span></span>
+        </a>
+    </div>
+    <div class="side-inner">
+
+        <div class="profile">
+            <img src="@Url.Content("~/images/person_profile.jpg")" alt="Image" class="img-fluid">
+            <h3 class="name">Phương</h3>
+            <span class="country">187PM20547</span>
+        </div>
+
+
+        <div class="nav-menu">
+            <ul>
+                <li class="accordion">
+
+                    <a href="@Url.Content("~/AspNetUsers/Index")"><span class="icon-home mr-3"></span>Thông tin sinh viên  </a>
+
+
+                </li>
+                <li class="accordion">
+                    <a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsible">
+                        <span class="icon-search2 mr-3"></span>Explore
+                    </a>
+
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingOne">
+                        <div>
+                            <ul>
+                                <li><a href="#">Interior</a></li>
+                                <li><a href="#">Food</a></li>
+                                <li><a href="#">Travel</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </li>
+                <li><a href="#"><span class="icon-notifications mr-3"></span>Notifications</a></li>
+                <li><a href="#"><span class="icon-location-arrow mr-3"></span>Direct</a></li>
+                <li><a href="#"><span class="icon-pie-chart mr-3"></span>Stats</a></li>
+                <li><a href="#"><span class="icon-sign-out mr-3"></span>Sign out</a></li>
+            </ul>
+        </div>
+    </div>
+</aside>
+
+
+<div class="header-top">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6 d-flex">
+                <a href="@Url.Content("~/Home/Index")" class="site-logo">
+                    Van Lang University
+                </a>
+
+                <a href="#" class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black">
+                    <span class="icon-menu h3"></span>
+                </a>
+
+            </div>
+            <div class="col-12 col-lg-6 ml-auto d-flex">
+                <div class="ml-md-auto top-social d-none d-lg-inline-block">
+
+                </div>
+                <div class="header__top__right__auth">
+                    @using Microsoft.AspNet.Identity
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="d-flex">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li>
+                                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                        &ensp;
+                                    </li>
+                                </ul>
+                                <button type="submit" class="btn btn-secondary"><span>Logout</span></button>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <form action="@Url.Content("~/Account/Login")" class="search-form d-inline-block">
+
+                            <div class="d-flex">
+                                &ensp;
+                                &ensp;
+                                <button type="submit" class="btn btn-secondary"><span>Login</span></button>
+                            </div>
+                        </form>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-6 d-block d-lg-none text-right">
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
+
+    <div class="container">
+        <div class="d-flex align-items-center">
+
+            <div class="mr-auto">
+                <nav class="site-navigation position-relative text-right" role="navigation">
+                    <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
+                        <li class="active">
+                            <a href="@Url.Content("~/Home/Index")" class="nav-link text-left">Trang chủ</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/DangKyKHHT/Index")" class="nav-link text-left">Đăng ký kế hoạch học tập</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/MonHocs/Index")" class="nav-link text-left">Xem kế hoạch đào tạo</a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-left">Lịch sử đăng ký KHHT</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Content("~/AspNetRoles/Index")" class="nav-link text-left">Role</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Title body -->
+
+    @foreach (var item in Model)
+    {
+        <div class="container">
+            <div class="col-md-12">
+                <div class="divmain" style="margin-bottom: 20px">
+                    <div class="bgtitle">Thông tin sinh viên</div>
+                    <div class="row" style="margin: 0px">
+                        <div class="col-md-4">
+                            <div class="row" style="text-align:center">
+                                <div class="col-md-12" style="margin-bottom: 23px;">
+                                    <img id="Home-img-circle" src="~/images/person_profile.jpg" width="200" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-12 cus-header">
+                                    Thông tin khóa học
+                                </div>
+                                <div class="col-md-12  cus-boder">
+                                    Niên khóa: <label>2018 - 2022</label>
+                                </div>
+                                <div class="col-md-12  cus-boder">
+                                    Khóa học: <label>K24</label>
+                                </div>
+                                <div class="col-md-12  cus-boder">
+                                    Chức vụ: <label></label>
+                                </div>
+                                <div class="col-md-12  cus-boder">
+                                    Đối tượng: <label></label>
+                                </div>
+                                <div class="col-md-12  cus-boder">
+                                    THPT lớp 12: <label></label>
+                                </div>
+                                <div class="col-md-12  cus-boder">
+                                    Đoàn: <label></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-12 cus-header">
+                                    Thông tin liên lạc
+                                </div>
+                                <div class="col-md-12  cus-boder">
+                                    Dân tộc: <label>Kinh</label>
+                                </div>
+                                <div class="col-md-12  cus-boder">
+                                    Tôn giáo: <label></label>
+                                </div>
+                                <div class="col-md-12  cus-boder">
+                                    Quốc gia: <label>Việt Nam</label>
+                                </div>
+                                <div class="col-md-12  cus-boder">
+                                    Tỉnh thành: <label>Thành phố Hồ Chí Minh</label>
+                                </div>
+                                <div class="col-md-12  cus-boder">
+                                    Quận huyện: <label>Quận Bình Tân</label>
+                                </div>
+                                <div class="col-md-12  cus-boder">
+                                    Di động: <label>0938680709</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4  cus-boder">
+                                    Mã SV: <label>187pm06588</label>
+                                </div>
+                                <div class="col-md-4  cus-boder">
+                                    Ngày vào đoàn: <label></label>
+                                </div>
+                                <div class="col-md-4  cus-boder">
+                                    ĐT bàn: <label style="color:lightpink">@Html.DisplayFor(modelItem => item.PhoneNumber)</label>
+                                </div>
+                                <div class="col-md-4  cus-boder1">
+                                    Họ tên: <label style="color:lightpink">@Html.DisplayFor(modelItem => item.Ten)</label>
+                                </div>
+                                <div class="col-md-4  cus-boder1">
+                                    Đảng: <label></label>
+                                </div>
+                                <div class="col-md-4  cus-boder" style="height: 55px">
+                                    <button class="btn from-left "> @Html.ActionLink("Cập nhập thông tin", "Edit", new { id = item.Id }) </button>
+                                </div>
+                                <div class="col-md-4  cus-boder">
+                                    Giới tính: <label>Nam</label>
+                                </div>
+                                <div class="col-md-8  cus-boder">
+                                    Ngày vào đảng: <label></label>
+                                </div>
+                                <div class="col-md-4  cus-boder">
+                                    Ngày sinh: <label style="color:lightpink">@Html.DisplayFor(modelItem => item.NgaySinh)</label>
+                                </div>
+                                <div class="col-md-8  cus-boder">
+                                    Loại hình đào tạo: <label>Đại Học CQ Tín Chỉ</label>
+                                </div>
+                                <div class="col-md-4  cus-boder">
+                                    CMND: <label>0000000</label>
+                                </div>
+                                <div class="col-md-8  cus-boder">
+                                    Cố vấn học tập: <label></label>
+                                </div>
+                                <div class="col-md-4  cus-boder">
+                                    Tình trạng học: <label>Còn học</label>
+                                </div>
+                                <div class="col-md-8  cus-boder">
+                                    Liên hệ cố vấn học tập: <label></label>
+                                </div>
+                                <div class="col-md-4  cus-boder">
+                                    Email trường: <label style="color:lightpink"> @Html.DisplayFor(modelItem => item.UserName)</label>
+                                </div>
+                                <div class="col-md-8  cus-boder">
+                                    Lớp sinh viên: <label>Khóa 24 Kỹ thuật phần mềm-K24T-PM1</label>
+                                </div>
+                                <div class="col-md-12  cus-boder">
+                                    Email cá nhân: <label style="color:lightpink"> @Html.DisplayFor(modelItem => item.Email)</label>
+                                </div>
+                                <div class="col-md-12  cus-boder" style="border-bottom: 1px solid #dfdfdf">
+                                    Địa chỉ liên lạc SV: <label> Quận Bình Tân, Thành phố Hồ Chí Minh</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="padding-top: 30px">
+                            <div class="row">
+                                <div class="col-md-12 cus-header">Thông tin người liên hệ</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6  cus-boder">
+                                    Họ tên người liên hệ: <label></label>
+                                </div>
+                                <div class="col-md-6  cus-boder">
+                                    Điện thoại người liên hệ: <label></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12  cus-boder">
+                                    Địa chỉ người liên hệ: <label>42/36 a Bình Thành</label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+
+
+        </div>
+
+    }
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetNotification();
+        })
+
+        function GetNotification() {
+            $.ajax({
+                url: '/Home/GetNotificationAccountFee',
+                type: 'GET',
+                dataType: 'json',
+                success: function (res) {
+                    if (res.status) {
+                        if (res.confirm) {
+                            Swal.fire("<span style='color:tomato; font-weight:bold'>Bạn chưa đóng học phí !</span>", 'Vui lòng vào <b>TÀI CHÍNH SINH VIÊN</b> để kiểm tra', 'warning')
+                        }
+                    }
+                },
+                error: function (jqXHR, textStatus, err) {
+                    Swal.fire('Lỗi', err, 'error')
+                }
+            });
+        }
+    </script>
