@@ -3,12 +3,12 @@
 @{
     ViewBag.Title = "Details";
 }
+<br />
+<br />
+<br />
 
-<h2>Details</h2>
+<div class="container">
 
-<div>
-    <h4>AspNetUser</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Email)
@@ -115,8 +115,9 @@
         </dd>
 
     </dl>
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
