@@ -4,141 +4,148 @@
 }
 
 <!-- Nav -->
-<aside class="sidebar">
-    <div class="toggle">
-        <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
-            <span></span>
-        </a>
-    </div>
-    <div class="side-inner">
-
-        <div class="profile">
-            @if (Request.IsAuthenticated)
-            {
-                <img src="@Url.Content("~/images/person_profile.jpg")" alt="Image" class="img-fluid">
-                <h3 class="name">
-                    Hello, <br />
-                    @Html.ActionLink("" + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                    &ensp;
-                </h3>
-            }
+@if (Request.IsAuthenticated)
+{
+    <aside class="sidebar">
+        <div class="toggle">
+            <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                <span></span>
+            </a>
         </div>
+        <div class="side-inner">
 
-
-        <div class="nav-menu">
-            <ul>
-                <li class="accordion">
-                    <a href="@Url.Content("~/AspNetUsers/Index")"><span class="icon-home mr-3"></span>Thông tin sinh viên  </a>
-
-                </li>
-                <li class="accordion">
-                    <a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsible">
-                        <span class="icon-search2 mr-3"></span>Explore
-                    </a>
-
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingOne">
-                        <div>
-                            <ul>
-                                <li><a href="#">Interior</a></li>
-                                <li><a href="#">Food</a></li>
-                                <li><a href="#">Travel</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </li>
-                <li><a href="#"><span class="icon-notifications mr-3"></span>Notifications</a></li>
-                <li><a href="#"><span class="icon-location-arrow mr-3"></span>Direct</a></li>
-                <li><a href="#"><span class="icon-pie-chart mr-3"></span>Stats</a></li>
-                <li><a href="javascript:document.getElementById('logoutForm').submit()"><span class="icon-sign-out mr-3"></span>Sign out</a></li>
-            </ul>
-        </div>
-    </div>
-</aside>
-<div class="header-top">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-12 col-lg-6 d-flex">
-                <a href="@Url.Content("~/Home/Index")" class="site-logo">
-                    <img src="@Url.Content("~/images/logi-xanh.png")"/>
-                </a>
-
-                <a href="#" class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black">
-                    <span class="icon-menu h3"></span>
-                </a>
-
+            <div class="profile">
+                @if (Request.IsAuthenticated)
+                {
+                    <img src="@Url.Content("~/images/person_profile.jpg")" alt="Image" class="img-fluid">
+                    <h3 class="name">
+                        Hello, <br />
+                        @Html.ActionLink("" + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        &ensp;
+                    </h3>
+                }
             </div>
-            <div class="col-12 col-lg-6 ml-auto d-flex">
-                <div class="ml-md-auto top-social d-none d-lg-inline-block">
 
-                </div>
-                <div class="header__top__right__auth">
-                    @if (Request.IsAuthenticated)
-                    {
-                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            <div class="d-flex">
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li>
-                                        <img class="rounded-circle" height="60" src="~/images/person_profile.jpg" data-holder-rendered="true" />
-                                    </li>
+
+            <div class="nav-menu">
+                <ul>
+                    <li class="accordion">
+                        <a href="@Url.Content("~/AspNetUsers/Index")"><span class="icon-home mr-3"></span>Thông tin sinh viên  </a>
+
+                    </li>
+                    <li class="accordion">
+                        <a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsible">
+                            <span class="icon-search2 mr-3"></span>Explore
+                        </a>
+
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingOne">
+                            <div>
+                                <ul>
+                                    <li><a href="#">Interior</a></li>
+                                    <li><a href="#">Food</a></li>
+                                    <li><a href="#">Travel</a></li>
                                 </ul>
                             </div>
-                        }
-                    }
-                    else
-                    {
-                        <form action="@Url.Content("~/Account/Login")" class="search-form d-inline-block">
+                        </div>
 
-                            <div class="d-flex">
-                                &ensp;
-                                &ensp;
-                                <button type="submit" class="btn btn-secondary"><span>Login</span></button>
-                            </div>
-                        </form>
-                    }
-
-                </div>
-
+                    </li>
+                    <li><a href="#"><span class="icon-notifications mr-3"></span>Notifications</a></li>
+                    <li><a href="#"><span class="icon-location-arrow mr-3"></span>Direct</a></li>
+                    <li><a href="#"><span class="icon-pie-chart mr-3"></span>Stats</a></li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()"><span class="icon-sign-out mr-3"></span>Sign out</a></li>
+                </ul>
             </div>
         </div>
-        <div class="col-6 d-block d-lg-none text-right">
-        </div>
-    </div>
-</div>
-<header>
-    <div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
+    </aside>
+}
+else
+{
 
+}
+    <div class="header-top">
         <div class="container">
-            <div class="d-flex align-items-center">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6 d-flex">
+                    <a href="@Url.Content("~/Home/Index")" class="site-logo">
+                        <img src="@Url.Content("~/images/logo-xanh.png")" />
+                    </a>
 
-                <div class="mr-auto">
-                    <nav class="site-navigation position-relative text-right" role="navigation">
-                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
-                            <li class="active">
-                                <a href="@Url.Content("~/Home/Index")" class="nav-link text-left" >Trang chủ</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Content("~/DangKyKHHT/Index")" class="nav-link text-left">Đăng ký kế hoạch học tập</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Content("~/MonHocs/Index")" class="nav-link text-left">Xem kế hoạch đào tạo</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link text-left">Lịch sử đăng ký KHHT</a>
-                            </li>
-                            @if (User.IsInRole("Admin"))
-                            {
-                                <li>
-                                    <a href="@Url.Content("~/AspNetRoles/Index")" class="nav-link text-left">Role</a>
-                                </li>
-                            }
-                        </ul>
-                    </nav>
+                    <a href="#" class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black">
+                        <span class="icon-menu h3"></span>
+                    </a>
+
                 </div>
+                <div class="col-12 col-lg-6 ml-auto d-flex">
+                    <div class="ml-md-auto top-social d-none d-lg-inline-block">
+
+                    </div>
+                    <div class="header__top__right__auth">
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="d-flex">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li>
+                                            <img class="rounded-circle" height="60" src="~/images/person_profile.jpg" data-holder-rendered="true" />
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <form action="@Url.Content("~/Account/Login")" class="search-form d-inline-block">
+
+                                <div class="d-flex">
+                                    &ensp;
+                                    &ensp;
+                                    <button type="submit" class="btn btn-secondary"><span>Login</span></button>
+                                </div>
+                            </form>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-6 d-block d-lg-none text-right">
             </div>
         </div>
     </div>
-</header>
+    <header>
+        <div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
+
+            <div class="container">
+                <div class="d-flex align-items-center">
+
+                    <div class="mr-auto">
+                        <nav class="site-navigation position-relative text-right" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
+                                <li class="active">
+                                    <a href="@Url.Content("~/Home/Index")" class="nav-link text-left">Trang chủ</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Content("~/DangKyKHHT/Index")" class="nav-link text-left">Đăng ký kế hoạch học tập</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Content("~/MonHocs/Index")" class="nav-link text-left">Xem kế hoạch đào tạo</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link text-left">Lịch sử đăng ký KHHT</a>
+                                </li>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li>
+                                        <a href="@Url.Content("~/AspNetRoles/Index")" class="nav-link text-left">Role</a>
+                                    </li>
+                                }
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
