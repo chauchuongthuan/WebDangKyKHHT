@@ -4,6 +4,7 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/DKKHHT.cshtml";
 }
 <script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")"></script>
 <script type="text/javascript">
@@ -62,39 +63,7 @@
 
 </script>
 
-<div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
-
-
-
-    <div class="container">
-        <div class="d-flex align-items-center">
-
-
-
-            <div class="mr-auto">
-                <nav class="site-navigation position-relative text-right" role="navigation">
-                    <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
-                        <li class="active">
-                            <a href="@Url.Content("~/Home/Index")" class="nav-link text-left">Trang chủ</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Content("~/DangKyKHHT/Index")" class="nav-link text-left" style="color: #ff3333">Đăng ký kế hoạch học tập</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Content("~/MonHocs/Index")" class="nav-link text-left">Xem kế hoạch đào tạo</a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link text-left">Lịch sử đăng ký KHHT</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Content("~/AspNetRoles/Index")" class="nav-link text-left">Role</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div>
+    
 <!-- Title body -->
 <div class="site-section">
     <div class="container">
@@ -140,7 +109,7 @@
                             <th scope="col">
                                 <label class="control control--checkbox">
                                     <input type="checkbox" class="js-check-all" />
-                                    <div class="control__indicator"></div>
+                                    @*<div class="control__indicator"></div>*@
                                 </label>
                             </th>
                             <th scope="col">Số thứ tự</th>
@@ -157,7 +126,7 @@
                                 <th scope="row">
                                     <label class="control control--checkbox">
                                         <input type="checkbox" name="@item.TenMH" value="@item.IDMH" checked="@item.IsSelected" />
-                                        <div class="control__indicator"></div>
+                                        @*<div class="control__indicator"></div>*@
                                     </label>
                                 </th>
                                 <td>@item.IDMH</td>
