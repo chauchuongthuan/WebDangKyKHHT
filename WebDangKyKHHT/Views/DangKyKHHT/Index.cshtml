@@ -90,7 +90,9 @@
                     <br />
                     @if (Request.IsAuthenticated)
                     {
-                        <input type="text" value="@User.Identity.GetUserId()" id="ddSV" /> @User.Identity.GetUserName()
+
+                        <input type="text" value="@User.Identity.GetUserId()" id="ddSV" />
+                        @User.Identity.GetUserName()
 
 
                         @*@Html.DropDownListFor(model => model.ID_SV, Model.ListofSV, new { @class = "form-control", @id = "ddSV" })*@
