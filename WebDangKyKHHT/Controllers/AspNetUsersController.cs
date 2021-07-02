@@ -71,10 +71,7 @@ namespace WebDangKyKHHT.Controllers
             {
                 return HttpNotFound();
             }
-            if (User.Identity.Name != aspNetUser.Email)
-            {
-                return new HttpUnauthorizedResult("Bạn không có quyền sử dụng chỉnh sửa");
-            }
+           
             return View(aspNetUser);
         }
 

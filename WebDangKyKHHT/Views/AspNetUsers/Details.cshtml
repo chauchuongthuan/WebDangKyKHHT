@@ -2,122 +2,150 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/DKKHHT.cshtml";
 }
+
+<style>
+    .form-row .form-col {
+        width: 30%;
+        margin-right: 10px;
+    }
+</style>
+
 <br />
 <br />
 <br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <section id="wizard-p-0" role="tabpanel" aria-labelledby="wizard-h-0" class="body current" aria-hidden="false" style="">
+            <h3>Thông tin Sinh Viên</h3>
+            <br />
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="">
+                        Email Trường <i class="zmdi zmdi-account-o"></i>
+                    </label>
+                    <div class="form-holder-3">
+                        @Html.DisplayFor(model => model.Email)
+                    </div>
+                </div>
+                <div class="form-col">
+                    <label for="">
+                        Mật Khẩu <i class="zmdi zmdi-edit"></i>
+                    </label>
+                    <div class="form-holder">
 
-<div class="container">
+                        <input disabled type="text" class="form-control" placeholder="***********">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <label for="">
+                        Mã Sinh Viên <i class="zmdi zmdi-edit"></i>
+                    </label>
+                    <div class="form-holder">
+                        @Html.DisplayFor(model => model.SecurityStamp)
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="">
+                        Tên Sinh Viên <i class="zmdi zmdi-email"></i>
+                    </label>
+                    <div class="form-holder">
+                        @Html.DisplayFor(model => model.Ten)
+                    </div>
+                </div>
+                <div class="form-col">
+                    <label for="">
+                        UserName <i class="zmdi zmdi-email"></i>
+                    </label>
+                    <div class="form-holder">
+                        @Html.DisplayFor(model => model.UserName)
+                    </div>
+                </div>
+                <div class="form-col">
+                    <label for="">
+                        Email đã xác nhận <i class="zmdi zmdi-smartphone-android"></i>
+                    </label>
+                    <div class="form-holder" ht>
+                        @Html.DisplayFor(model => model.EmailConfirmed)
+                    </div>
+                </div>
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            </div>
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="">
+                        Ngày Sinh <i class="zmdi zmdi-calendar"></i>
+                    </label>
+                    <div class="form-holder">
+                        @Html.DisplayFor(model => model.NgaySinh)
+                    </div>
+                    <br />
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                </div>
+                <div class="form-col">
+                    <label for="">
+                        Số Điện Thoại <i class="zmdi zmdi-smartphone-android"></i>
+                    </label>
+                    <div class="form-holder">
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </div>
+                </div>
+                <div class="form-col">
+                    <label for="">
+                        Số điên Thoại đã xác nhận <i class="zmdi zmdi-smartphone-android"></i>
+                    </label>
+                    <div class="form-holder">
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EmailConfirmed)
-        </dt>
+            </div>
+            @*<div class="form-row">
+                <div class="form-col">
+                    <label for="">
+                        Mã Số Sinh Viên <i class="zmdi zmdi-calendar"></i>
+                    </label>
+                    <div class="form-holder">
+                        @Html.DisplayFor(model => model.MSSV)
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.EmailConfirmed)
-        </dd>
+                </div>
+                <div class="form-col">
+                    <label for="">
+                        Địa Chỉ <i class="zmdi zmdi-smartphone-android"></i>
+                    </label>
+                    <div class="form-holder">
+                        @Html.DisplayFor(model => model.DiaChi)
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </dt>
+            </div>*@
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
 
-        <dd>
-            @Html.DisplayFor(model => model.PasswordHash)
-        </dd>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Quay lại", "Index")
+                    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SecurityStamp)
-        </dt>
+                </div>
+            </div>
+        </section>
 
-        <dd>
-            @Html.DisplayFor(model => model.SecurityStamp)
-        </dd>
+    </div>
+}
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
+<
+<script src="~/js/jsphu/jquery-3.3.1.min.js"></script>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+<!-- JQUERY STEP -->
+<script src="~/js/jsphu/jquery.steps.js"></script>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumberConfirmed)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TwoFactorEnabled)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TwoFactorEnabled)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LockoutEndDateUtc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LockoutEnabled)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LockoutEnabled)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AccessFailedCount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AccessFailedCount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Ten)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Ten)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NgaySinh)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgaySinh)
-        </dd>
-
-    </dl>
-
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</div>
+<script src="~/js/jsphu/main.js"></script>
