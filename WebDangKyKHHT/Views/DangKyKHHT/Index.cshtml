@@ -18,9 +18,49 @@
         $("#btnSelectAll").click(function () {
             SelectAllMH()
         });
+
+        $("#ddSV").click(function () {
+            GetKetQuaDangKiMonHoc();
+        });
     });
 
+    function GetKetQuaDangKiMonHoc() {
+        $.ajax({
+            async: true,
+            type: 'POST',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8',
+            url: '/DangKyKHHT/GetKetQuaDangKiMonHoc',
+            data: JSON.stringify({ ID_SV: $("#ddSV").val() }),
+            success: function (data) {
+                SetCheckandUncheckedCourses(data);
+            },
+            error: function () {
+                alert('There are some problem');
+            }
+        });
 
+    }
+
+    function SetCheckandUncheckedCourses(getData) {
+        $.each($("#tableMH input[type=checkbox]"),
+            function (index, data) {
+                $(this).prop('checked', false);
+            });
+        $.each($("#tableMH input[type=checkbox]"),
+            function () {
+                var monhocid = $(this).val();
+                var monhocData = $(this);
+                $.each(getData.data,
+                    function (index, da) {
+                        var idMonHocDaDangKi = da.IDMH;
+                        if (monhocid === idMonHocDaDangKi) {
+                            monhocData.prop('checked', true);
+                        }
+                    });
+            });
+
+    }
 
     function SelectAllMH() {
         $.each($("#tableMH input[type=checkbox]"), function (index, data) {
@@ -63,7 +103,7 @@
 
 </script>
 
-    
+
 <!-- Title body -->
 <div class="site-section">
     <div class="container">
@@ -109,7 +149,7 @@
                             <th scope="col">
                                 <label class="control control--checkbox">
                                     <input type="checkbox" class="js-check-all" />
-                                    @*<div class="control__indicator"></div>*@
+                                    <div class="control__indicator"></div>
                                 </label>
                             </th>
                             <th scope="col">Số thứ tự</th>
@@ -126,7 +166,7 @@
                                 <th scope="row">
                                     <label class="control control--checkbox">
                                         <input type="checkbox" name="@item.TenMH" value="@item.IDMH" checked="@item.IsSelected" />
-                                        @*<div class="control__indicator"></div>*@
+                                        <div class="control__indicator"></div>
                                     </label>
                                 </th>
                                 <td>@item.IDMH</td>

@@ -56,13 +56,19 @@ namespace WebDangKyKHHT.Controllers
                 KHHT objKHHT = new KHHT();
                 objKHHT.ID_SV = ID_SV;
                 objKHHT.ID_MH = item;
-                objKHHT.NgayTao = DateTime.Now;
+                //objKHHT.NgayTao = DateTime.Now;
                 objSEP_TEAM15_WEBKHHTEntities.KHHTs.Add(objKHHT);
                 objSEP_TEAM15_WEBKHHTEntities.SaveChanges();
             }
             return Json(new { success = true, message = "Đăng ký thành công" }, JsonRequestBehavior.AllowGet);
         }
-
+        [HttpPost]
+        public JsonResult GetKetQuaDangKiMonHoc(string SV_id)
+        {   
+            return Json(new { data = objSEP_TEAM15_WEBKHHTEntities.KHHTs.Where(model => model.ID_SV == SV_id) },
+                JsonRequestBehavior.AllowGet);
+        }
+        
     }
 
 

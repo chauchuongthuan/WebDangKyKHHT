@@ -479,13 +479,6 @@
     <Content Include="fonts\icomoon\fonts\icomoon.ttf" />
     <Content Include="fonts\icomoon\fonts\icomoon.woff" />
     <Content Include="fonts\icomoon\selection.json" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="assets\fonts\fa-brands-400.eot" />
     <Content Include="assets\fonts\fa-brands-400.ttf" />
     <Content Include="assets\fonts\fa-brands-400.woff" />
@@ -527,6 +520,13 @@
     <Content Include="assets\scss\_testimonial.scss" />
     <Content Include="assets\scss\_variables.scss" />
     <Content Include="assets\scss\_wantToWork.scss" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
