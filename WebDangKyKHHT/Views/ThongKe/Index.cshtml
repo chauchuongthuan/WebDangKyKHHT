@@ -1,0 +1,118 @@
+﻿@model IEnumerable<WebDangKyKHHT.Models.KHHT>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/DKKHHT.cshtml";
+}
+<script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            AddKHHT();
+        });
+
+
+
+        $("#btnSelectAll").click(function () {
+            SelectAllMH()
+        });
+    });
+
+
+
+    function SelectAllMH() {
+        $.each($("#tableMH input[type=checkbox]"), function (index, data) {
+            $(this).prop('checked', true);
+        });
+    }
+
+
+
+    function AddKHHT() {
+        var listOfIDMH = [];
+
+
+
+        $.each($("#tableMH input[type=checkbox]:checked"), function (index, data) {
+            listOfIDMH.push($(this).val());
+        });
+
+
+
+        $.ajax({
+            async: true,
+            type: 'POST',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8',
+            url: '/DangKyKHHT/Index',
+            data: JSON.stringify({ ID_SV: $("#ddSV").val(), listOfIDMH: listOfIDMH }),
+            success: function (data) {
+                if (data.success === true) {
+                    alert(data.message);
+                }
+            },
+            error: function () {
+                alert('There are some problem');
+            }
+        });
+    }
+</script>
+<!-- Title body -->
+    <div class="site-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-title">
+                                <h2></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="row">
+                    <h2>Bảng thống kê môn học </h2>
+                    <br />
+                    <table class="table custom-table">
+                        <thead>
+                            <tr>
+                                <th class="service">Mã Môn học</th>
+                                <th class="desc">Tên môn học</th>
+                                <th>Số tín chỉ</th>
+                                <th>Mã học kì</th>
+                                <th>ID SV</th>
+                                <th>Ngày đăng kí</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.MonHoc.MaMH</td>
+                                    <td>@item.MonHoc.TenMH</td>
+                                    <td>@item.MonHoc.SoTinChi</td>
+                                    <td>@item.MonHoc.ID_HK</td>
+                                    <td>@item.ID_SV</td>
+                                    <td>@item.NgayTao</td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div>                
+                    <button type="button" onclick="window.location.href='ThongKeChiTiet'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-break" viewBox="0 0 16 16">
+                            <path d="M14 4.5V9h-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v7H2V2a2 2 0 0 1 2-2h5.5L14 4.5zM13 12h1v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2h1v2a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-2zM.5 10a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1H.5z" />
+                        </svg>
+                    </button>               
+                </div>
+                <a href="@Url.Action("ExportToExcel","ThongKe")">Xuất Excel</a>
+    </div>
+    }
+
+
+
