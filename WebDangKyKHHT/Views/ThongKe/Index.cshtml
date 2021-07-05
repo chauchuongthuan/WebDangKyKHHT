@@ -6,58 +6,7 @@
     Layout = "~/Views/Shared/DKKHHT.cshtml";
 }
 <script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#btnSave").click(function () {
-            AddKHHT();
-        });
 
-
-
-        $("#btnSelectAll").click(function () {
-            SelectAllMH()
-        });
-    });
-
-
-
-    function SelectAllMH() {
-        $.each($("#tableMH input[type=checkbox]"), function (index, data) {
-            $(this).prop('checked', true);
-        });
-    }
-
-
-
-    function AddKHHT() {
-        var listOfIDMH = [];
-
-
-
-        $.each($("#tableMH input[type=checkbox]:checked"), function (index, data) {
-            listOfIDMH.push($(this).val());
-        });
-
-
-
-        $.ajax({
-            async: true,
-            type: 'POST',
-            dataType: 'JSON',
-            contentType: 'application/json; charset=utf-8',
-            url: '/DangKyKHHT/Index',
-            data: JSON.stringify({ ID_SV: $("#ddSV").val(), listOfIDMH: listOfIDMH }),
-            success: function (data) {
-                if (data.success === true) {
-                    alert(data.message);
-                }
-            },
-            error: function () {
-                alert('There are some problem');
-            }
-        });
-    }
-</script>
 <!-- Title body -->
     <div class="site-section">
         <div class="container">
@@ -83,7 +32,7 @@
                                 <th class="desc">Tên môn học</th>
                                 <th>Số tín chỉ</th>
                                 <th>Mã học kì</th>
-                                <th>ID SV</th>
+                                <th>Email SV</th>
                                 <th>Ngày đăng kí</th>
                             </tr>
                         </thead>
@@ -95,7 +44,7 @@
                                     <td>@item.MonHoc.TenMH</td>
                                     <td>@item.MonHoc.SoTinChi</td>
                                     <td>@item.MonHoc.ID_HK</td>
-                                    <td>@item.ID_SV</td>
+                                    <td>@item.AspNetUser.Email</td>
                                     <td>@item.NgayTao</td>
 
                                 </tr>
