@@ -90,7 +90,7 @@
                     <br />
                     @if (Request.IsAuthenticated)
                     {
-
+                        // Lấy id sv đã đăng nhập
                         <input type="text" value="@User.Identity.GetUserId()" id="ddSV" />
                         @User.Identity.GetUserName()
 
@@ -111,7 +111,7 @@
                             <th scope="col">
                                 <label class="control control--checkbox">
                                     <input type="checkbox" class="js-check-all" />
-                                    @*<div class="control__indicator"></div>*@
+                                    <div class="control__indicator"></div>
                                 </label>
                             </th>
                             <th scope="col">Số thứ tự</th>
@@ -128,7 +128,7 @@
                                 <th scope="row">
                                     <label class="control control--checkbox">
                                         <input type="checkbox" name="@item.TenMH" value="@item.IDMH" checked="@item.IsSelected" />
-                                        @*<div class="control__indicator"></div>*@
+                                        <div class="control__indicator">  </div>
                                     </label>
                                 </th>
                                 <td>@item.IDMH</td>
