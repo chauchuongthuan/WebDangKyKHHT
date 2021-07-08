@@ -27,42 +27,25 @@
 
         <div class="nav-menu">
             <ul>
-                <li class="accordion">
-                    @if (User.IsInRole("1"))
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("Info", "AspNetUsers", FormMethod.Post, new { id = "InfoForm", @class = "navbar-right" }))
                     {
-                        <a href="@Url.Content("~/AspNetUsers/Details/1b01edf9-623f-42d2-aa86-db50fc9b1efa")"><span class="icon-home mr-3"></span>Thông tin cá nhân </a>
+                         <li><a href="@Url.Content("~/AspNetUsers/Info")"><span class="icon-notifications mr-3"></span>Thông tin cá nhân</a></li>
                     }
-                </li>
-                <li class="accordion">
-                    @if (User.IsInRole("2"))
-                    {
-                        <a href="@Url.Content("~/AspNetUsers/Details/98927ddd-7007-4b2f-8449-4a98fe4f71da")"><span class="icon-home mr-3"></span>Thông tin cá nhân </a>
-                    }
-                </li>
-                <li class="accordion">
-                    @if (User.IsInRole("3"))
-                    {
-                        <a href="@Url.Content("~/AspNetUsers/Details/9dbd645e-0ee9-47a5-98c8-fec486c7adb4")"><span class="icon-home mr-3"></span>Thông tin cá nhân </a>
-                    }
-                </li>
-                <li class="accordion">
-                    @if (User.IsInRole("4"))
-                    {
-                        <a href="@Url.Content("~/AspNetUsers/Details/ac584552-ea58-48cd-b4ef-cc62d5efd504")"><span class="icon-home mr-3"></span>Thông tin cá nhân </a>
-                    }
-                </li>
-                <li class="accordion">
-                    @if (User.IsInRole("5"))
-                    {
-                        <a href="@Url.Content("~/AspNetUsers/Details/f3492b43-d61a-4a60-9152-3c741873ef66")"><span class="icon-home mr-3"></span>Thông tin cá nhân  </a>
-                    }
-                </li>
-                <li class="accordion">
-                    @if (User.IsInRole("6"))
-                    {
-                        <a href="@Url.Content("~/AspNetUsers/Details/07353fe6-4a01-41dd-ab98-d569ae6cee23")"><span class="icon-home mr-3"></span>Thông tin cá nhân  </a>
-                    }
-                </li>
+                }
+                else
+                {
+                    <li action="@Url.Content("~/Account/Login")" class="search-form d-inline-block">
+
+                        <div class="d-flex">
+                            &ensp;
+                            &ensp;
+                            <button type="submit" class="btn btn-secondary"><span>Login</span></button>
+                        </div>
+                    </li>
+                }
+
                 <li class="accordion">
                     <a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsible">
                         <span class="icon-search2 mr-3"></span>Explore

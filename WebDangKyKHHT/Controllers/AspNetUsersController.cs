@@ -20,6 +20,10 @@ namespace WebDangKyKHHT.Controllers
         {
             return View(db.AspNetUsers.ToList());
         }
+        public ActionResult Info()
+        {
+            return View(db.AspNetUsers.ToList());
+        }
 
         // GET: AspNetUsers/Details/5
         public ActionResult Details(string id)
