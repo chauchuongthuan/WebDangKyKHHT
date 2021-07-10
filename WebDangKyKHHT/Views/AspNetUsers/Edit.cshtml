@@ -17,7 +17,7 @@
 <br />
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()            
     <div class="container">
         <section id="wizard-p-0" role="tabpanel" aria-labelledby="wizard-h-0" class="body current" aria-hidden="false" style="">
             <h3>Thông tin Sinh Viên</h3>
@@ -144,9 +144,18 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Save" class="btn btn-default" />
-                </div>
-                <div>
-                    @Html.ActionLink("Quay lại", "Index")
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div>
+                            @Html.ActionLink("Quay lại", "Index")
+                        </div>
+                    }
+                    @if (User.IsInRole(""))
+                    {
+                        <div>
+                            @Html.ActionLink("AspNetUsers", "Info")
+                        </div>
+                    }
                 </div>
             </div>
         </section>
