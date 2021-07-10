@@ -28,35 +28,34 @@
         <div class="container-login100">
             <div class="wrap-login100">
                 <form class="login100-form validate-form" style="border-radius: 10% 25%; background-color: #fff ">
-                     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                     {   
-                         @Html.AntiForgeryToken()
-                            <span class="login100-form-title p-b-43">
-                                LOG IN
-                            </span>
-                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                         <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						      <input class="input100" type="text" name="email">
-						      <span class="focus-input100"></span>
-						      <span class="label-input100">Email</span>
-					     </div>
-					     <div class="wrap-input100 validate-input" data-validate="Password is required">
-						      <input class="input100" type="password" name="password">
-						      <span class="focus-input100"></span>
-						      <span class="label-input100">Password</span>      
-					     </div>
-                         <div class="container-login100-form-btn">
-                             <button class="login100-form-btn">
-                                 Log in
-                             </button>
-                         </div>
-                         <hr />
-                         <div class="login100-form-social flex-c-m">
-                             <section id="socialLoginForm">
-                                 @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                             </section>
-                         </div>
-                      }   
+                    <section id="loginForm">
+                         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                         {   
+                             @Html.AntiForgeryToken()
+                                <span class="login100-form-title p-b-43">
+                                    LOG IN
+                                </span>
+                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                             <div class="wrap-input100">
+						          <input class="input100" type="text" name="email">
+						          <span class="focus-input100"></span>
+						          <span class="label-input100">Email</span>
+					         </div>
+					         <div class="wrap-input100">
+						          <input class="input100" type="password" name="password">
+						          <span class="focus-input100"></span>
+						          <span class="label-input100">Password</span>      
+					         </div>
+                             <div class="container-login100-form-btn">
+                                 <button class="login100-form-btn">
+                                     Log in
+                                 </button>
+                             </div>
+                          }
+                          <hr />
+                          @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                    </section>
+                    
                 </form>
                 <div class="login100-more" style="border-radius: 5% 0% 0% 30%; background-image: url('@Url.Content("~/images/VLU2021.jpg")') ">
                 </div>
