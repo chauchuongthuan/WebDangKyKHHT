@@ -578,6 +578,7 @@
     <Content Include="Views\HocKis\Details.cshtml" />
     <Content Include="Views\HocKis\Edit.cshtml" />
     <Content Include="Views\HocKis\Index.cshtml" />
+    <Content Include="Views\AspNetUsers\Info.cshtml" />
     <None Include="Views\Shared\DKKHHT.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
