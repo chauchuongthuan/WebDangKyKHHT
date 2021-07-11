@@ -407,6 +407,7 @@
     <Content Include="assets\js\vendor\jquery-1.12.4.min.js" />
     <Content Include="assets\js\vendor\modernizr-3.5.0.min.js" />
     <Content Include="assets\js\wow.min.js" />
+    <Content Include="images\icon2.png" />
     <Content Include="LoginAssets\css\main.css" />
     <Content Include="LoginAssets\css\util.css" />
     <Content Include="LoginAssets\fonts\font-awesome-4.7.0\css\font-awesome.css" />
