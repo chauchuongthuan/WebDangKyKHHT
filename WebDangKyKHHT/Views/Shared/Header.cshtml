@@ -4,6 +4,8 @@
 }
 
 <!-- Nav -->
+@if(Request.IsAuthenticated)
+{
 <aside class="sidebar">
     <div class="toggle">
         <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
@@ -70,6 +72,12 @@
         </div>
     </div>
 </aside>
+}
+else 
+{ 
+
+}
+
 <div class="header-top">
     <div class="container">
         <div class="row align-items-center">
