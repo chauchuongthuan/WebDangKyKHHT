@@ -4,6 +4,8 @@
 }
 
 <!-- Nav -->
+@if(Request.IsAuthenticated)
+{
 <aside class="sidebar">
     <div class="toggle">
         <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
@@ -27,10 +29,25 @@
 
         <div class="nav-menu">
             <ul>
-                <li class="accordion">
-                    <a href="@Url.Content("~/AspNetUsers/Index")"><span class="icon-home mr-3"></span>Thông tin sinh viên  </a>
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("Info", "AspNetUsers", FormMethod.Post, new { id = "InfoForm", @class = "navbar-right" }))
+                    {
+                         <li><a href="@Url.Content("~/AspNetUsers/Info")"><span class="icon-notifications mr-3"></span>Thông tin cá nhân</a></li>
+                    }
+                }
+                else
+                {
+                    <li action="@Url.Content("~/Account/Login")" class="search-form d-inline-block">
 
-                </li>
+                        <div class="d-flex">
+                            &ensp;
+                            &ensp;
+                            <button type="submit" class="btn btn-secondary"><span>Login</span></button>
+                        </div>
+                    </li>
+                }
+
                 <li class="accordion">
                     <a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsible">
                         <span class="icon-search2 mr-3"></span>Explore
@@ -55,12 +72,18 @@
         </div>
     </div>
 </aside>
+}
+else 
+{ 
+
+}
+
 <div class="header-top">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-12 col-lg-6 d-flex">
                 <a href="@Url.Content("~/Home/Index")" class="site-logo">
-                    <img src="@Url.Content("~/images/logi-xanh.png")"/>
+                    <img src="@Url.Content("~/images/logo-xanh.png")" />
                 </a>
 
                 <a href="#" class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black">
@@ -117,7 +140,7 @@
                     <nav class="site-navigation position-relative text-right" role="navigation">
                         <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
                             <li class="active">
-                                <a href="@Url.Content("~/Home/Index")" class="nav-link text-left" >Trang chủ</a>
+                                <a href="@Url.Content("~/Home/Index")" class="nav-link text-left">Trang chủ</a>
                             </li>
                             <li>
                                 <a href="@Url.Content("~/DangKyKHHT/Index")" class="nav-link text-left">Đăng ký kế hoạch học tập</a>
@@ -132,6 +155,12 @@
                             {
                                 <li>
                                     <a href="@Url.Content("~/AspNetRoles/Index")" class="nav-link text-left">Role</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("HocKi"))
+                            {
+                                <li>
+                                    <a href="@Url.Content("~/AspNetUsers/Index")" class="nav-link text-left">Thông tin Sinh Viên</a>
                                 </li>
                             }
                         </ul>

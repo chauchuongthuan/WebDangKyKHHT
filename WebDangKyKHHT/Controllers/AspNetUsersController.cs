@@ -20,6 +20,10 @@ namespace WebDangKyKHHT.Controllers
         {
             return View(db.AspNetUsers.ToList());
         }
+        public ActionResult Info()
+        {
+            return View(db.AspNetUsers.ToList());
+        }
 
         // GET: AspNetUsers/Details/5
         public ActionResult Details(string id)
@@ -71,10 +75,7 @@ namespace WebDangKyKHHT.Controllers
             {
                 return HttpNotFound();
             }
-            if (User.Identity.Name != aspNetUser.Email)
-            {
-                return new HttpUnauthorizedResult("Bạn không có quyền sử dụng chỉnh sửa");
-            }
+           
             return View(aspNetUser);
         }
 
