@@ -17,12 +17,15 @@ namespace WebDangKyKHHT.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public HocKi()
         {
+            this.KHHTs = new HashSet<KHHT>();
             this.MonHocs = new HashSet<MonHoc>();
         }
     
         public int ID { get; set; }
         public Nullable<int> TenHK { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KHHT> KHHTs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MonHoc> MonHocs { get; set; }
     }

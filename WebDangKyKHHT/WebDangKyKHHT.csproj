@@ -246,6 +246,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\KHHTsViewModel.cs" />
     <Compile Include="ViewModels\MonHocsViewModel.cs" />
+    <Compile Include="ViewModels\ViewMonHoc.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\gijgo.css" />
@@ -407,7 +408,12 @@
     <Content Include="assets\js\vendor\jquery-1.12.4.min.js" />
     <Content Include="assets\js\vendor\modernizr-3.5.0.min.js" />
     <Content Include="assets\js\wow.min.js" />
+    <Content Include="css\dataTables.bootstrap4.min.css" />
+    <Content Include="css\select.dataTables.min.css" />
     <Content Include="images\icon2.png" />
+    <Content Include="js\dataTables.bootstrap4.min.js" />
+    <Content Include="js\dataTables.select.min.js" />
+    <Content Include="js\jquery.dataTables.min.js" />
     <Content Include="LoginAssets\css\main.css" />
     <Content Include="LoginAssets\css\util.css" />
     <Content Include="LoginAssets\fonts\font-awesome-4.7.0\css\font-awesome.css" />
@@ -535,13 +541,6 @@
     <Content Include="fonts\icomoon\fonts\icomoon.ttf" />
     <Content Include="fonts\icomoon\fonts\icomoon.woff" />
     <Content Include="fonts\icomoon\selection.json" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="assets\fonts\fa-brands-400.eot" />
     <Content Include="assets\fonts\fa-brands-400.ttf" />
     <Content Include="assets\fonts\fa-brands-400.woff" />
@@ -662,6 +661,13 @@
     <Content Include="LoginAssets\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="LoginAssets\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="LoginAssets\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -699,6 +705,7 @@
     <Content Include="Views\HocKis\Details.cshtml" />
     <Content Include="Views\HocKis\Edit.cshtml" />
     <Content Include="Views\HocKis\Index.cshtml" />
+    <Content Include="Views\DangKyKHHT\Edit.cshtml" />
     <None Include="Views\Shared\DKKHHT.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
