@@ -22,6 +22,7 @@ namespace WebDangKyKHHT.Controllers
             db = new SEP_TEAM15_WEBKHHTEntities();
             MonHoc = new List<int>();
         }
+        
 
         //[Authorize]
         // GET: DangKyKHHT

@@ -56,6 +56,7 @@ namespace WebDangKyKHHT.Controllers
 
             var pck = new ExcelPackage(new FileInfo(Server.MapPath("~/assets/Dulieu.xlsx")));
             ExcelWorksheet ws = pck.Workbook.Worksheets[0];
+           
 
             ws.Cells["D6"].Value = NameUser; // Họ tên
             //ws.Cells["F6"].Value = "Họ tên"; // Lớp
@@ -67,7 +68,7 @@ namespace WebDangKyKHHT.Controllers
                 ws.Cells[string.Format("C{0}", rowStart)].Value = ++stt;
                 ws.Cells[string.Format("D{0}", rowStart)].Value = item.TenMH;
                 ws.Cells[string.Format("E{0}", rowStart)].Value = item.MaMH;
-                ws.Cells[string.Format("F{0}", rowStart)].Value = item.SoTinChi;
+                ws.Cells[string.Format("F{0}", rowStart)].Value = item.SoTinChi;                
                 rowStart++;
             }
             var filedata = pck.GetAsByteArray();
