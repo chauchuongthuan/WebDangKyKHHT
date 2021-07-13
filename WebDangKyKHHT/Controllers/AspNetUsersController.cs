@@ -94,7 +94,7 @@ namespace WebDangKyKHHT.Controllers
             }
             return View(aspNetUser);
         }
-        public ActionResult EditBCNKhoa(string id)
+        public ActionResult EditAdmin(string id)
         {
             if (id == null)
             {
@@ -114,7 +114,7 @@ namespace WebDangKyKHHT.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditBCNKhoa([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,Ten,NgaySinh")] AspNetUser aspNetUser)
+        public ActionResult EditAdmín([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,Ten,NgaySinh")] AspNetUser aspNetUser)
         {
             if (ModelState.IsValid)
             {
