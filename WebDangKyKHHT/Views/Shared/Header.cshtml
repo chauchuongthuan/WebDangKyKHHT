@@ -20,7 +20,7 @@
                 <img src="@Url.Content("~/images/person_profile.jpg")" alt="Image" class="img-fluid">
                 <h3 class="name">
                     Hello, <br />
-                    @Html.ActionLink("" + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                    @Html.ActionLink("" + User.Identity.GetUserName() + "!", "Info", "AspNetUsers", routeValues: null, htmlAttributes: new { title = "Manage" })
                     &ensp;
                 </h3>
             }
@@ -149,20 +149,20 @@ else
                                 <a href="@Url.Content("~/MonHocs/Index")" class="nav-link text-left">Xem kế hoạch đào tạo</a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link text-left">Lịch sử đăng ký KHHT</a>
+                                <a href="@Url.Action("Index","KHHTs")" class="nav-link text-left">Lịch sử đăng ký KHHT</a>
                             </li>
                             @if (User.IsInRole("Admin"))
                             {
                                 <li>
                                     <a href="@Url.Content("~/AspNetRoles/Index")" class="nav-link text-left">Role</a>
                                 </li>
-                            }
-                            @if (User.IsInRole("HocKi"))
-                            {
                                 <li>
                                     <a href="@Url.Content("~/AspNetUsers/Index")" class="nav-link text-left">Thông tin Sinh Viên</a>
                                 </li>
-                            }
+                                <li>
+                                    <a href="@Url.Content("~/HocKis/Index")" class="nav-link text-left">Học kì</a>
+                                </li>
+                            }                            
                         </ul>
                     </nav>
                 </div>

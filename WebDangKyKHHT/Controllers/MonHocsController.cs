@@ -149,5 +149,6 @@ namespace WebDangKyKHHT.Controllers
             monhoc = monhoc.Where(m => m.HocKi.TenHK == iHK).ToList();
             return View("Index", monhoc);
         }
+        
     }
 }

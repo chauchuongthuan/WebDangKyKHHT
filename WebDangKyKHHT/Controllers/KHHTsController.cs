@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNet.Identity;
+using OfficeOpenXml;
 using System.Data;
-using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using WebDangKyKHHT.Models;
 
 namespace WebDangKyKHHT.Controllers
 {
+    [Authorize]
     public class KHHTsController : Controller
     {
         private SEP_TEAM15_WEBKHHTEntities db = new SEP_TEAM15_WEBKHHTEntities();
@@ -17,8 +17,10 @@ namespace WebDangKyKHHT.Controllers
         // GET: KHHTs
         public ActionResult Index()
         {
-            var kHHTs = db.KHHTs.Include(k => k.MonHoc);
-            return View(kHHTs.ToList());
+            var idUs = User.Identity.GetUserId();
+            var kHHTs = db.KHHTs.Where(u => u.ID_SV == idUs).GroupBy(h => h.ID_HK).Select(i => i.Key).Cast<int>();
+            var hk = db.HocKis.Where(h => kHHTs.Contains(h.ID)).ToList();
+            return View(hk);
         }
 
         // GET: KHHTs/Details/5
@@ -28,100 +30,49 @@ namespace WebDangKyKHHT.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHHT kHHT = db.KHHTs.Find(id);
-            if (kHHT == null)
+            var us = User.Identity.GetUserId();
+            var mh = db.KHHTs.Where(n => n.ID_SV == us && n.ID_HK == id).Select(n => n.ID_MH).ToList();
+            if (mh == null)
             {
                 return HttpNotFound();
             }
-            return View(kHHT);
+            var data = db.MonHocs.Where(n => mh.Contains(n.ID)).ToList();
+            ViewBag.NameUser = User.Identity.Name;
+            ViewBag.HocKy = db.HocKis.Find(id);
+            return View(data);
         }
 
-        // GET: KHHTs/Create
-        public ActionResult Create()
-        {
-            ViewBag.ID_HK = new SelectList(db.HocKis, "ID", "ID");
-            ViewBag.ID_MH = new SelectList(db.MonHocs, "ID", "MaMH");
-            return View();
-        }
-
-        // POST: KHHTs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ID_MH,ID_HK,NgayTao,NutTick")] KHHT kHHT)
-        {
-            if (ModelState.IsValid)
-            {
-                db.KHHTs.Add(kHHT);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            
-            ViewBag.ID_MH = new SelectList(db.MonHocs, "ID", "MaMH", kHHT.ID_MH);
-            return View(kHHT);
-        }
-
-        // GET: KHHTs/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult print(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHHT kHHT = db.KHHTs.Find(id);
-            if (kHHT == null)
-            {
-                return HttpNotFound();
-            }
+            var us = User.Identity.GetUserId();
+            var mh = db.KHHTs.Where(n => n.ID_SV == us && n.ID_HK == id).Select(n => n.ID_MH).ToList();
+            var data = db.MonHocs.Where(n => mh.Contains(n.ID)).ToList();
+            string NameUser = User.Identity.Name;
+            var HocKy = db.HocKis.Find(id);
+
+            var pck = new ExcelPackage(new FileInfo(Server.MapPath("~/assets/Dulieu.xlsx")));
+            ExcelWorksheet ws = pck.Workbook.Worksheets[0];
            
-            ViewBag.ID_MH = new SelectList(db.MonHocs, "ID", "MaMH", kHHT.ID_MH);
-            return View(kHHT);
-        }
 
-        // POST: KHHTs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ID_MH,ID_HK,NgayTao,NutTick")] KHHT kHHT)
-        {
-            if (ModelState.IsValid)
+            ws.Cells["D6"].Value = NameUser; // Họ tên
+            //ws.Cells["F6"].Value = "Họ tên"; // Lớp
+            //ws.Cells["D7"].Value = "Lớp"; //Khóa
+            ws.Cells["F7"].Value = HocKy.TenHK; //Học kỳ
+            int rowStart = 10, stt = 0;
+            foreach (var item in data)
             {
-                db.Entry(kHHT).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                ws.Cells[string.Format("C{0}", rowStart)].Value = ++stt;
+                ws.Cells[string.Format("D{0}", rowStart)].Value = item.TenMH;
+                ws.Cells[string.Format("E{0}", rowStart)].Value = item.MaMH;
+                ws.Cells[string.Format("F{0}", rowStart)].Value = item.SoTinChi;                
+                rowStart++;
             }
-           
-            ViewBag.ID_MH = new SelectList(db.MonHocs, "ID", "MaMH", kHHT.ID_MH);
-            return View(kHHT);
-        }
-
-        // GET: KHHTs/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            KHHT kHHT = db.KHHTs.Find(id);
-            if (kHHT == null)
-            {
-                return HttpNotFound();
-            }
-            return View(kHHT);
-        }
-
-        // POST: KHHTs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            KHHT kHHT = db.KHHTs.Find(id);
-            db.KHHTs.Remove(kHHT);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var filedata = pck.GetAsByteArray();
+            return File(filedata, "application/octet-stream", "Dulieu.xlsx");
         }
 
         protected override void Dispose(bool disposing)

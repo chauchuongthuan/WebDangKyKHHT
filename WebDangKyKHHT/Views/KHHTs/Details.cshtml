@@ -1,36 +1,51 @@
-﻿@model WebDangKyKHHT.Models.KHHT
+﻿@model IEnumerable<WebDangKyKHHT.Models.MonHoc>
 
-@{
-    ViewBag.Title = "Details";
-}
+@{ ViewBag.Title = "Details"; }
 
-<h2>Details</h2>
-
-<div>
-    <h4>KHHT</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayTao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgayTao)
-        </dd>
-
-     
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MonHoc.MaMH)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MonHoc.MaMH)
-        </dd>
-
-    </dl>
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h2>CHI TIẾT ĐĂNG KÝ</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Số thứ tự</th>
+                            <th>Tên môn học</th>
+                            <th>Mã môn học</th>
+                            <th>Số tín chỉ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int stt = 0, tstc = 0;}
+                        @foreach (var row in Model)
+                        {
+                            tstc += (int)row.SoTinChi;
+            <tr>
+                <td>@(++stt)</td>
+                <td>@Html.Raw(row.TenMH)</td>
+                <td>@Html.Raw(row.MaMH)</td>
+                <td>@Html.Raw(row.SoTinChi)</td>
+            </tr>}
+                        <tr>
+                            <td colspan="3">Tổng số tín chỉ</td>
+                            <td>@Html.Raw(tstc)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

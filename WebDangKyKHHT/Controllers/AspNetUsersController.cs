@@ -90,11 +90,40 @@ namespace WebDangKyKHHT.Controllers
             {
                 db.Entry(aspNetUser).State = EntityState.Modified;
                 db.SaveChanges();
+                return RedirectToAction("Info");
+            }
+            return View(aspNetUser);
+        }
+        public ActionResult EditBCNKhoa(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AspNetUser aspNetUser = db.AspNetUsers.Find(id);
+            if (aspNetUser == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(aspNetUser);
+        }
+
+        // POST: AspNetUsers/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditBCNKhoa([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,Ten,NgaySinh")] AspNetUser aspNetUser)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(aspNetUser).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(aspNetUser);
         }
-
         // GET: AspNetUsers/Delete/5
         public ActionResult Delete(string id)
         {

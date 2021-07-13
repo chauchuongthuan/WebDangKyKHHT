@@ -21,10 +21,7 @@ namespace WebDangKyKHHT.Models
         }
     
         public int ID { get; set; }
-        
-        
         public string MaMH { get; set; }
-        
         public string TenMH { get; set; }
         public Nullable<int> SoTinChi { get; set; }
         public Nullable<int> ID_HK { get; set; }

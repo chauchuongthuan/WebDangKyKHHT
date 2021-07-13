@@ -97,6 +97,7 @@
           <Property Name="ID_SV" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="NgayTao" Type="datetime" />
           <Property Name="ID_SVTEST" Type="int" />
+          <Property Name="ID_HK" Type="int" />
         </EntityType>
         <EntityType Name="MonHoc">
           <Key>
@@ -186,6 +187,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_KHHT_HocKi">
+          <End Role="HocKi" Type="Self.HocKi" Multiplicity="0..1" />
+          <End Role="KHHT" Type="Self.KHHT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HocKi">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="KHHT">
+              <PropertyRef Name="ID_HK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_KHHT_MonHoc">
           <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="1" />
           <End Role="KHHT" Type="Self.KHHT" Multiplicity="*" />
@@ -240,6 +253,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_KHHT_AspNetUsers" Association="Self.FK_KHHT_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="KHHT" EntitySet="KHHT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KHHT_HocKi" Association="Self.FK_KHHT_HocKi">
+            <End Role="HocKi" EntitySet="HocKi" />
             <End Role="KHHT" EntitySet="KHHT" />
           </AssociationSet>
           <AssociationSet Name="FK_KHHT_MonHoc" Association="Self.FK_KHHT_MonHoc">
@@ -335,6 +352,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenHK" Type="Int32" />
+          <NavigationProperty Name="KHHTs" Relationship="Self.FK_KHHT_HocKi" FromRole="HocKi" ToRole="KHHT" />
           <NavigationProperty Name="MonHocs" Relationship="Self.FK_MonHoc_HocKi" FromRole="HocKi" ToRole="MonHoc" />
         </EntityType>
         <EntityType Name="KHHT">
@@ -348,7 +366,9 @@
           <Property Name="ID_SV" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NgayTao" Type="DateTime" Precision="3" />
           <Property Name="ID_SVTEST" Type="Int32" />
+          <Property Name="ID_HK" Type="Int32" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK_KHHT_AspNetUsers" FromRole="KHHT" ToRole="AspNetUsers" />
+          <NavigationProperty Name="HocKi" Relationship="Self.FK_KHHT_HocKi" FromRole="KHHT" ToRole="HocKi" />
           <NavigationProperty Name="MonHoc" Relationship="Self.FK_KHHT_MonHoc" FromRole="KHHT" ToRole="MonHoc" />
         </EntityType>
         <EntityType Name="MonHoc">
@@ -413,6 +433,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_KHHT_HocKi">
+          <End Role="HocKi" Type="Self.HocKi" Multiplicity="0..1" />
+          <End Role="KHHT" Type="Self.KHHT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HocKi">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="KHHT">
+              <PropertyRef Name="ID_HK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MonHoc_HocKi">
           <End Role="HocKi" Type="Self.HocKi" Multiplicity="0..1" />
           <End Role="MonHoc" Type="Self.MonHoc" Multiplicity="*" />
@@ -462,6 +494,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_KHHT_AspNetUsers" Association="Self.FK_KHHT_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="KHHT" EntitySet="KHHTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KHHT_HocKi" Association="Self.FK_KHHT_HocKi">
+            <End Role="HocKi" EntitySet="HocKis" />
             <End Role="KHHT" EntitySet="KHHTs" />
           </AssociationSet>
           <AssociationSet Name="FK_MonHoc_HocKi" Association="Self.FK_MonHoc_HocKi">
@@ -568,6 +604,7 @@
                 <ScalarProperty Name="ID_SV" ColumnName="ID_SV" />
                 <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="ID_SVTEST" ColumnName="ID_SVTEST" />
+                <ScalarProperty Name="ID_HK" ColumnName="ID_HK" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WebDangKyKHHT.Models.AspNetUser>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Info";
 }
 <div class="site-section">
     <div class="container">
@@ -9,7 +9,6 @@
 
     </div>
 </div>
-
 
 
 <table class="table">
@@ -20,31 +19,8 @@
         <th>
             Email Trường
         </th>
-
-        <th>
-            Số điện thoại
-        </th>
-        <th>
-            Xác nhận số điện thoại
-        </th>
         <th>
             Email cá nhân
-        </th>
-
-        <th>
-            Xác nhận Email
-        </th>
-        <th>
-            Ngày Sinh
-        </th>
-        @*<th>
-                 Địa Chỉ
-            </th>
-            <th>
-               Mã Số Sinh viên
-            </th>*@
-
-
     </tr>
 
     @foreach (var item in Model)
@@ -57,28 +33,11 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
-                </td>
+                </td>               
                 <td>
                     @Html.DisplayFor(modelItem => item.UserName)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EmailConfirmed)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NgaySinh)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.DiaChi)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MSSV)
-                    </td>*@
+                              
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
