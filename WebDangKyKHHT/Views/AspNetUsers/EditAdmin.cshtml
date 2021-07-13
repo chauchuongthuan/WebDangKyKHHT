@@ -17,7 +17,7 @@
 <br />
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()            
+    @Html.AntiForgeryToken()
     <div class="container">
         <section id="wizard-p-0" role="tabpanel" aria-labelledby="wizard-h-0" class="body current" aria-hidden="false" style="">
             <h3>Thông tin Sinh Viên</h3>
@@ -101,7 +101,7 @@
                     <label for="">
                         Số Điện Thoại <i class="zmdi zmdi-smartphone-android"></i>
                     </label>
-                    <div class="form-holder" >
+                    <div class="form-holder">
 
                         @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
@@ -111,7 +111,7 @@
                     <label for="">
                         Số điên Thoại đã xác nhận <i class="zmdi zmdi-smartphone-android"></i>
                     </label>
-                    <div class="form-holder" >
+                    <div class="form-holder">
                         @Html.EditorFor(model => model.PhoneNumberConfirmed)
                         @Html.ValidationMessageFor(model => model.PhoneNumberConfirmed, "", new { @class = "text-danger" })
                     </div>
@@ -119,43 +119,36 @@
 
             </div>
             @*<div class="form-row">
-                <div class="form-col">
-                    <label for="">
-                        Mã Số Sinh Viên <i class="zmdi zmdi-calendar"></i>
-                    </label>
-                    <div class="form-holder">
-                        @Html.EditorFor(model => model.MSSV, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.MSSV, "", new { @class = "text-danger" })
+                    <div class="form-col">
+                        <label for="">
+                            Mã Số Sinh Viên <i class="zmdi zmdi-calendar"></i>
+                        </label>
+                        <div class="form-holder">
+                            @Html.EditorFor(model => model.MSSV, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MSSV, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="form-col">
+                        <label for="">
+                            Địa Chỉ <i class="zmdi zmdi-smartphone-android"></i>
+                        </label>
+                        <div class="form-holder" >
+
+                            @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                        </div>
                     </div>
 
-                </div>
-                <div class="form-col">
-                    <label for="">
-                        Địa Chỉ <i class="zmdi zmdi-smartphone-android"></i>
-                    </label>
-                    <div class="form-holder" >
-
-                        @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
-                    </div>
                 </div>*@
-
-            @*</div>*@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Save" class="btn btn-default" />
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <div>
-                            @Html.ActionLink("Quay lại", "Index")
-                        </div>
-                    }
-                   
-                    
-                    </div>
+                    @Html.ActionLink("Quay lại", "Index")
+                </div>
             </div>
         </section>
-        
+
     </div>
 }
 
