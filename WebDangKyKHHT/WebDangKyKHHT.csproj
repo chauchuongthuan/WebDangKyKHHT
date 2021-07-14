@@ -182,6 +182,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AspNetRolesController.cs" />
+    <Compile Include="Controllers\AspNetRolesUserController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\DangKyKHHTController.cs" />
     <Compile Include="Controllers\HocKisController.cs" />
@@ -709,6 +710,7 @@
     <Content Include="Views\DangKyKHHT\Edit.cshtml" />
     <Content Include="Views\AspNetUsers\Info.cshtml" />
     <Content Include="Views\AspNetUsers\EditAdmin.cshtml" />
+    <Content Include="Views\AspNetRolesUser\Create.cshtml" />
     <None Include="Views\Shared\DKKHHT.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
