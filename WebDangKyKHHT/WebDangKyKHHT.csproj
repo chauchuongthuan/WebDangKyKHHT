@@ -661,6 +661,7 @@
     <Content Include="LoginAssets\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="LoginAssets\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="LoginAssets\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="assets\Dulieu.xlsx" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -668,7 +669,6 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="assets\Dulieu.xlsx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
