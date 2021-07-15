@@ -827,6 +827,7 @@
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\ThongKe\ThongKeChiTiet.cshtml" />
     <Content Include="Views\ThongKe\Index.cshtml" />
+    <Content Include="Views\ThongKe\ChartC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

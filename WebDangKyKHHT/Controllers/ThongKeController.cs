@@ -8,6 +8,7 @@ using WebDangKyKHHT.Models;
 
 
 
+
 namespace WebDangKyKHHT.Controllers
 {
     public class ThongKeController : Controller
@@ -86,6 +87,10 @@ namespace WebDangKyKHHT.Controllers
             Response.AddHeader("content-disposition", "attachment: filename =" + "BangThongKe.xlss");
             Response.BinaryWrite(pck.GetAsByteArray());
             Response.End();
-        }    
+        }
+        public ActionResult ChartC()
+        {
+            return View();
+        }
     }
 }

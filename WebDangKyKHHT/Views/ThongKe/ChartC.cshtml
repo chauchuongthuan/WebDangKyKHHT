@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebDangKyKHHT.Models.KHHT>
+@{
+    Layout = null;
+}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load("current", { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ["Element", "Density", { role: "style" }],
+            ["Đã đăng kí", 45, "gold"],
+            ["Chưa đăng kí", 15, "color: #e5e4e2"]
+        ]);
+
+        
+
+        }
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            {
+                calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation"
+            },
+            2]);
+
+        var options = {
+            title: "Thống kê sinh viên",
+            width: 600,
+            height: 400,
+            bar: { groupWidth: "95%" },
+            legend: { position: "none" },
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+        chart.draw(view, options);
+    
+</script>
+<div id="columnchart_values" style="width: 900px; height: 300px;"></div>

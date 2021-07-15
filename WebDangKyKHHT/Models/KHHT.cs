@@ -15,7 +15,6 @@ namespace WebDangKyKHHT.Models
     public partial class KHHT
     {
         public int ID { get; set; }
-        
         public int ID_MH { get; set; }
         public string ID_SV { get; set; }
         public Nullable<System.DateTime> NgayTao { get; set; }
