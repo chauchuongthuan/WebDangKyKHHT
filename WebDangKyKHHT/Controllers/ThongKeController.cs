@@ -8,9 +8,9 @@ using WebDangKyKHHT.Models;
 
 
 
-namespace WebDangKyKHHT.Controllers
+namespace WebDangKyKHHT
 {
-    public class ThongKeController : Controller
+    public class ThongKeAdminController : Controller
     {
         SEP_TEAM15_WEBKHHTEntities model = new SEP_TEAM15_WEBKHHTEntities();
         // GET: ThongKe

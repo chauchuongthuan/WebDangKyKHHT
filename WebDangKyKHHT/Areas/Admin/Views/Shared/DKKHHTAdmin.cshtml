@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+@using Microsoft.AspNet.Identity
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mazer Admin Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Areas/Admin/assets/css/bootstrap.css">
+
+    <link rel="stylesheet" href="~/Areas/Admin/assets/vendors/iconly/bold.css">
+
+    <link rel="stylesheet" href="~/Areas/Admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="~/Areas/Admin/assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/Areas/Admin/assets/css/app.css">
+    <link rel="shortcut icon" href="~/Areas/Admin/assets/images/favicon.svg" type="image/x-icon">
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="@Url.Content("~/Admin/HomeAdmin/Index")"><img src="~/images/logo.png" alt="Logo" width="250"></a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Công Việc cần làm</li>
+
+                        <li class="sidebar-item  ">
+                            <a href="@Url.Content("~/Admin/HomeAdmin/Index")" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>To do List</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-title">Role</li>
+
+                        <li class="sidebar-item ">
+                            <a href="@Url.Content("~/Admin/AspNetRolesAdmin/Index")" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Các Role</span>
+                            </a>
+                        </li>
+
+
+                        <li class="sidebar-title">Thông tin </li>
+
+
+                        <li class="sidebar-item  ">
+                            <a href="@Url.Content("~/Admin/AspNetUsersAdmin/Index")" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-medical-fill"></i>
+                                <span>Thông tin sinh viên</span>
+                            </a>
+                        </li>
+
+
+                        <li class="sidebar-title">Thống kê</li>
+                        <li class="sidebar-item  ">
+                            <a href="@Url.Content("~/Admin/ThongKeAdmin/Index")" class='sidebar-link'>
+                                <i class="bi bi-chat-dots-fill"></i>
+                                <span>Thống Kê Môn</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="@Url.Content("~/Admin/ThongKeAdmin/Index")" class='sidebar-link'>
+                                <i class="bi bi-chat-dots-fill"></i>
+                                <span>Thống Kê Sinh viên    </span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-title">Học Kì</li>
+                        <li class="sidebar-item  ">
+                            <a href="@Url.Content("~/Admin/HocKisAdmin/Index")" class='sidebar-link'>
+                                <i class="bi bi-chat-dots-fill"></i>
+                                <span>Học Kì</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-title"></li>
+                        <li class="sidebar-item  ">
+                            <a href="@Url.Content("~/Home/Index")" class='sidebar-link'>
+                                <i class="bi bi-chat-dots-fill"></i>
+                                <span>Chuyển qua Trang Chủ</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-title">............................................  </li>
+                        <li class="sidebar-item  ">
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class='sidebar-link'>
+                                <i class="bi bi-cash"></i>
+                                <span>Đăng Xuất</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+            <div class="page-content">
+                <section class="row">
+                    <div class="col-2 col-lg-8">
+
+                    </div>
+                    <br />
+                    <div class="col-10 col-lg-4">
+                        <div class="card">
+                            <div class="card-body ">
+                                <div class="d-flex align-items-center">
+
+                                    <div class="ms name">
+                                        <h5>
+                                            Hello,  @Html.ActionLink("" + User.Identity.GetUserName() + "!", "Info", "AspNetUsersAdmin", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                        </h5>
+
+                                    </div>
+                                    <div class="header__top__right__auth">
+                                        @if (Request.IsAuthenticated)
+                                        {
+                                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <div class="d-flex">
+                                                    <ul class="nav navbar-nav navbar-right">
+                                                        <li>
+                                                            <img class="rounded-circle" height="60" src="~/images/person_profile.jpg" data-holder-rendered="true" />
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <form action="@Url.Content("~/Account/Login")" class="search-form d-inline-block">
+
+                                                <div class="d-flex">
+                                                    &ensp;
+                                                    &ensp;
+                                                    <button type="submit" class="btn btn-secondary"><span>Login</span></button>
+                                                </div>
+                                            </form>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    @RenderBody()
+                </div>
+            </div>
+
+
+        </div>
+            </div>
+
+            <script src="~/Areas/Admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+            <script src="~/Areas/Admin/assets/js/bootstrap.bundle.min.js"></script>
+
+            <script src="~/Areas/Admin/assets/vendors/apexcharts/apexcharts.js"></script>
+            <script src="~/Areas/Admin/assets/js/pages/dashboard.js"></script>
+
+            <script src="~/Areas/Admin/assets/js/main.js"></script>
+             @RenderSection("Scripts",required:false)
+</body>
+
+</html>
