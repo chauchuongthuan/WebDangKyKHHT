@@ -186,6 +186,7 @@
     <Compile Include="Areas\Admin\Controllers\AspNetRolesAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\AspNetUsersAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\BCNKhoasController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DeadlinesAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\HocKisAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\MonHocsAdminController.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Controllers\AspNetRolesUserController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\DangKyKHHTController.cs" />
+    <Compile Include="Controllers\DeadlinesController.cs" />
     <Compile Include="Controllers\HocKisController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KHHTsController.cs" />
@@ -221,6 +223,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Deadline.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HocKi.cs">
@@ -2272,13 +2277,6 @@
     <Content Include="LoginAssets\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="LoginAssets\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="LoginAssets\vendor\bootstrap\css\bootstrap.min.css.map" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="assets\Dulieu.xlsx" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\MonHocsAdmin\Create.cshtml" />
@@ -2375,6 +2373,20 @@
     <Content Include="Areas\Admin\Views\HomeAdmin\About.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\Contact.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\DeadlinesAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DeadlinesAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DeadlinesAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DeadlinesAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DeadlinesAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2416,6 +2428,12 @@
     <Content Include="Views\AspNetUsers\Info.cshtml" />
     <Content Include="Views\AspNetUsers\EditAdmin.cshtml" />
     <Content Include="Views\AspNetRolesUser\Create.cshtml" />
+    <Content Include="Views\Deadlines\Create.cshtml" />
+    <Content Include="Views\Deadlines\Delete.cshtml" />
+    <Content Include="Views\Deadlines\Details.cshtml" />
+    <Content Include="Views\Deadlines\Edit.cshtml" />
+    <Content Include="Views\Deadlines\Index.cshtml" />
+    <Content Include="Views\DangKyKHHT\ThongBao.cshtml" />
     <None Include="Views\Shared\DKKHHT.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
