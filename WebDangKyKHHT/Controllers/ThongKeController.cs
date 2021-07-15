@@ -34,8 +34,8 @@ namespace WebDangKyKHHT
             List<ThongKeViewModel> khhtList = model.KHHTs.Select(x => new ThongKeViewModel
             {
                
-                ID_MH = x.MonHoc.TenMH,               
-                ID_SV = x.AspNetUser.Email,
+                ID_MH = x.ID_MH,               
+                ID_SV = x.ID_SV,
                 NgayTao = x.NgayTao
             }).ToList();
             return View(khhtList);
@@ -45,8 +45,8 @@ namespace WebDangKyKHHT
             List<ThongKeViewModel> khhtList = model.KHHTs.Select(x => new ThongKeViewModel
             {
 
-                ID_MH = x.MonHoc.TenMH,
-                ID_SV = x.AspNetUser.Email,
+                ID_MH = x.ID_MH,
+                ID_SV = x.ID_SV,
                 NgayTao = x.NgayTao
             }).ToList();
 
@@ -61,24 +61,29 @@ namespace WebDangKyKHHT
 
             
             ws.Cells["A3"].Value = "Ngày in";
-            ws.Cells["B3"].Value = string.Format("{0:dd MMMM yyyy} lúc {0:H: mm tt}",DateTimeOffset.Now);
+            ws.Cells["B3"].Value = string.Format("{0:dd MMMM yyyy} at {0:H: mm tt}",DateTimeOffset.Now);
 
-            ws.Cells["A6"].Value = "Tên môn học";
+            ws.Cells["A6"].Value = "Mã môn học";
             ws.Cells["B6"].Value = "Mã sinh viên";
             ws.Cells["C6"].Value = "Ngày tạo";
 
             int rowStart = 7;
             foreach(var item in khhtList)
-            {                
+            {
+                if(item.ID_MH % 2 ==0)
+                {
+                    ws.Row(rowStart).Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    ws.Row(rowStart).Style.Fill.BackgroundColor.SetColor(ColorTranslator.FromHtml(string.Format("Yellow")));
+                }
                 ws.Cells[string.Format("A{0}", rowStart)].Value = item.ID_MH;
                 ws.Cells[string.Format("B{0}", rowStart)].Value = item.ID_SV;
-                ws.Cells[string.Format("C{0}", rowStart)].Value = item.NgayTao.ToString();
+                ws.Cells[string.Format("C{0}", rowStart)].Value = item.NgayTao;
                 rowStart++;
             }
             ws.Cells["A:AZ"].AutoFitColumns();
             Response.Clear();
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            Response.AddHeader("content-disposition", "attachment: filename =" + "BangThongKe.xlsx");
+            Response.AddHeader("content-disposition", "attachment: filename =" + "BangThongKe.xlss");
             Response.BinaryWrite(pck.GetAsByteArray());
             Response.End();
         }    

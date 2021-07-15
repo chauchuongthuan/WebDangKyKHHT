@@ -7,113 +7,30 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebDangKyKHHT.Models;
-using WebDangKyKHHT.ViewModels;
 
 namespace WebDangKyKHHT.Controllers
 {
     public class MonHocsController : Controller
     {
-        private SEP_TEAM15_WEBKHHTEntities db;
-        private List<int> MonHoc;
-        public MonHocsController()
-        {
-            db = new SEP_TEAM15_WEBKHHTEntities();
-            MonHoc = new List<int>();
-        }
+        private SEP_TEAM15_WEBKHHTEntities db = new SEP_TEAM15_WEBKHHTEntities();
 
-
-        //[Authorize]
-        // GET: DangKyKHHT
+        // GET: MonHocs
+        [AllowAnonymous]
         public ActionResult Index()
         {
-            var dlhk = db.HocKis.ToList();
-            List<SelectListItem> idhk = new List<SelectListItem>();
-            idhk.Add(new SelectListItem { Value = "", Text = "--Tất cả--", Selected = true });
-            foreach (var item in dlhk)
-            {
-                idhk.Add(new SelectListItem { Value = item.ID.ToString(), Text = item.TenHK.ToString() });
-            }
-            ViewBag.ID_HK = idhk;
-            return View();
+            ViewBag.ID_HK = new SelectList(db.HocKis, "ID", "ID");
+            var monHocs = db.MonHocs.Include(m => m.HocKi);
+            return View(monHocs.ToList());
+            
         }
-
         [HttpPost]
-        public JsonResult jsonMH(int? hk)
+        public ActionResult Index(int ID_HK)
         {
-            var dataMH = (from objMH in db.MonHocs
-                          select new MonHocsViewModel()
-                          {
-                              IDMH = objMH.ID,
-                              TenMH = objMH.TenMH,
-                              MaMH = objMH.MaMH,
-                              SoTinChi = (int)objMH.SoTinChi,
-                              ID_HK = (int)objMH.ID_HK,
-                              IsSelected = false
-                          }).ToList();
-            if (Session["monhoc"] != null)
-            {
-                MonHoc = (List<int>)Session["monhoc"];
-            }
+            ViewBag.ID_HK = new SelectList(db.HocKis, "ID", "ID");
+            var monHocs = db.MonHocs.Include(m => m.HocKi).Where(a => a.ID_HK == ID_HK);
+            return View(monHocs.ToList());
 
-            if (MonHoc.Count > 0)
-            {
-                foreach (var dbrow in MonHoc)
-                {
-                    var findMH = dataMH.Where(m => m.IDMH == dbrow).FirstOrDefault();
-                    if (findMH != null)
-                        dataMH.Remove(findMH);
-                }
-            }
-            int start = Convert.ToInt32(Request["start"]);
-            int length = Convert.ToInt32(Request["length"]);
-            string sText = Request["search[value]"].ToLower();
-            int row = dataMH.Count();
-            if (!string.IsNullOrEmpty(sText) && hk != null)
-                dataMH = dataMH.Where(m => m.TenMH.ToLower().Contains(sText) && m.ID_HK == hk).ToList();
-            else if (!string.IsNullOrEmpty(sText) && hk == null)
-                dataMH = dataMH.Where(m => m.TenMH.ToLower().Contains(sText)).ToList();
-            else if (string.IsNullOrEmpty(sText) && hk != null)
-                dataMH = dataMH.Where(m => m.ID_HK == hk).ToList();
-            int rowfilter = dataMH.Count();
-            dataMH = dataMH.Skip(start).Take(length).ToList();
-            return Json(new { data = dataMH, draw = Request["draw"], recordsTotal = row, recordsFiltered = rowfilter }, JsonRequestBehavior.AllowGet);
         }
-
-        //private SEP_TEAM15_WEBKHHTEntities db = new SEP_TEAM15_WEBKHHTEntities();
-
-        //// GET: MonHocs
-        //[AllowAnonymous]
-        //public ActionResult Index()
-        //{
-        //    var dlhk = db.HocKis.ToList();
-        //    List<SelectListItem> idhk = new List<SelectListItem>();
-        //    idhk.Add(new SelectListItem { Value = "", Text = "--Tất cả--", Selected = true });
-        //    foreach (var item in dlhk)
-        //    {
-        //        idhk.Add(new SelectListItem { Value = item.ID.ToString(), Text = item.TenHK.ToString() });
-        //    }
-        //    ViewBag.ID_HK = idhk;
-        //    //ViewBag.ID_HK = new SelectList(db.HocKis, "ID", "ID");
-        //    var monHocs = db.MonHocs.Include(m => m.HocKi);
-        //    return View(monHocs.ToList());
-
-        //}
-        //[HttpPost]
-        //public ActionResult Index(int ID_HK)
-        //{
-        //    var dlhk = db.HocKis.ToList();
-        //    List<SelectListItem> idhk = new List<SelectListItem>();
-        //    idhk.Add(new SelectListItem { Value = "", Text = "--Tất cả--", Selected = true });
-        //    foreach (var item in dlhk)
-        //    {
-        //        idhk.Add(new SelectListItem { Value = item.ID.ToString(), Text = item.TenHK.ToString() });
-        //    }
-        //    ViewBag.ID_HK = idhk;
-        //    //ViewBag.ID_HK = new SelectList(db.HocKis, "ID", "ID");
-        //    var monHocs = db.MonHocs.Include(m => m.HocKi).Where(a => a.ID_HK == ID_HK);
-        //    return View(monHocs.ToList());
-
-        //}
 
         // GET: MonHocs/Details/5
         public ActionResult Details(int? id)

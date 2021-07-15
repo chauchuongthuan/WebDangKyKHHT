@@ -79,15 +79,6 @@
           <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
           <Property Name="TenBCN" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="Deadline">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="DateStart" Type="datetime" />
-          <Property Name="DateEnd" Type="datetime" />
-          <Property Name="DangKy" Type="bit" />
-        </EntityType>
         <EntityType Name="HocKi">
           <Key>
             <PropertyRef Name="ID" />
@@ -240,7 +231,6 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BCNKhoa" EntityType="Self.BCNKhoa" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Deadline" EntityType="Self.Deadline" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HocKi" EntityType="Self.HocKi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHHT" EntityType="Self.KHHT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MonHoc" EntityType="Self.MonHoc" Schema="dbo" store:Type="Tables" />
@@ -355,15 +345,6 @@
           <Property Name="TenTK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TenBCN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Deadline">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="DateStart" Type="DateTime" Precision="3" />
-          <Property Name="DateEnd" Type="DateTime" Precision="3" />
-          <Property Name="DangKy" Type="Boolean" />
         </EntityType>
         <EntityType Name="HocKi">
           <Key>
@@ -499,7 +480,6 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="BCNKhoas" EntityType="Self.BCNKhoa" />
-          <EntitySet Name="Deadlines" EntityType="Self.Deadline" />
           <EntitySet Name="HocKis" EntityType="Self.HocKi" />
           <EntitySet Name="KHHTs" EntityType="Self.KHHT" />
           <EntitySet Name="MonHocs" EntityType="Self.MonHoc" />
@@ -605,16 +585,6 @@
                 <ScalarProperty Name="TenTK" ColumnName="TenTK" />
                 <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
                 <ScalarProperty Name="TenBCN" ColumnName="TenBCN" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Deadlines">
-            <EntityTypeMapping TypeName="SEP24Team15Model.Deadline">
-              <MappingFragment StoreEntitySet="Deadline">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
-                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
-                <ScalarProperty Name="DangKy" ColumnName="DangKy" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

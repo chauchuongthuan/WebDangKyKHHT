@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
@@ -20,21 +17,17 @@ namespace WebDangKyKHHT.Controllers
     {
         private SEP_TEAM15_WEBKHHTEntities db;
         private List<int> MonHoc;
-        
         public DangKyKHHTController()
         {
             db = new SEP_TEAM15_WEBKHHTEntities();
             MonHoc = new List<int>();
-            
-        }   
-        public ActionResult ThongBao()
-        {
-            return View();
         }
-        [Authorize]
+        
+
+        //[Authorize]
         // GET: DangKyKHHT
         public ActionResult Index()
-        {                                   
+        {
             var dlhk = db.HocKis.ToList();
             List<SelectListItem> idhk = new List<SelectListItem>();
             idhk.Add(new SelectListItem { Value = "", Text = "--Tất cả--", Selected = true });
@@ -43,23 +36,7 @@ namespace WebDangKyKHHT.Controllers
                 idhk.Add(new SelectListItem { Value = item.ID.ToString(), Text = item.TenHK.ToString() });
             }
             ViewBag.ID_HK = idhk;
-            var deadline = db.Deadlines.Where(m => m.ID == 1).FirstOrDefault();
-            if(DateTimeOffset.Now >= deadline.DateStart && DateTimeOffset.Now <= deadline.DateEnd)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("ThongBao");
-            }
-            //if(deadline.Dangky == true)
-            //{
-            //    return View();
-            //}
-            //else
-            //{
-            //    return RedirectToAction("ThongBao");
-            //}            
+            return View();
         }
 
         [HttpPost]
