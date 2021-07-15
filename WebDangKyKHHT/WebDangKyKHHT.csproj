@@ -184,6 +184,7 @@
     <Compile Include="Controllers\AspNetRolesController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\DangKyKHHTController.cs" />
+    <Compile Include="Controllers\DeadlinesController.cs" />
     <Compile Include="Controllers\HocKisController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KHHTsController.cs" />
@@ -210,6 +211,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Deadline.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HocKi.cs">
@@ -708,6 +712,12 @@
     <Content Include="Views\HocKis\Index.cshtml" />
     <Content Include="Views\DangKyKHHT\Edit.cshtml" />
     <Content Include="Views\AspNetUsers\Info.cshtml" />
+    <Content Include="Views\DangKyKHHT\ThongBao.cshtml" />
+    <Content Include="Views\Deadlines\Create.cshtml" />
+    <Content Include="Views\Deadlines\Delete.cshtml" />
+    <Content Include="Views\Deadlines\Details.cshtml" />
+    <Content Include="Views\Deadlines\Edit.cshtml" />
+    <Content Include="Views\Deadlines\Index.cshtml" />
     <None Include="Views\Shared\DKKHHT.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
