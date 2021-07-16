@@ -10,6 +10,7 @@ using WebDangKyKHHT.Models;
 
 namespace WebDangKyKHHT.Controllers
 {
+    [Authorize]
     public class DeadlinesController : Controller
     {
         private SEP_TEAM15_WEBKHHTEntities db = new SEP_TEAM15_WEBKHHTEntities();

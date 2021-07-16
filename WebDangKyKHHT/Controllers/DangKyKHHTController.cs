@@ -20,13 +20,13 @@ namespace WebDangKyKHHT.Controllers
     {
         private SEP_TEAM15_WEBKHHTEntities db;
         private List<int> MonHoc;
-        
+
         public DangKyKHHTController()
         {
             db = new SEP_TEAM15_WEBKHHTEntities();
             MonHoc = new List<int>();
-            
-        }   
+
+        }
         public ActionResult ThongBao()
         {
             return View();
@@ -34,7 +34,7 @@ namespace WebDangKyKHHT.Controllers
         [Authorize]
         // GET: DangKyKHHT
         public ActionResult Index()
-        {                                   
+        {
             var dlhk = db.HocKis.ToList();
             List<SelectListItem> idhk = new List<SelectListItem>();
             idhk.Add(new SelectListItem { Value = "", Text = "--Tất cả--", Selected = true });
@@ -44,7 +44,7 @@ namespace WebDangKyKHHT.Controllers
             }
             ViewBag.ID_HK = idhk;
             var deadline = db.Deadlines.Where(m => m.ID == 1).FirstOrDefault();
-            if(DateTimeOffset.Now >= deadline.DateStart && DateTimeOffset.Now <= deadline.DateEnd)
+            if (DateTimeOffset.Now >= deadline.DateStart && DateTimeOffset.Now <= deadline.DateEnd)
             {
                 return View();
             }

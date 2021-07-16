@@ -8,7 +8,7 @@ using WebDangKyKHHT.Models;
 
 
 
-namespace WebDangKyKHHT.Controllers
+namespace WebDangKyKHHT.Areas.Admin.Controllers
 {
     public class ThongKeController : Controller
     {
@@ -18,7 +18,7 @@ namespace WebDangKyKHHT.Controllers
         {
             var thongkechitiet = model.KHHTs.OrderByDescending(x => x.ID).ToList();
             return View(thongkechitiet);
-        } 
+        }
         public ActionResult Print(int id)
         {
             var printData = model.KHHTs.FirstOrDefault(x => x.ID == id);
@@ -33,9 +33,9 @@ namespace WebDangKyKHHT.Controllers
         {
             List<ThongKeViewModel> khhtList = model.KHHTs.Select(x => new ThongKeViewModel
             {
-               
-                ID_MH = x.MonHoc.TenMH,               
-                ID_SV = x.AspNetUser.Email,
+
+                ID_MH = x.MonHoc.TenMH,
+                ID_SV = x.ID_SV,
                 NgayTao = x.NgayTao
             }).ToList();
             return View(khhtList);
@@ -54,22 +54,22 @@ namespace WebDangKyKHHT.Controllers
             ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Report");
 
             ws.Cells["A1"].Value = "Bảng thống kê";
-            
+
 
             ws.Cells["A2"].Value = "Khoa";
             ws.Cells["B2"].Value = "Công nghệ thông tin";
 
-            
+
             ws.Cells["A3"].Value = "Ngày in";
-            ws.Cells["B3"].Value = string.Format("{0:dd MMMM yyyy} lúc {0:H: mm tt}",DateTimeOffset.Now);
+            ws.Cells["B3"].Value = string.Format("{0:dd MMMM yyyy} lúc {0:H: mm tt}", DateTimeOffset.Now);
 
             ws.Cells["A6"].Value = "Tên môn học";
             ws.Cells["B6"].Value = "Mã sinh viên";
             ws.Cells["C6"].Value = "Ngày tạo";
 
             int rowStart = 7;
-            foreach(var item in khhtList)
-            {                
+            foreach (var item in khhtList)
+            {
                 ws.Cells[string.Format("A{0}", rowStart)].Value = item.ID_MH;
                 ws.Cells[string.Format("B{0}", rowStart)].Value = item.ID_SV;
                 ws.Cells[string.Format("C{0}", rowStart)].Value = item.NgayTao.ToString();
@@ -81,6 +81,6 @@ namespace WebDangKyKHHT.Controllers
             Response.AddHeader("content-disposition", "attachment: filename =" + "BangThongKe.xlsx");
             Response.BinaryWrite(pck.GetAsByteArray());
             Response.End();
-        }    
+        }
     }
 }

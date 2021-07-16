@@ -1,0 +1,154 @@
+﻿@model WebDangKyKHHT.Models.AspNetUser
+
+@{
+    ViewBag.Title = "EditAdmin";
+    Layout = "~/Views/Shared/DKKHHT.cshtml";
+}
+
+<style>
+    .form-row .form-col {
+        width: 30%;
+        margin-right: 10px;
+    }
+</style>
+
+<br />
+<br />
+<br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <section id="wizard-p-0" role="tabpanel" aria-labelledby="wizard-h-0" class="body current" aria-hidden="false" style="">
+            <h3>Thông tin Sinh Viên</h3>
+            <br />
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="">
+                        Email Trường <i class="zmdi zmdi-account-o"></i>
+                    </label>
+                    <div class="form-holder-3">
+
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-col">
+                    <label for="">
+                        Mật Khẩu <i class="zmdi zmdi-edit"></i>
+                    </label>
+                    <div class="form-holder">
+
+                        <input disabled type="text" class="form-control" placeholder="***********">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <label for="">
+                        Mã Sinh Viên <i class="zmdi zmdi-edit"></i>
+                    </label>
+                    <div class="form-holder">
+
+                        @Html.EditorFor(model => model.SecurityStamp, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SecurityStamp, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="">
+                        Tên Sinh Viên <i class="zmdi zmdi-email"></i>
+                    </label>
+                    <div class="form-holder">
+
+                        @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-col">
+                    <label for="">
+                        UserName <i class="zmdi zmdi-email"></i>
+                    </label>
+                    <div class="form-holder">
+
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-col">
+                    <label for="">
+                        Email đã xác nhận <i class="zmdi zmdi-smartphone-android"></i>
+                    </label>
+                    <div class="form-holder" ht>
+                        @Html.EditorFor(model => model.EmailConfirmed)
+                        @Html.ValidationMessageFor(model => model.EmailConfirmed, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="form-col">
+                    <label for="">
+                        Ngày Sinh <i class="zmdi zmdi-calendar"></i>
+                    </label>
+                    <div class="form-holder">
+                        @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                    </div>
+                    <br />
+
+                </div>
+                <div class="form-col">
+                    <label for="">
+                        Số Điện Thoại <i class="zmdi zmdi-smartphone-android"></i>
+                    </label>
+                    <div class="form-holder">
+
+                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-col">
+                    <label for="">
+                        Số điên Thoại đã xác nhận <i class="zmdi zmdi-smartphone-android"></i>
+                    </label>
+                    <div class="form-holder">
+                        @Html.EditorFor(model => model.PhoneNumberConfirmed)
+                        @Html.ValidationMessageFor(model => model.PhoneNumberConfirmed, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            @*<div class="form-row">
+                    <div class="form-col">
+                        <label for="">
+                            Mã Số Sinh Viên <i class="zmdi zmdi-calendar"></i>
+                        </label>
+                        <div class="form-holder">
+                            @Html.EditorFor(model => model.MSSV, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MSSV, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="form-col">
+                        <label for="">
+                            Địa Chỉ <i class="zmdi zmdi-smartphone-android"></i>
+                        </label>
+                        <div class="form-holder" >
+
+                            @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>*@
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                    @Html.ActionLink("Quay lại", "Index")
+                </div>
+            </div>
+        </section>
+
+    </div>
+}
+

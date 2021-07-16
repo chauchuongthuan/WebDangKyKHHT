@@ -2,48 +2,152 @@
 
 @{
     ViewBag.Title = "Info";
+
 }
+<style>
+    .form-row .form-col {
+        width: 30%;
+        margin-right: 10px;
+    }
+</style>
+
 <div class="site-section">
     <div class="container">
-        <h1 align="center">Thông tin sinh viên</h1>
-
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h2>THÔNG TIN SINH VIÊN</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-
-
-<table class="table">
-    <tr>
-        <th>
-            Tên Sinh Viên
-        </th>
-        <th>
-            Email Trường
-        </th>
-        <th>
-            Email cá nhân
-    </tr>
-
     @foreach (var item in Model)
     {
         if (item.Email == User.Identity.Name)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ten)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>               
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                              
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
+            <div class="container">
+                <section id="wizard-p-0" role="tabpanel" aria-labelledby="wizard-h-0" class="body current" aria-hidden="false" style="">
+                    <br />
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="">
+                                Email Trường <i class="zmdi zmdi-account-o"></i>
+                            </label>
+                            <div class="form-holder-3">
+                                @Html.DisplayFor(model => item.Email)
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <label for="">
+                                Mật Khẩu <i class="zmdi zmdi-edit"></i>
+                            </label>
+                            <div class="form-holder">
+
+                                <input disabled type="text" class="form-control" placeholder="***********">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <label for="">
+                                Mã Sinh Viên <i class="zmdi zmdi-edit"></i>
+                            </label>
+                            <div class="form-holder">
+                                @Html.DisplayFor(model => item.SecurityStamp)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="">
+                                Tên Sinh Viên <i class="zmdi zmdi-email"></i>
+                            </label>
+                            <div class="form-holder">
+                                @Html.DisplayFor(model => item.Ten)
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <label for="">
+                                UserName <i class="zmdi zmdi-email"></i>
+                            </label>
+                            <div class="form-holder">
+                                @Html.DisplayFor(model => item.UserName)
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <label for="">
+                                Email đã xác nhận <i class="zmdi zmdi-smartphone-android"></i>
+                            </label>
+                            <div class="form-holder" ht>
+                                @Html.DisplayFor(model => item.EmailConfirmed)
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="">
+                                Ngày Sinh <i class="zmdi zmdi-calendar"></i>
+                            </label>
+                            <div class="form-holder">
+                                @Html.DisplayFor(model => item.NgaySinh)
+                            </div>
+                            <br />
+
+                        </div>
+                        <div class="form-col">
+                            <label for="">
+                                Số Điện Thoại <i class="zmdi zmdi-smartphone-android"></i>
+                            </label>
+                            <div class="form-holder">
+                                @Html.DisplayFor(model => item.PhoneNumber)
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <label for="">
+                                Số điên Thoại đã xác nhận <i class="zmdi zmdi-smartphone-android"></i>
+                            </label>
+                            <div class="form-holder">
+                                @Html.DisplayFor(model => item.PhoneNumber)
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        @*<div class="form-col">
+                                <label for="">
+                                    Mã Số Sinh Viên <i class="zmdi zmdi-calendar"></i>
+                                </label>
+                                <div class="form-holder">
+                                    @Html.DisplayFor(model => item.MSSV)
+                                </div>
+
+                            </div>
+                            <div class="form-col">
+                                <label for="">
+                                    Địa Chỉ <i class="zmdi zmdi-smartphone-android"></i>
+                                </label>
+                                <div class="form-holder">
+                                    @Html.DisplayFor(model => item.DiaChi)
+                                </div>
+                            </div>*@
+                        <div class="form-col">
+                            <label for="">
+                                <i class="zmdi zmdi-smartphone-android"></i>
+                            </label>
+                            <button class="btn btn-secondary">
+                                @Html.ActionLink("Sửa Thông tin", "Edit", new { id = item.Id })
+                            </button>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
         }
     }
-</table>
+<div>
+    </div>
+</div>

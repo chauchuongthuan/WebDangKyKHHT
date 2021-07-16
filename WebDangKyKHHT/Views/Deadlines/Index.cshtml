@@ -6,7 +6,6 @@
 
 <h2>Index</h2>
 
-
 <table class="table">
     <tr>
         <th>
@@ -15,9 +14,9 @@
         <th>
             Ngày kết thúc
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.DangKy)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -29,11 +28,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.DateEnd)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.DangKy)
-        </td>
+        </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID })
+            @Html.ActionLink("Điều chỉnh thời gian", "Edit", new { id=item.ID })
         </td>
     </tr>
 }

@@ -144,18 +144,7 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Save" class="btn btn-default" />
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <div>
-                            @Html.ActionLink("Quay lại", "Index")
-                        </div>
-                    }
-                    @if (User.IsInRole(""))
-                    {
-                        <div>
-                            @Html.ActionLink("AspNetUsers", "Info")
-                        </div>
-                    }
+                    <a href="@Url.Content("~/AspNetUsers/Info")"><span class="glyphicon-fast-backward"></span>Quay lại</a>
                 </div>
             </div>
         </section>

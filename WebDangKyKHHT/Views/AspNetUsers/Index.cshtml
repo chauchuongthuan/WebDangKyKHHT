@@ -5,87 +5,102 @@
 }
 <div class="site-section">
     <div class="container">
-        <h1 align="center">Thông tin sinh viên</h1>
-
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h2>THÔNG TIN SINH VIÊN</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <div class="container">
+        <div class="col-4 text-right">
+            <div class="input-group">
+                <button type="submit" class="btn btn-secondary">@Html.ActionLink("Tạo mới", "Create")</button>
+            </div>
+        </div>
+        <br />
+        <div class="col-12">
+            <table class="table custom-table">
+                <tr>
+                    <th>
+                        Tên Sinh Viên
+                    </th>
+                    <th>
+                        Email Trường
+                    </th>
+
+                    <th>
+                        Số điện thoại
+                    </th>
+                    <th>
+                        Xác nhận số điện thoại
+                    </th>
+                    <th>
+                        Email cá nhân
+                    </th>
+
+                    <th>
+                        Xác nhận Email
+                    </th>
+                    <th>
+                        Ngày Sinh
+                    </th>
+                    @*<th>
+                         Địa Chỉ
+                    </th>
+                    <th>
+                       Mã Số Sinh viên
+                    </th>*@
+                    <th>
+                    </th>
+
+                </tr>
+
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ten)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmailConfirmed)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgaySinh)
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.DiaChi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MSSV)
+                        </td>*@
+                        <td>
+                            @Html.ActionLink("Edit", "EditAdmin", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div> 
 </div>
-
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table custom-table">
-    <tr>
-        <th>
-            Tên Sinh Viên
-        </th>
-        <th>
-            Email Trường
-        </th>
-
-        <th>
-            Số điện thoại
-        </th>
-        <th>
-            Xác nhận số điện thoại
-        </th>
-        <th>
-            Email cá nhân
-        </th>
-
-        <th>
-            Xác nhận Email
-        </th>
-        <th>
-            Ngày Sinh
-        </th>
-        @*<th>
-             Địa Chỉ
-        </th>
-        <th>
-           Mã Số Sinh viên
-        </th>*@
-        <th>
-        </th>
-
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ten)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmailConfirmed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgaySinh)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.DiaChi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MSSV)
-            </td>*@
-            <td>
-                @Html.ActionLink("EditBCNKhoa", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-
-</table>
