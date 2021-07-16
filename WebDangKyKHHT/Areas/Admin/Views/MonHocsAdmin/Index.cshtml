@@ -1,52 +1,126 @@
 ﻿@model IEnumerable<WebDangKyKHHT.Models.MonHoc>
+@using Microsoft.AspNet.Identity
 
-@{
-    ViewBag.Title = "Index";
+
+@{ ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/DKKHHTAdmin.cshtml";
+    
 }
+<style>
+   
+    .scrollable table thead th {
+        position: sticky;
+        top: 0;
+        background-color: white;
+    }
 
-<h2>Index</h2>
+    .table-fixed tr {
+        display: block;
+    }
+</style>
+<link href="@Url.Content("/css/dataTables.bootstrap4.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")"></script>
+<script src="@Url.Content("/js/jquery.dataTables.min.js")"></script>
+<script src="@Url.Content("/js/dataTables.bootstrap4.min.js")"></script>
+<script>
+    jQuery(document).ready(function ($) {
+        var table = $('#tbMonHoc').DataTable({
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MaMH)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TenMH)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SoTinChi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HocKi.ID)
-        </th>
-        <th></th>
-    </tr>
+            "ordering": false,
+            "language": {
+                "decimal": "",
+                "emptyTable": "Không có dữ liệu",
+                "info": "Hiện từ _START_ tới _END_ trong _TOTAL_ dòng",
+                "infoEmpty": "Hiện từ 0 tới 0 trong 0 dòng",
+                "infoFiltered": "(tìm kiếm từ _MAX_)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Hiển thị _MENU_ dòng",
+                "loadingRecords": "Đảng tải xuống...",
+                "processing": "Đang xử lý...",
+                "search": "Tìm kiếm:",
+                "zeroRecords": "Không tìm thấy dữ liệu",
+                "paginate": {
+                    "first": "&laquo;",
+                    "last": "&raquo;",
+                    "next": "&rsaquo;",
+                    "previous": "&lsaquo;"
+                },
+                "select": {
+                    "rows": {
+                        _: 'Đã chọn %d dòng',
+                        0: ''
+                    }
+                }
+            },
+            "ajax": {
+                "url": '@Url.Action("jsonMH", "MonHocsAdmin")',
+                "type": "POST",
+                "data": function (d) {
+                    d.hk = $("#hk option:selected").val();
+                },
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "IDMH", "name": "IDMH" },
+                { "data": "TenMH", "name": "TenMH" },
+                { "data": "MaMH", "name": "MaMH" },
+                { "data": "TenHK", "name": "TenHK" },
+                { "data": "SoTinChi", "name": "SoTinChi" }
+                @{ if (User.IsInRole("Admin"))
+                    {
+                        @Html.Raw(", { 'data': 'IDMH', 'render': function(data) { return '<a class=\"btn btn-info btnchoose btn-sm\" href=\"/Admin/MonHocsAdmin/Edit/' + data + '\">Sửa</a>'} }");
+                        @Html.Raw(", { 'data': 'IDMH', 'render': function(data) { return '<a class=\"btn btn-info btnchoose btn-sm\" href=\"/Admin/MonHocsAdmin/Delete/' + data + '\">Xóa</a>'} }");
+                    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaMH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenMH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoTinChi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HocKi.ID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+                }
+            ],
+            "serverSide": "true",
+            "processing": "true"
+        });
+        $('#hk').on('change', function () {
+            table.ajax.reload();
+        });
+    });
+</script>
 
-</table>
+<div class="site-section">
+    
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    
+                    <a class="btn btn-primary btn-outline-info" href="@Url.Action("Create", "MonHocs")">Tạo môn</a>
+                </div>
+                <br />
+                <br />
+                
+                <div class="col-4 text-right">
+                    <div class="input-group">
+                        Học kỳ:  @Html.DropDownList("hk", (IEnumerable<SelectListItem>)ViewBag.ID_HK, new { @Class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="scrollable">
+                <table class="table table-striped table-bordered" id="tbMonHoc" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Số thứ tự</th>
+                            <th>Tên môn</th>
+                            <th>Mã môn</th>
+                            <th>Học kỳ</th>
+                            <th>Số tín chỉ</th>
+                                <th>Sửa Môn</th>
+                                <th>Xóa Môn</th>
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

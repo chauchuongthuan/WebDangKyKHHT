@@ -190,6 +190,7 @@
     <Compile Include="Areas\Admin\Controllers\HocKisAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\MonHocsAdminController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ViewMonHoc2.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AspNetRolesController.cs" />
     <Compile Include="Controllers\AspNetRolesUserController.cs" />

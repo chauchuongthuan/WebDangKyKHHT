@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebDangKyKHHT.Models;
+using WebDangKyKHHT.ViewModels;
 
 namespace WebDangKyKHHT.Areas.Admin.Controllers
 {
@@ -17,8 +18,42 @@ namespace WebDangKyKHHT.Areas.Admin.Controllers
         // GET: Admin/MonHocsAdmin
         public ActionResult Index()
         {
-            var monHocs = db.MonHocs.Include(m => m.HocKi);
-            return View(monHocs.ToList());
+            var dlhk = db.HocKis.ToList();
+            List<SelectListItem> idhk = new List<SelectListItem>();
+            idhk.Add(new SelectListItem { Value = "", Text = "--Tất cả--", Selected = true });
+            foreach (var item in dlhk)
+            {
+                idhk.Add(new SelectListItem { Value = item.ID.ToString(), Text = item.TenHK.ToString() });
+            }
+            ViewBag.ID_HK = idhk;
+            return View();
+
+        }
+        public JsonResult jsonMH(int? hk)
+        {
+            var data = (from objMH in db.MonHocs
+                        select new ViewMonHoc()
+                        {
+                            IDMH = objMH.ID,
+                            TenMH = objMH.TenMH,
+                            MaMH = objMH.MaMH,
+                            SoTinChi = (int)objMH.SoTinChi,
+                            ID_HK = (int)objMH.ID_HK,
+                            TenHK = (int)objMH.HocKi.TenHK
+                        }).ToList();
+            int start = Convert.ToInt32(Request["start"]);
+            int length = Convert.ToInt32(Request["length"]);
+            string sText = Request["search[value]"].ToLower();
+            int row = data.Count();
+            if (!string.IsNullOrEmpty(sText) && hk != null)
+                data = data.Where(m => m.TenMH.ToLower().Contains(sText) && m.ID_HK == hk).ToList();
+            else if (!string.IsNullOrEmpty(sText) && hk == null)
+                data = data.Where(m => m.TenMH.ToLower().Contains(sText)).ToList();
+            else if (string.IsNullOrEmpty(sText) && hk != null)
+                data = data.Where(m => m.ID_HK == hk).ToList();
+            int rowfilter = data.Count();
+            data = data.Skip(start).Take(length).ToList();
+            return Json(new { data = data, draw = Request["draw"], recordsTotal = row, recordsFiltered = rowfilter }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Admin/MonHocsAdmin/Details/5
