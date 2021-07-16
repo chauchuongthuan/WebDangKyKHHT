@@ -10,6 +10,7 @@ using WebDangKyKHHT.Models;
 
 namespace WebDangKyKHHT.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AspNetUsersAdminController : Controller
     {
         private SEP_TEAM15_WEBKHHTEntities db = new SEP_TEAM15_WEBKHHTEntities();

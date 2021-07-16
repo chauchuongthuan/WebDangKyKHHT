@@ -10,6 +10,7 @@ using WebDangKyKHHT.Models;
 
 namespace WebDangKyKHHT.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ThongKeAdminController : Controller
     {
         SEP_TEAM15_WEBKHHTEntities model = new SEP_TEAM15_WEBKHHTEntities();
@@ -29,6 +30,14 @@ namespace WebDangKyKHHT.Areas.Admin.Controllers
             var thongke = model.KHHTs.OrderByDescending(x => x.ID).ToList();
             return View(thongke);
         }
+        [HttpPost]
+        //Biểu đồ
+        public JsonResult ChartData()
+        {
+            var noidung = model.KHHTs.GroupBy(item => item.MonHoc.MaMH).Select(item2 => new { name = item2.Key, count = item2.Count() });
+            return Json(new { dbchart = noidung }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult listofExcel()
         {
             List<ThongKeViewModel> khhtList = model.KHHTs.Select(x => new ThongKeViewModel

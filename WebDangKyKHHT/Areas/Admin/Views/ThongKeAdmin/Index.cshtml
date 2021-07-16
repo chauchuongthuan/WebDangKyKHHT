@@ -7,7 +7,41 @@
 }
 <script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")"></script>
 
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+
+    function drawChart() {
+        $(function () {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ChartData", "ThongKeAdmin")',
+                success: function (charts) {
+                    var data = charts.dbchart;
+                    var chartdb = new google.visualization.DataTable();
+
+                    chartdb.addColumn('string', 'Môn học');
+                    chartdb.addColumn('number', 'Số lượng');
+
+
+                    for (var i = 0; i < data.length; i++) {
+                        chartdb.addRow([data[i].name, data[i].count]);
+                    }
+                    var options = { 'title': 'Thống kê', 'width': 550, 'height': 400 };
+                    var chart = new google.visualization.BarChart(document.getElementById('myChart'));
+                    chart.draw(chartdb, options);
+                },
+            });
+        });
+    }
+</script>
 <!-- Title body -->
+
+<div id="myChart"></div>
+
 <div class="site-section">
     <div class="container">
         <div class="row">
@@ -60,7 +94,7 @@
             </table>
         </div>
 
-    </div>    
+    </div>
 </div>
 
 

@@ -195,14 +195,11 @@
     <Compile Include="Controllers\AspNetRolesUserController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\DangKyKHHTController.cs" />
-    <Compile Include="Controllers\DeadlinesController.cs" />
-    <Compile Include="Controllers\HocKisController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KHHTsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MonHocsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ThongKeAdminController.cs" />
-    <Compile Include="Controllers\ThongKeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2419,20 +2416,10 @@
     <Content Include="Views\AspNetUsers\Details.cshtml" />
     <Content Include="Views\AspNetUsers\Edit.cshtml" />
     <Content Include="Views\AspNetUsers\Index.cshtml" />
-    <Content Include="Views\HocKis\Create.cshtml" />
-    <Content Include="Views\HocKis\Delete.cshtml" />
-    <Content Include="Views\HocKis\Details.cshtml" />
-    <Content Include="Views\HocKis\Edit.cshtml" />
-    <Content Include="Views\HocKis\Index.cshtml" />
     <Content Include="Views\DangKyKHHT\Edit.cshtml" />
     <Content Include="Views\AspNetUsers\Info.cshtml" />
     <Content Include="Views\AspNetUsers\EditAdmin.cshtml" />
     <Content Include="Views\AspNetRolesUser\Create.cshtml" />
-    <Content Include="Views\Deadlines\Create.cshtml" />
-    <Content Include="Views\Deadlines\Delete.cshtml" />
-    <Content Include="Views\Deadlines\Details.cshtml" />
-    <Content Include="Views\Deadlines\Edit.cshtml" />
-    <Content Include="Views\Deadlines\Index.cshtml" />
     <Content Include="Views\DangKyKHHT\ThongBao.cshtml" />
     <None Include="Views\Shared\DKKHHT.cshtml" />
     <Content Include="Web.config" />
@@ -2563,8 +2550,6 @@
     <Content Include="Areas\Admin\Views\ThongKeAdmin\ThongKeChiTiet.cshtml" />
     <Content Include="Areas\Admin\Views\ThongKeAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\DKKHHTAdmin.cshtml" />
-    <Content Include="Views\ThongKe\Index.cshtml" />
-    <Content Include="Views\ThongKe\ThongKeChiTiet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

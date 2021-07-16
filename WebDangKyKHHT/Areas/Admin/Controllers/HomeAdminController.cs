@@ -8,6 +8,7 @@ namespace WebDangKyKHHT.Areas.Admin.Controllers
 {
     public class HomeAdminController : Controller
     {
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View();
