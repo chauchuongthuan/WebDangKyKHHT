@@ -35,7 +35,7 @@ namespace WebDangKyKHHT.Areas.Admin.Controllers
         //Biểu đồ
         public JsonResult ChartData()
         {
-            var noidung = model.KHHTs.GroupBy(item => item.MonHoc.MaMH).Select(item2 => new { name = item2.Key, count = item2.Count() });
+            var noidung = model.KHHTs.GroupBy(item => item.MonHoc.TenMH).Select(item2 => new { name = item2.Key, count = item2.Count() });
             return Json(new { dbchart = noidung }, JsonRequestBehavior.AllowGet);
         }
        

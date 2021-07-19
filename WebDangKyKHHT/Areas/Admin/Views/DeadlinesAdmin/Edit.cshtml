@@ -19,11 +19,11 @@
 
         <div class="form-group">
             <label>Ngày bắt đầu<span style="color:red;">(*)</span></label>
-            <input class="form-control" type="date" id="DateStart" name="DateStart" data-date-format />
+            <input class="form-control" type="date" id="DateStart" name="DateStart" data-date-format required = "required"/>
         </div>
         <div class="form-group">
             <label>Ngày kết thúc<span style="color:red;">(*)</span></label>
-            <input class="form-control" type="date" id="DateEnd" name="DateEnd" data-date-format />
+            <input class="form-control" type="date" id="DateEnd" name="DateEnd" data-date-format required = "required"/>
         </div>
 
         @*<div class="form-group">
@@ -40,7 +40,7 @@
                     @Html.EditorFor(model => model.DateEnd, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })
                 </div>
-            </div>*@
+            </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.DangKy, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -50,7 +50,7 @@
                     @Html.ValidationMessageFor(model => model.DangKy, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
