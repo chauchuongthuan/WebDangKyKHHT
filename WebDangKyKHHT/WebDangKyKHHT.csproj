@@ -184,6 +184,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AspNetRolesAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AspNetRoleUserAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\AspNetUsersAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\BCNKhoasController.cs" />
     <Compile Include="Areas\Admin\Controllers\DeadlinesAdminController.cs" />
@@ -2384,6 +2385,7 @@
     <Content Include="Areas\Admin\Views\DeadlinesAdmin\Details.cshtml" />
     <Content Include="Areas\Admin\Views\DeadlinesAdmin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\DeadlinesAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AspNetRoleUserAdmin\Create.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2419,7 +2421,6 @@
     <Content Include="Views\DangKyKHHT\Edit.cshtml" />
     <Content Include="Views\AspNetUsers\Info.cshtml" />
     <Content Include="Views\AspNetUsers\EditAdmin.cshtml" />
-    <Content Include="Views\AspNetRolesUser\Create.cshtml" />
     <Content Include="Views\DangKyKHHT\ThongBao.cshtml" />
     <None Include="Views\Shared\DKKHHT.cshtml" />
     <Content Include="Web.config" />
