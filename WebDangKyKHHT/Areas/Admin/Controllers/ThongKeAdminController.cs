@@ -1,6 +1,7 @@
 ﻿using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Web.Mvc;
@@ -37,6 +38,7 @@ namespace WebDangKyKHHT.Areas.Admin.Controllers
             var noidung = model.KHHTs.GroupBy(item => item.MonHoc.MaMH).Select(item2 => new { name = item2.Key, count = item2.Count() });
             return Json(new { dbchart = noidung }, JsonRequestBehavior.AllowGet);
         }
+       
 
         public ActionResult listofExcel()
         {

@@ -187,6 +187,7 @@
     <Compile Include="Areas\Admin\Controllers\AspNetRoleUserAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\AspNetUsersAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\BCNKhoasController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChartColumnController.cs" />
     <Compile Include="Areas\Admin\Controllers\DeadlinesAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\HocKisAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
