@@ -2387,6 +2387,7 @@
     <Content Include="Areas\Admin\Views\DeadlinesAdmin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\DeadlinesAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AspNetRoleUserAdmin\Create.cshtml" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
