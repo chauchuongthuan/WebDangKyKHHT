@@ -30,7 +30,7 @@ namespace WebDangKyKHHT.Areas.Admin.Controllers
         {
             var dlhk = model.HocKis.ToList();
             List<SelectListItem> idhk = new List<SelectListItem>();
-            idhk.Add(new SelectListItem { Value = "", Text = "--Chọn học kì để xem biểu đồ--", Selected = false });
+            idhk.Add(new SelectListItem { Value = "", Text = "--Chọn học kì--", Selected = true });
             foreach (var item in dlhk)
             {
                 idhk.Add(new SelectListItem { Value = item.ID.ToString(), Text = item.TenHK.ToString() });
