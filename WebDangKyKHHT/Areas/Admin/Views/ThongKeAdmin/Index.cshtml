@@ -10,15 +10,15 @@
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
-    google.charts.load('current', { packages: ['corechart', 'bar'] });
-    google.charts.setOnLoadCallback(drawChart);
-    google.charts.setOnLoadCallback(drawChart1);
-
-    function drawChart() {
+        function drawChartEachCourse() {
         $(function () {
+            var ID_HK = $("#hk").val();
             $.ajax({
                 type: 'POST',
+                dataType: 'JSON',
+                contentType: 'application/json; charset=utf-8',
                 url: '@Url.Action("ChartData", "ThongKeAdmin")',
+                data: JSON.stringify({ hk: ID_HK }),
                 success: function (charts) {
                     var data = charts.dbchart;
                     var chartdb = new google.visualization.DataTable();
@@ -38,33 +38,49 @@
         });
     }
 
-    function drawChart1() {
-            $(function () {
+    function drawChartStudent() {
+        $(function () {
+            var ID_HK = $("#hk").val();
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("ChartC", "ChartColumn")',
+                dataType: 'JSON',
+                contentType: 'application/json; charset=utf-8',
+                url: '@Url.Action("ChartC", "ThongKeAdmin")',
+                data: JSON.stringify({ hk: ID_HK }),
                 success: function (charts) {
-                    var soluong = charts.dbchart1;
-                    var data = google.visualization.arrayToDataTable([
-                        ['Sinh viên', 'Số lượng'],
-                        ['Đã đăng kí', soluong],
-                        ['Chưa đăng kí', 300 - soluong],
-                    ]);
-                    var options = {
-                        title: 'Thống kê sinh viên',
-                        is3D: true,
-                    };
+                    console.log(charts.dbchart1);
+                    var data = charts.dbchart1;
+                    var chartdb = new google.visualization.DataTable();
+
+                    chartdb.addColumn('string', 'Sinh viên');
+                    chartdb.addColumn('number', 'Số lượng');
+
+                    chartdb.addRow(['Đã đăng kí', data]);
+                    chartdb.addRow(['Chưa đăng kí', (300 - data)]);
+                  
+                    var options = { 'title': 'Thống kê số lượng sinh viên đăng ký', is3D: true };
                     var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-                    chart.draw(data, options);
+                    chart.draw(chartdb, options);
                 },
             });
-            });
-        }
+        });
+    }
+    $(document).ready(function () {
+        $("#hk").change(function () {
+            google.charts.load('current', { packages: ['corechart'] });
+            google.charts.setOnLoadCallback(drawChartStudent);
+            google.charts.setOnLoadCallback(drawChartEachCourse);
+        });
+    });
 
+    
 </script>
 
 <!-- Title body -->
 
+    <div class="input-group">
+        Học kỳ: @Html.DropDownList("hk", (IEnumerable<SelectListItem>)ViewBag.ID_HK, new { @Class = "form-control" })
+    </div>
 
 
 <div id="piechart_3d" style="width: 900px; height: 500px;"></div>

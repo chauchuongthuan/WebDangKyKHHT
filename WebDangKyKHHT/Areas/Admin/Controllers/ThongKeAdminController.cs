@@ -28,17 +28,42 @@ namespace WebDangKyKHHT.Areas.Admin.Controllers
         }
         public ActionResult Index()
         {
+            var dlhk = model.HocKis.ToList();
+            List<SelectListItem> idhk = new List<SelectListItem>();
+            idhk.Add(new SelectListItem { Value = "", Text = "--Chọn học kì để xem biểu đồ--", Selected = false });
+            foreach (var item in dlhk)
+            {
+                idhk.Add(new SelectListItem { Value = item.ID.ToString(), Text = item.TenHK.ToString() });
+            }
+            ViewBag.ID_HK = idhk;
+            //ViewBag.ID_HK = new SelectList(model.HocKis, "ID", "ID");
             var thongke = model.KHHTs.OrderByDescending(x => x.ID).ToList();
             return View(thongke);
         }
         [HttpPost]
         //Biểu đồ
-        public JsonResult ChartData()
+        public JsonResult ChartData(int hk)
         {
-            var noidung = model.KHHTs.GroupBy(item => item.MonHoc.TenMH).Select(item2 => new { name = item2.Key, count = item2.Count() });
+            var noidung = model.KHHTs.Where(item => item.ID_HK == hk).GroupBy(item1 => item1.MonHoc.TenMH).Select(item2 => new { name = item2.Key, count = item2.Count()});
             return Json(new { dbchart = noidung }, JsonRequestBehavior.AllowGet);
         }
-       
+
+        [HttpPost]
+        public JsonResult ChartC(int hk)
+        {
+            var sqlconnectionstring = @"data source=tuleap.vanlanguni.edu.vn,18082;initial catalog=SEP24Team15;user id=SEP24Team15;password=Qwerty123456";
+            var connnection = new SqlConnection(sqlconnectionstring);
+            connnection.Open();
+            var command = new SqlCommand();
+            command.Connection = connnection;
+            command.CommandText = "SELECT COUNT(DISTINCT ID_SV) FROM KHHT WHERE ID_HK = @HK";
+            var vHK = new SqlParameter("@HK", hk);
+            command.Parameters.Add(vHK);
+            var soluong = command.ExecuteScalar();
+            connnection.Close();
+            return Json(new { dbchart1 = soluong }, JsonRequestBehavior.AllowGet);
+        }
+
 
         public ActionResult listofExcel()
         {
