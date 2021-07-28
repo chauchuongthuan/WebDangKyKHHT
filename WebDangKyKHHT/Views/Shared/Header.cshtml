@@ -120,16 +120,16 @@ else
                     <nav class="site-navigation position-relative text-right" role="navigation">
                         <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
                             <li class="active">
-                                <a href="@Url.Content("~/Home/Index")" class="nav-link text-left">Trang chủ</a>
+                                <a href="@Url.Content("~/trang-chu")" class="nav-link text-left">Trang chủ</a>
                             </li>
                             <li>
-                                <a href="@Url.Content("~/DangKyKHHT/Index")" class="nav-link text-left">Đăng ký kế hoạch học tập</a>
+                                <a href="@Url.Content("~/dang-ky-ke-hoach-hoc-tap")" class="nav-link text-left">Đăng ký kế hoạch học tập</a>
                             </li>
                             <li>
-                                <a href="@Url.Content("~/MonHocs/Index")" class="nav-link text-left">Xem kế hoạch đào tạo</a>
+                                <a href="@Url.Content("~/ke-hoach-dao-tao")" class="nav-link text-left">Xem kế hoạch đào tạo</a>
                             </li>
                             <li>
-                                <a href="@Url.Action("Index","KHHTs")" class="nav-link text-left">Lịch sử đăng ký KHHT</a>
+                                <a href="@Url.Content("~/lich-su-dang-ky")" class="nav-link text-left">Lịch sử đăng ký KHHT</a>
                             </li>
                             @if (User.IsInRole("Admin"))
                             {

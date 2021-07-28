@@ -22,8 +22,7 @@ namespace WebDangKyKHHT.Controllers
         }
 
 
-        //[Authorize]
-        // GET: DangKyKHHT
+        // GET: MonHoc
         public ActionResult Index()
         {
             var dlhk = db.HocKis.ToList();

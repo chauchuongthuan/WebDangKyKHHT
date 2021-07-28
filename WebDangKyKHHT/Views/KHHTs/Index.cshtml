@@ -34,10 +34,11 @@
                         @{ int stt = 0;}
                         @foreach (var row in Model)
                         {
+                            var url = "/chi-tiet-dang-ky-hoc-ki-" + row.ID;
                             <tr>
                                 <td>@(++stt)</td>
                                 <td>Học kỳ @(row.TenHK)</td>
-                                <td><a href="@Url.Action("details","KHHTs", new { id = row.ID })">Chi tiết</a></td>
+                                <td><a href="@url">Chi tiết</a></td>
                                 <td><a href="@Url.Action("print","KHHTs", new { id = row.ID })">Tải xuống</a></td>
                             </tr>
                         }
