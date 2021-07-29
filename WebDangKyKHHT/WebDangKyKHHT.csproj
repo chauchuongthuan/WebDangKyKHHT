@@ -196,6 +196,7 @@
     <Compile Include="Controllers\AspNetRolesUserController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\DangKyKHHTController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KHHTsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -2023,6 +2024,8 @@
     <Content Include="assets\js\vendor\modernizr-3.5.0.min.js" />
     <Content Include="assets\js\wow.min.js" />
     <Content Include="css\dataTables.bootstrap4.min.css" />
+    <Content Include="css\Error.css" />
+    <Content Include="css\Error4041.css" />
     <Content Include="css\select.dataTables.min.css" />
     <Content Include="images\icon2.png" />
     <Content Include="js\dataTables.bootstrap4.min.js" />
@@ -2423,6 +2426,8 @@
     <Content Include="Views\AspNetUsers\EditAdmin.cshtml" />
     <Content Include="Views\AspNetRolesUser\Create.cshtml" />
     <Content Include="Views\DangKyKHHT\ThongBao.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="scss\Error404.scss" />
     <None Include="Views\Shared\DKKHHT.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
