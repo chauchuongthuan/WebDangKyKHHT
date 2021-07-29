@@ -19,8 +19,8 @@
 
         </section>
         <br />
-        <div class="col-12">
-            <table class="table custom-table">
+        <div class="col-14">
+            <table class="table table-based">
                 <tr>
                     <th>
                         Tên Sinh Viên
@@ -88,9 +88,8 @@
                                 @Html.DisplayFor(modelItem => item.MSSV)
                             </td>*@
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
                         </td>
                     </tr>
                 }

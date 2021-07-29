@@ -95,31 +95,26 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-    <div class="container">
-        <div class="row">
             <div class="col-4 text-right">
                 <div class="input-group">
                     Học kỳ: @Html.DropDownList("hk", (IEnumerable<SelectListItem>)ViewBag.ID_HK, new { @Class = "form-control" })
                 </div>
-            </div>            
-                <div class="col-12">
-
-                    <table class="table table-striped custom-table" id="tbMonHoc" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Tên môn</th>
-                                <th>Mã môn</th>
-                                <th>Số tín chỉ</th>
-                                <th>Học kì</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>          
+            </div>
+            <div class="col-12">
+                <table class="table table-striped custom-table" id="tbMonHoc" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Tên môn</th>
+                            <th>Mã môn</th>
+                            <th>Số tín chỉ</th>
+                            <th>Học kì</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
-        </div>
+    </div>
+</div>
 
     @*<div class="content">
         <div class="container">

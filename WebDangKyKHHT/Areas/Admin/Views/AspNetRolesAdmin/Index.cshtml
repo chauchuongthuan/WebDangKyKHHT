@@ -6,8 +6,8 @@
 }
 
 <section class="row">
-    <div class="col-2 col-lg-4">
-        <h2>Role</h2>
+    <div class="col-2 col-lg-6">
+        <h2>QUẢN LÝ PHÂN QUYỀN</h2>
     </div>
     <br />
     <div class="col-10 col-lg-8">
@@ -20,7 +20,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Tên phân quyền
         </th>
         <th></th>
     </tr>
@@ -33,7 +33,6 @@
 
         <td>
             @Html.ActionLink("Sửa", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Chi tiết", "Details", new { id=item.Id }) |
             @Html.ActionLink("Xóa", "Delete", new { id=item.Id }) |
             <a href="@Url.Action("Create","AspNetRoleUserAdmin", new { RoleId = item.Id  })">Thêm User</a>
         </td>
@@ -46,7 +45,7 @@
                 @user.UserName
             </td>
             <td>
-                <a href="@Url.Action("Delete", "AspNetRoleUserAdmin", new { RoleId = item.Id , UserId = user.Id })">Delete</a>
+                <a href="@Url.Action("Delete", "AspNetRoleUserAdmin", new { RoleId = item.Id , UserId = user.Id })">Xóa</a>
             </td>
         </tr>
     }
