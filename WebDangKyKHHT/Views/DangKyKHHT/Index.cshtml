@@ -6,6 +6,8 @@
 <script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")"></script>
 <script src="@Url.Content("~/js/jquery.dataTables.min.js")"></script>
 <script src="@Url.Content("~/js/dataTables.bootstrap4.min.js")"></script>
+
+
 <script>
     jQuery(document).ready(function ($) {
         var table = $('#tbMonHoc').DataTable({
@@ -97,30 +99,30 @@
                 </div>
             </div>
         </div>
-    </div>   
-        <div class="container">
-            <div class="row">
-                <div class="col-8">
-                    <a class="btn btn-danger" href="@Url.Content("~/chinh-sua-dang-ky")">Môn đã chọn</a>
-                </div>
-                <div class="col-4 text-right">
-                    <div class="input-group">
-                        Học kỳ: @Html.DropDownList("hk", (IEnumerable<SelectListItem>)ViewBag.ID_HK, new { @Class = "form-control" })
-                    </div>
-                </div>
-                <div class="col-12">
-                    <table class="table custom-table" id="tbMonHoc" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th scope="col">Tên môn</th>
-                                <th scope="col">Mã môn</th>
-                                <th scope="col">Số tín chỉ</th>
-                                <th scope="col">Học kì</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                    </table>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <a class="btn btn-danger" href="@Url.Content("~/chinh-sua-dang-ky")">Môn đã chọn</a>
+            </div>
+            <div class="col-4 text-right">
+                <div class="input-group">
+                    Học kỳ: @Html.DropDownList("hk", (IEnumerable<SelectListItem>)ViewBag.ID_HK, new { @Class = "form-control" })
                 </div>
             </div>
+            <div class="col-12">
+                <table class="table custom-table" id="tbMonHoc" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th scope="col">Tên môn</th>
+                            <th scope="col">Mã môn</th>
+                            <th scope="col">Số tín chỉ</th>
+                            <th scope="col">Học kì</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
+    </div>
 </div>
