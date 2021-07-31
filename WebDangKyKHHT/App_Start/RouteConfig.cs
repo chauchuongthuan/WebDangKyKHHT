@@ -21,6 +21,24 @@ namespace WebDangKyKHHT
                 namespaces: new[] { "WebDangKyKHHT.Controllers" }
             );
             routes.MapRoute(
+                name: "Dang nhap",
+                url: "dang-nhap",
+                defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional },
+                namespaces: new[] { "WebDangKyKHHT.Controllers" }
+            );
+            routes.MapRoute(
+                name: "Thong bao",
+                url: "thong-bao",
+                defaults: new { controller = "DangKyKHHT", action = "ThongBao", id = UrlParameter.Optional },
+                namespaces: new[] { "WebDangKyKHHT.Controllers" }
+            );
+            routes.MapRoute(
+                name: "Thong tin ca nhan",
+                url: "thong-tin-ca-nhan",
+                defaults: new { controller = "AspNetUsers", action = "Info", id = UrlParameter.Optional },
+                namespaces: new[] { "WebDangKyKHHT.Controllers" }
+            );
+            routes.MapRoute(
                 name: "MonHocs",
                 url: "ke-hoach-dao-tao",
                 defaults: new { controller = "MonHocs", action = "Index", id = UrlParameter.Optional },

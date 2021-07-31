@@ -33,12 +33,12 @@
                 {
                     using (Html.BeginForm("Info", "AspNetUsers", FormMethod.Post, new { id = "InfoForm", @class = "navbar-right" }))
                     {
-                         <li><a href="@Url.Content("~/AspNetUsers/Info")"><span class="icon-notifications mr-3"></span>Thông tin cá nhân</a></li>
+                         <li><a href="@Url.Content("~/thong-tin-ca-nhan")"><span class="icon-notifications mr-3"></span>Thông tin cá nhân</a></li>
                     }
                 }
                 else
                 {
-                    <li action="@Url.Content("~/Account/Login")" class="search-form d-inline-block">
+                    <li action="@Url.Content("~/dang-nhap")" class="search-form d-inline-block">
 
                         <div class="d-flex">
                             &ensp;
@@ -92,7 +92,7 @@ else
                     }
                     else
                     {
-                        <form action="@Url.Content("~/Account/Login")" class="search-form d-inline-block">
+                        <form action="@Url.Content("~/dang-nhap")" class="search-form d-inline-block">
 
                             <div class="d-flex">
                                 &ensp;
