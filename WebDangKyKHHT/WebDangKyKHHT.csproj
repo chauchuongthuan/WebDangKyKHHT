@@ -2026,7 +2026,9 @@
     <Content Include="css\dataTables.bootstrap4.min.css" />
     <Content Include="css\Error4041.css" />
     <Content Include="css\select.dataTables.min.css" />
+    <Content Include="images\ft_bg2.png" />
     <Content Include="images\icon2.png" />
+    <Content Include="images\ft_bg.png" />
     <Content Include="js\dataTables.bootstrap4.min.js" />
     <Content Include="js\dataTables.select.min.js" />
     <Content Include="js\Error404.js" />
